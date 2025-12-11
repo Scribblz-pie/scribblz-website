@@ -90,6 +90,19 @@
 				border-style: solid;
 				border-top-width: 2px;
 				text-align: center;
+				transition: transform 1s ease, opacity 1s ease, box-shadow 0.2s ease-in-out;
+				opacity: 0;
+				transform: translateY(4rem);
+
+				&:hover {
+					transform: translateY(-5px);
+					box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+				}
+
+				&.is-visible {
+					transform: translateY(0);
+					opacity: 1;
+				}
 
 				> :last-child {
 					margin-bottom: 0;
@@ -156,3 +169,12 @@
 			width: 100%;
 		}
 	}
+
+$accents: _palette(accents);
+
+@for $i from 1 through length($accents) {
+    #main > .posts > article:nth-child(#{$i}) h2 a {
+        color: nth($accents, $i);
+    }
+}
+
