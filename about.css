@@ -1,0 +1,265 @@
+/* About Us Page Specific Styles */
+@import url('styles.css');
+
+/* Team Section Container */
+.team-section {
+    padding: 0 5% 4rem;
+    background-color: #F8F8F8;
+    min-height: 80vh;
+}
+
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 1rem auto 3rem;
+    padding: 0 1rem;
+}
+
+/* Team Member Card */
+.member-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+
+    /* Layout Sizing for 3-then-2 layout */
+    /* Basis 300px ensures 3 fit on desktop (approx 1000px+), 
+       but 4 won't fit within 1400px comfortably with gaps */
+    flex: 0 1 350px;
+    min-width: 300px;
+
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
+    position: relative;
+    border: 4px solid #E0E0E0;
+    /* Default fallback */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Variable-based transform for clean animation */
+    --rotation: 0deg;
+    transform: rotate(0deg) translateY(0);
+    /* Default: straight */
+    opacity: 1;
+}
+
+.member-card:hover {
+    transform: rotate(var(--rotation)) translateY(-10px) !important;
+    /* Tilt on hover */
+    z-index: 10;
+}
+
+/* Animation Classes */
+/* Animation Classes */
+.member-card.reveal-init {
+    opacity: 0;
+    transform: rotate(0deg) translateY(50px);
+    /* Straight start */
+}
+
+.member-card.reveal-active {
+    opacity: 1;
+    transform: rotate(0deg) translateY(0);
+    /* Straight end */
+}
+
+/* 
+   Specific Card Styling (Colors & Rotation) 
+   Matching the vibrant site theme 
+*/
+
+/* Card 1: Purple */
+.member-card:nth-child(1) {
+    --rotation: -1.5deg;
+    border-color: #9B7EDE;
+    box-shadow: 0 10px 25px rgba(155, 126, 222, 0.2);
+}
+
+.member-card:nth-child(1):hover {
+    box-shadow: 0 20px 35px rgba(155, 126, 222, 0.3);
+}
+
+/* Card 2: Green */
+.member-card:nth-child(2) {
+    --rotation: 1deg;
+    border-color: #66BB6A;
+    box-shadow: 0 10px 25px rgba(102, 187, 106, 0.2);
+}
+
+.member-card:nth-child(2):hover {
+    box-shadow: 0 20px 35px rgba(102, 187, 106, 0.3);
+}
+
+/* Card 3: Blue */
+.member-card:nth-child(3) {
+    --rotation: -0.5deg;
+    border-color: #5A7C9E;
+    box-shadow: 0 10px 25px rgba(90, 124, 158, 0.2);
+}
+
+.member-card:nth-child(3):hover {
+    box-shadow: 0 20px 35px rgba(90, 124, 158, 0.3);
+}
+
+/* Card 4: Orange */
+.member-card:nth-child(4) {
+    --rotation: 1.5deg;
+    border-color: #FF9F66;
+    box-shadow: 0 10px 25px rgba(255, 159, 102, 0.2);
+}
+
+.member-card:nth-child(4):hover {
+    box-shadow: 0 20px 35px rgba(255, 159, 102, 0.3);
+}
+
+/* Card 5: Pink */
+.member-card:nth-child(5) {
+    --rotation: -1.2deg;
+    border-color: #ffadad;
+    box-shadow: 0 10px 25px rgba(255, 173, 173, 0.2);
+}
+
+.member-card:nth-child(5):hover {
+    box-shadow: 0 20px 35px rgba(255, 173, 173, 0.31);
+}
+
+
+/* Circular Photo Link */
+.member-photo-link {
+    display: block;
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    position: relative;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.member-photo-link:hover {
+    transform: scale(1.05) rotate(3deg);
+}
+
+.member-photo-link::after {
+    content: 'in';
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #0077b5;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-family: sans-serif;
+    border: 3px solid white;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+}
+
+.member-photo-link:hover::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.member-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: #eee;
+}
+
+/* Text Styling */
+.member-name {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.8rem;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+}
+
+.member-role {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1.2rem;
+    color: #7B68EE;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.member-bio {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Link Colors for Roles to match border */
+.member-card:nth-child(1) .member-role {
+    color: #9B7EDE;
+}
+
+.member-card:nth-child(2) .member-role {
+    color: #66BB6A;
+}
+
+.member-card:nth-child(3) .member-role {
+    color: #5A7C9E;
+}
+
+.member-card:nth-child(4) .member-role {
+    color: #FF9F66;
+}
+
+.member-card:nth-child(5) .member-role {
+    color: #ffadad;
+}
+
+
+/* Decorative Elements */
+.member-card::before {
+    display: none;
+    /* Removing the gradient strip to focus on the border color */
+}
+
+/* Page Header */
+.page-header {
+    text-align: center;
+    padding: 3rem 0 1rem;
+}
+
+.page-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    color: #2C3E50;
+    margin-bottom: 1rem;
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    position: relative;
+    z-index: 10;
+}
+
+.page-title::after {
+    content: '';
+    display: block;
+    width: 120%;
+    height: 15px;
+    background: #ffd6a5;
+    position: absolute;
+    bottom: 5px;
+    left: -10%;
+    z-index: -1;
+    border-radius: 10px;
+    opacity: 0.6;
+    transform: rotate(-1deg);
+}

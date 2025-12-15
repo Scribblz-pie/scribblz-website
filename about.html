@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - SCRIBBLZ Team</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="about.css">
+    <script src="js/navigation.js"></script> <!-- Reusing the nav logic we just fixed -->
+</head>
+
+<body class="is-preload">
+
+    <!-- Random Background Sketches Container (Shared consistency) -->
+    <svg class="sketch-container" id="sketchContainer"></svg>
+
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="logo">
+            SCRIBBLZ
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="general-design.html">General Design</a></li>
+            <li><a href="mechanical.html">Mechanical</a></li>
+            <li><a href="electrical.html">Electrical</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="page-header">
+        <h1 class="page-title">Meet The Team</h1>
+        <p class="subtitle" style="max-width: 600px; margin: 1rem auto;">
+            The minds behind the machine! We are a team of 5 engineers passionate about robotics and whiteboard art.
+        </p>
+    </header>
+
+    <!-- Team Content -->
+    <section class="team-section">
+        <div class="team-grid">
+
+            <!-- Member 1 -->
+            <article class="member-card">
+                <a href="https://linkedin.com" target="_blank" class="member-photo-link" title="Connect on LinkedIn">
+                    <!-- Placeholder image - in production replace src with actual photos -->
+                    <img src="https://ui-avatars.com/api/?name=Member+1&background=ffadad&color=fff&size=200"
+                        alt="Team Member 1" class="member-photo">
+                </a>
+                <h3 class="member-name">Eleane Lin</h3>
+                <span class="member-role">Project Manager</span>
+                <p class="member-bio">Passionate about algorithms and embedded systems. Built the core logic for
+                    SCRIBBLZ pathfinding.</p>
+            </article>
+
+            <!-- Member 2 -->
+            <article class="member-card">
+                <a href="https://linkedin.com" target="_blank" class="member-photo-link" title="Connect on LinkedIn">
+                    <img src="https://ui-avatars.com/api/?name=Member+2&background=ffd6a5&color=fff&size=200"
+                        alt="Team Member 2" class="member-photo">
+                </a>
+                <h3 class="member-name">Liam Carlin</h3>
+                <span class="member-role">Mechanical Lead</span>
+                <p class="member-bio">CAD wizard who designed the impeller system and chassis. Loves 3D printing and
+                    rapid prototyping.</p>
+            </article>
+
+            <!-- Member 3 -->
+            <article class="member-card">
+                <a href="https://linkedin.com" target="_blank" class="member-photo-link" title="Connect on LinkedIn">
+                    <img src="https://ui-avatars.com/api/?name=Member+3&background=fdffb6&color=555&size=200"
+                        alt="Team Member 3" class="member-photo">
+                </a>
+                <h3 class="member-name">David Barsoum</h3>
+                <span class="member-role">Software Lead</span>
+                <p class="member-bio">Designed the custom PCB and power management system. Enjoys debugging circuits and
+                    soldering.</p>
+            </article>
+
+            <!-- Member 4 -->
+            <article class="member-card">
+                <a href="https://linkedin.com" target="_blank" class="member-photo-link" title="Connect on LinkedIn">
+                    <img src="https://ui-avatars.com/api/?name=Member+4&background=caffbf&color=555&size=200"
+                        alt="Team Member 4" class="member-photo">
+                </a>
+                <h3 class="member-name">Enzo Smajlaj</h3>
+                <span class="member-role">Software Lead</span>
+                <p class="member-bio">Worked on the low-level motor control and sensor integration. Makes sure the robot
+                    moves smoothly.</p>
+            </article>
+
+            <!-- Member 5 -->
+            <article class="member-card">
+                <a href="https://linkedin.com" target="_blank" class="member-photo-link" title="Connect on LinkedIn">
+                    <img src="https://ui-avatars.com/api/?name=Member+5&background=a0c4ff&color=fff&size=200"
+                        alt="Team Member 5" class="member-photo">
+                </a>
+                <h3 class="member-name">Michael Ku</h3>
+                <span class="member-role">Electrical Lead</span>
+                <p class="member-bio">Coordinated the overall system integration and web interface. Loves full-stack
+                    capability.</p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="copyright">
+        <p>© SCRIBBLZ Project 2025</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/sketches.js"></script>
+    <script src="about.js"></script>
+</body>
+
+</html>

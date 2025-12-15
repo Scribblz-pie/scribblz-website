@@ -1,60 +1,31 @@
 // Navigation and scroll handling
 document.addEventListener('DOMContentLoaded', () => {
+    // Highlight current page link
     const navLinks = document.querySelectorAll('.nav-links a');
-    const sections = document.querySelectorAll('section[id], #intro');
+    const currentPath = window.location.pathname;
+    // Get the filename (e.g., 'index.html') or default to 'index.html' for root
+    const currentFilename = currentPath.split('/').pop() || 'index.html';
 
-    // Function to update active nav link based on scroll position
-    function updateActiveNavLink() {
-        let currentSection = '';
-        const scrollPosition = window.scrollY + 200; // Offset for better UX
-
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.offsetHeight;
-
-            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-
-        // Update active class on nav links
-        navLinks.forEach(link => {
-            const linkHref = link.getAttribute('href');
-            const linkSection = linkHref.substring(1); // Remove the '#'
-
-            if (linkSection === currentSection) {
-                link.parentElement.classList.add('active');
-            } else {
-                link.parentElement.classList.remove('active');
-            }
-        });
-    }
-
-    // Update on scroll
-    window.addEventListener('scroll', updateActiveNavLink);
-
-    // Update on page load
-    updateActiveNavLink();
-
-    // Smooth scroll when clicking nav links
     navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const href = link.getAttribute('href');
-            if (href.startsWith('#')) {
-                e.preventDefault();
-                const targetSection = document.querySelector(href);
-                if (targetSection) {
-                    targetSection.scrollIntoView({ behavior: 'smooth' });
-                }
-            }
-        });
+        const linkHref = link.getAttribute('href');
+
+        // precise match logic
+        if (linkHref === currentFilename) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
     });
 
     // Explore button smooth scroll
     const exploreButton = document.getElementById('explore-button');
     if (exploreButton) {
         exploreButton.addEventListener('click', () => {
-            document.getElementById('main').scrollIntoView({ behavior: 'smooth' });
+            // Try to scroll to the next major section
+            const nextSection = document.getElementById('final-system-section') || document.getElementById('design');
+            if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     }
 
