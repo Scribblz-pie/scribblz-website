@@ -1,68 +1,136 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<title>Electrical Design - SCRIBBLZ Project</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="assets/css/theme-overhaul.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrical Design - SCRIBBLZ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="electrical.css">
 </head>
 
 <body class="is-preload">
-	<div id="wrapper">
-		<div id="scribble-bg-container"></div>
-		<header id="header">
-			<a href="index.html" class="logo">SCRIBBLZ</a>
-		</header>
-		<nav id="nav">
-			<ul class="links">
-				<li><a href="index.html">Project Home</a></li>
-				<li><a href="design.html">General Design</a></li>
-				<li><a href="gallery.html">Photos/Videos</a></li>
-				<li><a href="mechanical.html">Mechanical</a></li>
-				<li class="active"><a href="electrical.html">Electrical</a></li>
-				<li><a href="software.html">Software</a></li>
-				<li><a href="bom.html">BOM</a></li>
-			</ul>
-			<ul class="icons">
-				<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-			</ul>
-		</nav>
-		<div id="main">
-			<section class="post">
-				<header class="major">
-					<h1>Electrical Design</h1>
-				</header>
-				<div class="image main"><img src="images/pic04.jpg" alt="[Main Schematic Diagram]" /></div>
-				<p>[Your detailed description of the electrical design...]</p>
-				<h2>Analysis</h2>
-				<p>[Include any necessary analysis...]</p>
-				<h2>Circuit Diagrams</h2>
-				<p>[You can add more detailed diagrams or photos of your wiring here.]</p>
-				<span class="image fit"><img src="images/pic02.jpg" alt="[Detailed wiring diagram]"></span>
-			</section>
-		</div>
-		<div id="copyright">
-			<ul>
-				<li>&copy; SCRIBBLZ Project</li>
-				<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
-	</div>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="https://unpkg.com/roughjs@latest/bundled/rough.js"></script>
-	<script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
-	<script src="assets/js/scribble-theme.js"></script>
+
+    <!-- Random Background Sketches Container -->
+    <svg class="sketch-container" id="sketchContainer"></svg>
+
+    <!-- Spot It Doodles Container -->
+    <svg class="spot-it-container" id="spotItContainer"></svg>
+
+    <nav id="nav">
+        <div class="logo">
+            <a href="index.html" style="color: inherit; text-decoration: none;">SCRIBBLZ</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="general-design.html">General Design</a></li>
+            <li><a href="mechanical.html">Mechanical</a></li>
+            <li><a href="electrical.html" class="active">Electrical</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <div id="intro">
+        <h1 class="main-title">Electrical Design</h1>
+        <p class="subtitle">
+            Our custom PCB, microcontroller choice, sensors, and power system.
+            The full schematic and electrical analysis!
+        </p>
+    </div>
+
+    <!-- Main Content Section -->
+    <section id="system" class="section-content wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Electrical Systems</h2>
+
+            <article class="featured-post">
+                <h3>Custom PCB Design</h3>
+                <div class="card-image">
+                    <span class="emoji-placeholder">🔌</span>
+                </div>
+                <p>We designed a custom PCB to integrate all electrical components into a compact, reliable package.
+                    The board includes motor drivers, power regulation, sensor interfaces, and communication modules.
+                </p>
+                <p><strong>PCB Features:</strong></p>
+                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+                    <li>4-layer design for optimal signal integrity</li>
+                    <li>Integrated motor driver circuits</li>
+                    <li>Power distribution network with multiple voltage rails</li>
+                    <li>ESD protection on all external interfaces</li>
+                </ul>
+            </article>
+
+            <article class="featured-post">
+                <h3>Microcontroller & Processing</h3>
+                <div class="card-image">
+                    <span class="emoji-placeholder">🧠</span>
+                </div>
+                <p>The system uses a dual-processor architecture:</p>
+                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+                    <li><strong>Raspberry Pi:</strong> Handles high-level control, wireless communication, and path
+                        planning</li>
+                    <li><strong>Microcontroller:</strong> Manages real-time motor control and sensor processing</li>
+                </ul>
+                <p>This architecture allows us to leverage the Pi's processing power while maintaining precise real-time
+                    control.</p>
+            </article>
+
+            <article class="featured-post">
+                <h3>Power System</h3>
+                <div class="card-image">
+                    <span class="emoji-placeholder">🔋</span>
+                </div>
+                <p>The power system was carefully designed to handle the high current demands of the impeller motor
+                    while providing clean, stable power to sensitive electronics.</p>
+                <p><strong>Power Specifications:</strong></p>
+                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+                    <li>Battery: [Type], [Voltage]V, [Capacity]mAh</li>
+                    <li>5V rail for Raspberry Pi (3A max)</li>
+                    <li>3.3V rail for microcontroller and sensors</li>
+                    <li>12V rail for motors (10A peak)</li>
+                    <li>Runtime: Approximately [X] minutes of continuous operation</li>
+                </ul>
+            </article>
+
+            <article class="featured-post">
+                <h3>Sensors & Feedback</h3>
+                <div class="card-image">
+                    <span class="emoji-placeholder">📡</span>
+                </div>
+                <p>Multiple sensors provide feedback for precise control:</p>
+                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+                    <li><strong>Encoders:</strong> Track wheel rotation for position estimation</li>
+                    <li><strong>IMU:</strong> Monitors orientation and detects wall contact</li>
+                    <li><strong>Current Sensors:</strong> Monitor motor health and detect obstacles</li>
+                    <li><strong>Proximity Sensors:</strong> Assist with docking station alignment</li>
+                </ul>
+            </article>
+
+            <article class="featured-post">
+                <h3>Communication System</h3>
+                <div class="card-image">
+                    <span class="emoji-placeholder">📶</span>
+                </div>
+                <p>Wireless communication is handled via WiFi, allowing the robot to receive drawing commands
+                    from the web interface and send status updates back to the user.</p>
+            </article>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="index.html" class="cta-button">← Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="copyright">
+        <p>© SCRIBBLZ Project 2025</p>
+    </footer>
+
+    <!-- JavaScript Modules -->
+    <script src="js/sketches.js"></script>
+    <script src="js/spot-it-doodles.js"></script>
+    <script src="electrical.js"></script>
 </body>
 
 </html>

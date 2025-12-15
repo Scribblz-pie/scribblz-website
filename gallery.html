@@ -1,80 +1,110 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<title>Gallery - SCRIBBLZ Project</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="assets/css/theme-overhaul.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - SCRIBBLZ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="gallery.css">
 </head>
 
 <body class="is-preload">
-	<div id="wrapper">
-		<div id="scribble-bg-container"></div>
-		<header id="header">
-			<a href="index.html" class="logo">SCRIBBLZ</a>
-		</header>
-		<nav id="nav">
-			<ul class="links">
-				<li><a href="index.html">Project Home</a></li>
-				<li><a href="design.html">General Design</a></li>
-				<li class="active"><a href="gallery.html">Photos/Videos</a></li>
-				<li><a href="mechanical.html">Mechanical</a></li>
-				<li><a href="electrical.html">Electrical</a></li>
-				<li><a href="software.html">Software</a></li>
-				<li><a href="bom.html">BOM</a></li>
-			</ul>
-			<ul class="icons">
-				<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-			</ul>
-		</nav>
-		<div id="main">
-			<section class="post">
-				<header class="major">
-					<h1>Final System in Action</h1>
-				</header>
-				<div class="image main"><img src="images/pic01.jpg" alt="[Main project photo]" /></div>
-				<p>[Detailed caption for the photo above. Explain what it shows.]</p>
-				<p>[Full discussion of your final system's performance...]</p>
-				<p>[If the final system was unable to perform, use this space...]</p>
-				<hr />
-				<h2>Videos</h2>
-				<p>[Embed your YouTube or Vimeo video here...]</p>
-				<div class="image main"><img src="images/pic03.jpg" alt="[Placeholder for Video]" /></div>
-				<hr />
-				<h2>Photo Gallery</h2>
-				<p>[You can add more photos of the process or details here.]</p>
-				<div class="row">
-					<div class="col-6 col-12-small">
-						<span class="image fit"><img src="images/pic02.jpg" alt="[Gallery image 1]"></span>
-					</div>
-					<div class="col-6 col-12-small">
-						<span class="image fit"><img src="images/pic03.jpg" alt="[Gallery image 2]"></span>
-					</div>
-				</div>
-			</section>
-		</div>
-		<div id="copyright">
-			<ul>
-				<li>&copy; SCRIBBLZ Project</li>
-				<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
-	</div>
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="https://unpkg.com/roughjs@latest/bundled/rough.js"></script>
-	<script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
-	<script src="assets/js/scribble-theme.js"></script>
+
+    <!-- Random Background Sketches Container -->
+    <svg class="sketch-container" id="sketchContainer"></svg>
+
+    <!-- Spot It Doodles Container -->
+    <svg class="spot-it-container" id="spotItContainer"></svg>
+
+    <nav id="nav">
+        <div class="logo">
+            <a href="index.html" style="color: inherit; text-decoration: none;">SCRIBBLZ</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="general-design.html">General Design</a></li>
+            <li><a href="mechanical.html">Mechanical</a></li>
+            <li><a href="electrical.html">Electrical</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <div id="intro">
+        <h1 class="main-title">Gallery</h1>
+        <p class="subtitle">
+            Check out our robot in action! Photos, videos, and drawings from the SCRIBBLZ project.
+        </p>
+    </div>
+
+    <!-- Main Content Section -->
+    <section id="gallery" class="section-content wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Project Gallery</h2>
+
+            <article class="featured-post">
+                <p class="gallery-intro">
+                    Explore photos and videos of SCRIBBLZ in action! From early prototypes to the final system,
+                    see how our wall-drawing robot came to life.
+                </p>
+
+                <h3 style="margin-top: 3rem;">Robot in Action</h3>
+                <div class="gallery-grid">
+                    <div class="gallery-item">🎬</div>
+                    <div class="gallery-item">📸</div>
+                    <div class="gallery-item">🖼️</div>
+                    <div class="gallery-item">🎥</div>
+                    <div class="gallery-item">📷</div>
+                    <div class="gallery-item">🎞️</div>
+                </div>
+            </article>
+
+            <article class="featured-post" style="margin-top: 3rem;">
+                <h3>Development Process</h3>
+                <p class="gallery-intro">
+                    Behind-the-scenes photos from the design and build process.
+                </p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">🔧</div>
+                    <div class="gallery-item">⚙️</div>
+                    <div class="gallery-item">🔌</div>
+                    <div class="gallery-item">💻</div>
+                    <div class="gallery-item">🛠️</div>
+                    <div class="gallery-item">📐</div>
+                </div>
+            </article>
+
+            <article class="featured-post" style="margin-top: 3rem;">
+                <h3>Robot Drawings</h3>
+                <p class="gallery-intro">
+                    Sample drawings created by SCRIBBLZ on various surfaces.
+                </p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">✏️</div>
+                    <div class="gallery-item">🎨</div>
+                    <div class="gallery-item">🖊️</div>
+                    <div class="gallery-item">✍️</div>
+                    <div class="gallery-item">🖍️</div>
+                    <div class="gallery-item">🎭</div>
+                </div>
+            </article>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="index.html" class="cta-button">← Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="copyright">
+        <p>© SCRIBBLZ Project 2025</p>
+    </footer>
+
+    <!-- JavaScript Modules -->
+    <script src="js/sketches.js"></script>
+    <script src="js/spot-it-doodles.js"></script>
+    <script src="gallery.js"></script>
 </body>
 
 </html>

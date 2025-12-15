@@ -1,201 +1,240 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-	<title>SCRIBBLZ Project Showcase</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="assets/css/theme-overhaul.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCRIBBLZ - Wall Drawing Robot Project</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body class="is-preload">
 
-	<div id="wrapper" class="fade-in">
-		<div id="scribble-bg-container"></div>
+    <!-- Random Background Sketches Container -->
+    <svg class="sketch-container" id="sketchContainer"></svg>
 
-		<div id="intro">
-			<svg id="scribble" width="200" height="100" xmlns="http://www.w3.org/2000/svg">
-				<path d="M10 50 C 30 10, 70 90, 90 50 C 110 10, 150 90, 170 50" stroke="#FF4E50" fill="transparent"
-					stroke-width="2" />
-				<path d="M20 30 C 40 5, 80 70, 100 30 C 120 5, 160 70, 180 30" stroke="#FC913A" fill="transparent"
-					stroke-width="2" />
-				<circle cx="50" cy="50" r="10" stroke="#F9D423" fill="none" stroke-width="2" />
-				<circle cx="150" cy="50" r="15" stroke="#EDE574" fill="none" stroke-width="2" />
-			</svg>
-			<h1 data-scribble data-scribble-type="underline" data-scribble-color="#FD79A8">SCRIBBLZ</h1>
-			<p>
-				Hands-free doodling. Wireless user input. Advanced vertical driving. <br>
-				Our autonomous wall-traversing bot scales a window and doodles, allowing your 
-				childhood visions to come to life in a way you’ve never seen before. 
+    <!-- Spot It Doodles Container -->
+    <svg class="spot-it-container" id="spotItContainer"></svg>
 
-			</p>
-			<ul class="actions">
-				<li><a href="#main" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
-			</ul>
-		</div>
+    <!-- Robot Drawing Trails Container -->
+    <svg class="robot-trail-container" id="robotTrailContainer"></svg>
 
-		<header id="header">
-			<a href="index.html" class="logo">SCRIBBLZ</a>
-		</header>
+    <nav id="nav">
+        <div class="logo">
+            SCRIBBLZ
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="general-design.html">General Design</a></li>
+            <li><a href="mechanical.html">Mechanical</a></li>
+            <li><a href="electrical.html">Electrical</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </nav>
 
-		<nav id="nav">
-			<ul class="links">
-				<li class="active"><a href="index.html" data-scribble data-scribble-type="box"
-						data-scribble-color="#6C5CE7">Project Home</a></li>
-				<li><a href="design.html">General Design</a></li>
-				<li><a href="gallery.html">Photos/Videos</a></li>
-				<li><a href="mechanical.html">Mechanical</a></li>
-				<li><a href="electrical.html">Electrical</a></li>
-				<li><a href="software.html">Software</a></li>
-				<li><a href="bom.html">BOM</a></li>
-			</ul>
-			<ul class="icons">
-				<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-			</ul>
-		</nav>
+    <div id="intro">
+        <img id="robot-intro" class="robot-element" src="images\content.png" alt="Robot Intro">
+        <img id="robot-intro-star" class="robot-element" src="images\content.png" alt="Robot Star">
+        <h1 class="main-title">SCRIBBLZ</h1>
+        <p class="subtitle">
+            Impeller suction. Custom PCB. Wireless user input. <br><br>
+            Our robot is capable of vertical traversal via impeller suction
+            and omniwheels. Attached to its head is a dry-erase marker to doodle a user-input image,
+            communicated wirelessly via this website. Once finished, it returns home to its docking station,
+            controlled by a RaspPi.
+        </p>
+        <button class="cta-button scroll-down" id="explore-button">
+            ⬇ Explore The Bot
+        </button>
+    </div>
 
-		<div id="main">
+    <!-- Final System Section -->
+    <section id="final-system-section" class="wave-section">
+        <div class="content-wrapper">
+            <img id="robot-gallery" class="robot-element" src="images\content.png" alt="Robot Gallery">
+            <h2 class="section-title">Final System</h2>
+            <article class="featured-post">
+                <!-- YouTube Video Embed -->
+                <div class="video-container">
+                    <!-- Replace YOUR_VIDEO_ID with your actual YouTube video ID -->
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/watch?v=7QJ-N-AQJYc"
+                        title="SCRIBBLZ Robot Demo" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
+                </div>
 
-			<article class="post featured">
-				<header class="major">
-					<!-- DATE REMOVED -->
-					<h2><a href="#">The Final System</a></h2>
-					<p>With an advanced impeller on the bottom and omniwheels arranged in a kiwi-drive, our robot 
-						creates a vacuum to suction itself to a vertical window and is capable of driving in any 
-						direction. At its head is a dry-erase marker which moves up and down to draw lines when 
-						necessary. Doodles are uploaded through our interface and communicated wirelessly to the 
-						system, and once it’s finished doodling, the bot heads home to the docking station until 
-						the next command is issued.  <br>
-						<br>
-						<h3><b><u>Pillars of Motivation</u></b> </h3>
-						<u>Purpose</u> <br>
-						Not wanting to make something just for the sake of making, we decided to be ambitious when 
-						choosing a project. So when we were inspired by existing wall-climbing bots, 
-						we wondered: How can we give it purpose? That’s when the idea of Scribblz came to life. <br>
-						<u>Novelty</u> <br>
-						Our team didn’t just want to make, we wanted to create. Our vision for Scribblz was not 
-						only to captivate surrounding people, but be completely unique. Scribblz embodies all of 
-						our inspirations and engineering journeys, amplifying a beautiful blend of diversity. <br>
-						<u>Longevity</u> <br>
-						Building on top of our previous two motivations, we wanted Scribblz to last long after we 
-						finished the course. We designed it around being lightweight and easy to maintain. Our hope 
-						is that even once we’re gone from campus, our legacy can continue through other people.<br>
+                <!-- Description below video -->
+                <p class="video-description">Check out our robot in action! This video shows the final prototype scaling
+                    walls, drawing doodles, and returning to its docking station. Watch as SCRIBBLZ brings art to
+                    vertical surfaces!</p>
+            </article>
+        </div>
+    </section>
 
-					</p>
-				</header>
+    <!-- Design Section -->
+    <section id="design" class="section-content wave-section">
+        <div class="content-wrapper">
+            <img id="robot-design" class="robot-element" src="images\content.png" alt="Robot Design">
+            <h2 class="section-title">How We Built It</h2>
 
-				<a href="#" class="image main"><img src="images/pic01.jpg" alt="[Final Rendering of the Robot]" /></a>
-				<p>System Energy and Data Flow Diagram</p>
+            <div class="posts-grid">
+                <article class="post-card">
+                    <header>
+                        <h3>General Design</h3>
+                    </header>
+                    <div class="card-image">
+                        <span class="emoji-placeholder">📐</span>
+                    </div>
+                    <p>A look at the high-level design process, including trade-offs, rationale,
+                        and system-level diagrams. From concept to reality!</p>
+                    <a href="general-design.html" class="card-button"
+                        style="display: block; text-decoration: none; text-align: center;">View Design Details</a>
+                </article>
 
-			</article>
+                <article class="post-card">
+                    <header>
+                        <h3>Mechanical Design</h3>
+                    </header>
+                    <div class="card-image">
+                        <span class="emoji-placeholder">⚙️</span>
+                    </div>
+                    <p>Deep dive into our mechanical design. The CAD, the chassis, custom parts,
+                        and how we made the impeller suction system work!</p>
+                    <a href="mechanical.html" class="card-button"
+                        style="display: block; text-decoration: none; text-align: center;">Full Details</a>
+                </article>
 
-			<section class="posts">
-				<article>
-					<header>
-						<h2><a href="design.html">General Design</a></h2>
-					</header>
-					<a href="design.html" class="image fit"><img src="images/pic03.jpg"
-							alt="[Thumbnail of diagram]" /></a>
-					<p>A look at the overall design process, including trade-offs, rationale,
-						and system-level diagrams.</p>
-					<ul class="actions special">
-						<li><a href="design.html" class="button">View Design Details</a></li>
-					</ul>
-				</article>
-				<article>
-					<header>
-						<h2><a href="mechanical.html">Mechanical Design</a></h2>
-					</header>
-					<a href="mechanical.html" class="image fit"><img src="images/pic05.jpg"
-							alt="[Thumbnail of CAD rendering]" /></a>
-					<p>Overview of  the CAD,  chassis, and iterations.
-					</p>
-					<ul class="actions special">
-						<li><a href="mechanical.html" class="button">Full Details</a></li>
-					</ul>
-				</article>
-				<article>
-					<header>
-						<h2><a href="electrical.html">Electrical Design</a></h2>
-					</header>
-					<a href="electrical.html" class="image fit"><img src="images/pic04.jpg"
-							alt="[Thumbnail of circuit]" /></a>
-					<p>Check out the electrical schematics. Designs are comprised primarily of the 
-						microcontroller, sensors, and power.
-		
-					</p>
-					<ul class="actions special">
-						<li><a href="electrical.html" class="button">Full Details</a></li>
-					</ul>
-				</article>
-				<article>
-					<header>
-						<h2><a href="software.html">Software & Firmware</a></h2>
-					</header>
-					<a href="software.html" class="image fit"><img src="images/pic06.jpg"
-							alt="[Thumbnail of code snippet]" /></a>
-					<p>Software architecture, simulations, and navigation systems. </p>
-					<ul class="actions special">
-						<li><a href="software.html" class="button">Full Details</a></li>
-					</ul>
-				</article>
-				<article>
-					<header>
-						<h2><a href="bom.html">Bill of Materials (BOM)</a></h2>
-					</header>
-					<a href="bom.html" class_="image fit"><img src="images/pic02.jpg"
-							alt="[Thumbnail of components]" /></a>
-					<p>An account of how the $250 budget was spent.
-						All components and materials are included, with estimated costs for any free items.</p>
-					<ul class="actions special">
-						<li><a href="bom.html" class="button">View Budget</a></li>
-					</ul>
-				</article>
-				<article>
-					<header>
-						<h2><a href="gallery.html">Final System in Action</a></h2>
-					</header>
-					<a href="gallery.html" class="image fit"><img src="images/pic07.jpg"
-							alt="[Thumbnail for gallery]" /></a>
-					<p>Final event pictures.
-					]</p>
-					<ul class="actions special">
-						<li><a href="gallery.html" class="button">View Gallery</a></li>
-					</ul>
-				</article>
-			</section>
+                <article class="post-card">
+                    <header>
+                        <h3>Electrical Design</h3>
+                    </header>
+                    <div class="card-image">
+                        <span class="emoji-placeholder">⚡</span>
+                    </div>
+                    <p>Our custom PCB, microcontroller choice, sensors, and power system.
+                        The full schematic and electrical analysis!</p>
+                    <a href="electrical.html" class="card-button"
+                        style="display: block; text-decoration: none; text-align: center;">Full Details</a>
+                </article>
 
-		</div>
+                <article class="post-card">
+                    <header>
+                        <h3>Software & Firmware</h3>
+                    </header>
+                    <div class="card-image">
+                        <span class="emoji-placeholder">💻</span>
+                    </div>
+                    <p>The brains of the operation! Main logic, RaspPi control, wireless communication,
+                        and the code architecture that brings it all together.</p>
+                    <a href="software.html" class="card-button"
+                        style="display: block; text-decoration: none; text-align: center;">Full Details</a>
+                </article>
+            </div>
+    </section>
 
-		<div id="copyright">
-			<ul>
-				<li>&copy; SCRIBBLZ Project</li>
-				<li>Design: <a href="https://html5up.net">HTML5 UP</a></li>
-			</ul>
-		</div>
+    <!-- Features Section -->
+    <section id="features" class="wave-section">
+        <div class="content-wrapper">
+            <img id="robot-features" class="robot-element" src="images\content.png" alt="Robot Features">
+            <h2 class="section-title">What Makes It Special!</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🎨</span>
+                    <h3>Marker Magic!</h3>
+                    <p>Our robot draws with a real dry-erase marker! The precision marker head can create detailed
+                        doodles and sketches on any vertical surface.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🧲</span>
+                    <h3>Impeller Suction</h3>
+                    <p>Custom-designed impeller system creates negative pressure, allowing the bot to stick to walls
+                        and
+                        traverse vertically like a gecko!</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📡</span>
+                    <h3>Wireless Control</h3>
+                    <p>Send drawings wirelessly from this website! The robot receives your input and brings your
+                        doodles
+                        to life on the wall.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🏠</span>
+                    <h3>Auto Return</h3>
+                    <p>When the drawing is complete, the robot automatically returns to its docking station, ready
+                        for
+                        the next masterpiece!</p>
+                </div>
+            </div>
+    </section>
 
-	</div>
+    <!-- System Diagram -->
+    <section id="system" class="section-content wave-section">
+        <div class="content-wrapper">
+            <img id="robot-system" class="robot-element" src="images\content.png" alt="Robot System">
+            <h2 class="section-title">System Overview</h2>
+            <article class="featured-post">
+                <div class="system-diagram">
+                    <div class="system-box">
+                        <h4>🖥️ Raspberry Pi</h4>
+                        <p>Main controller</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="system-box">
+                        <h4>⚡ Custom PCB</h4>
+                        <p>Power & control</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="system-box">
+                        <h4>🔧 Motors</h4>
+                        <p>Movement & suction</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="system-box">
+                        <h4>🖊️ Marker Head</h4>
+                        <p>Drawing output</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
 
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vivus@latest/dist/vivus.min.js"></script>
-	<script>
-		new Vivus('scribble', { duration: 200 });
-	</script>
-	<!-- Scribble Theme Scripts -->
-	<script src="https://unpkg.com/roughjs@latest/bundled/rough.js"></script>
-	<script src="https://unpkg.com/rough-notation/lib/rough-notation.iife.js"></script>
-	<script src="assets/js/scribble-theme.js"></script>
 
+    <!-- Gallery Section -->
+    <section id="gallery" class="wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Gallery</h2>
+            <article class="featured-post">
+                <p class="gallery-intro">Check out our robot in action! These photos and videos show the final prototype
+                    scaling walls, drawing doodles, and returning to its docking station.</p>
+                <div class="gallery-grid">
+                    <div class="gallery-item">🎬</div>
+                    <div class="gallery-item">📸</div>
+                    <div class="gallery-item">🖼️</div>
+                    <div class="gallery-item">🎥</div>
+                    <div class="gallery-item">📷</div>
+                    <div class="gallery-item">🎞️</div>
+                </div>
+                <a href="gallery.html" class="cta-button"
+                    style="margin-top: 2rem; display: inline-block; text-decoration: none;">View Full Gallery</a>
+            </article>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="copyright">
+        <p>© SCRIBBLZ Project 2025</p>
+    </footer>
+
+    <!-- JavaScript Modules -->
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/sketches.js"></script>
+    <script src="js/spot-it-doodles.js"></script>
+    <script src="js/robots.js"></script>
+    <script src="js/navigation.js"></script>
 </body>
 
 </html>

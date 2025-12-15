@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Design - SCRIBBLZ</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="general-design.css">
+</head>
+
+<body class="is-preload">
+
+    <!-- Random Background Sketches Container -->
+    <svg class="sketch-container" id="sketchContainer"></svg>
+
+    <!-- Spot It Doodles Container -->
+    <svg class="spot-it-container" id="spotItContainer"></svg>
+
+    <nav id="nav">
+        <div class="logo">
+            <a href="index.html" style="color: inherit; text-decoration: none;">SCRIBBLZ</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="general-design.html" class="active">General Design</a></li>
+            <li><a href="mechanical.html">Mechanical</a></li>
+            <li><a href="electrical.html">Electrical</a></li>
+            <li><a href="software.html">Software</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+    </nav>
+
+    <div id="intro">
+        <h1 class="main-title">General Design</h1>
+        <p class="subtitle">
+            A look at the high-level design process, including trade-offs, rationale,
+            and system-level diagrams. From concept to reality!
+        </p>
+    </div>
+
+    <!-- Main Content Section -->
+    <section id="design" class="section-content wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Design Overview</h2>
+
+            <article class="featured-post">
+                <h3>Project Goals</h3>
+                <p>Our primary objective was to create a wall-climbing robot capable of drawing on vertical surfaces.
+                    This required balancing several key constraints: weight, power consumption, adhesion strength,
+                    and drawing precision.</p>
+            </article>
+
+            <article class="featured-post">
+                <h3>Design Philosophy</h3>
+                <p>We approached this project with a focus on modularity and iterative development. Each subsystem
+                    was designed to be independently testable while integrating seamlessly with the overall system.</p>
+            </article>
+
+            <article class="featured-post">
+                <h3>Key Trade-offs</h3>
+                <div class="card-image">
+                    <span class="emoji-placeholder">⚖️</span>
+                </div>
+                <p><strong>Suction vs. Magnetic Adhesion:</strong> We chose impeller-based suction for its versatility
+                    across different wall materials, though it required more power than magnetic alternatives.</p>
+                <p><strong>Omniwheels vs. Standard Wheels:</strong> Omniwheels provided superior maneuverability
+                    for precise drawing, despite increased mechanical complexity.</p>
+                <p><strong>Wireless vs. Tethered:</strong> Wireless control offered better user experience and
+                    demonstration value, though it added communication complexity.</p>
+            </article>
+
+            <article class="featured-post">
+                <h3>System Architecture</h3>
+                <div class="system-diagram">
+                    <div class="system-box">
+                        <h4>🎯 User Input</h4>
+                        <p>Web Interface</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="system-box">
+                        <h4>📡 Communication</h4>
+                        <p>Wireless Link</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="system-box">
+                        <h4>🧠 Processing</h4>
+                        <p>RaspPi + MCU</p>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="system-box">
+                        <h4>🤖 Execution</h4>
+                        <p>Motors + Marker</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-post">
+                <h3>Design Iterations</h3>
+                <p>Throughout development, we went through multiple design iterations, each addressing specific
+                    challenges discovered during testing. Key improvements included optimizing the impeller design
+                    for better suction, refining the marker mechanism for consistent line quality, and enhancing
+                    the control algorithms for smoother movement.</p>
+            </article>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="index.html" class="cta-button">← Back to Home</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="copyright">
+        <p>© SCRIBBLZ Project 2025</p>
+    </footer>
+
+    <!-- JavaScript Modules -->
+    <script src="js/sketches.js"></script>
+    <script src="js/spot-it-doodles.js"></script>
+    <script src="general-design.js"></script>
+</body>
+
+</html>
