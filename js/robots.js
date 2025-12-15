@@ -2,7 +2,7 @@
 // Handles all robot drawing animations across sections
 
 document.addEventListener('DOMContentLoaded', () => {
-    const ROBOT_SPEED = 0.05; // pixels per millisecond
+    const ROBOT_SPEED = 0.1; // pixels per millisecond
 
     class RobotSequence {
         constructor(robotId, containerId, pathFn, align = 'center', onComplete = null) {
