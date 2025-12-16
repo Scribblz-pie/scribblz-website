@@ -132,11 +132,12 @@
 }
 
 .sys-comp-label {
-    font-family: 'Permanent Marker', cursive;
-    font-size: 0.9rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
     color: #2C3E50;
     text-align: center;
-    line-height: 1.1;
+    line-height: 1.2;
 }
 
 /* Color Variants */
@@ -171,7 +172,8 @@
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
     z-index: 100;
     width: 300px;
-    font-size: 0.9rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1rem;
     pointer-events: none;
     /* Prevent tooltip from interfering with hover detection */
     opacity: 0;

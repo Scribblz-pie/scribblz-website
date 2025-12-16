@@ -1126,3 +1126,9 @@ body.is-preload #intro {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
+
+/* Specific sizing for Features Robot as requested */
+#robot-features {
+    width: clamp(40px, 7vw, 90px);
+    height: clamp(40px, 7vw, 90px);
+}

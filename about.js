@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Flip All Logic
     const flipAllBtn = document.getElementById('flipAllBtn');
-    let allFlipped = false;
+    let allFlipped = true;
 
     if (flipAllBtn) {
         flipAllBtn.addEventListener('click', () => {

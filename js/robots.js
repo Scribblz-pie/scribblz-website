@@ -70,6 +70,9 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (this.align === 'right') {
                 const targetX = viewportWidth * 0.85;
                 cx = targetX - rect.left;
+            } else if (typeof this.align === 'number') {
+                const targetX = viewportWidth * this.align;
+                cx = targetX - rect.left;
             }
 
             const pathPoints = [];
@@ -163,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const flowerPath = (progress) => {
         const t = progress * 2 * Math.PI;
         const k = 4;
-        const scale = 150;
+        const scale = 100;
         const r = scale * Math.cos(k * t);
         const x = r * Math.cos(t);
         const y = r * Math.sin(t);
@@ -260,7 +263,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const otherRobots = [
         new RobotSequence('robot-design', 'design', flowerPath, 'right'),
-        new RobotSequence('robot-features', 'features', sunPath, 'left'),
+        new RobotSequence('robot-features', 'features', sunPath, 0.08), // Position user requested
         new RobotSequence('robot-system', 'system', spiralPath, 'right')
     ].filter(seq => seq.container && seq.robot);
 
@@ -269,33 +272,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.target.id === 'intro') {
-                if (entry.isIntersecting && heartRobot && !heartRobot.isRunning) {
+                // Intro Sequence
+                // Only start if not already running (heart or star) and no timeout pending
+                const isRunning = (heartRobot && heartRobot.isRunning) ||
+                    (starRobot && starRobot.isRunning) ||
+                    sequenceTimeout;
+
+                if (entry.isIntersecting && !isRunning) {
                     startSequence();
-                } else if (!entry.isIntersecting) {
-                    if (sequenceTimeout) {
-                        clearTimeout(sequenceTimeout);
-                        sequenceTimeout = null;
-                    }
-                    if (heartRobot) {
-                        heartRobot.cleanup();
-                    }
-                    if (starRobot) {
-                        starRobot.cleanup();
-                    }
                 }
+                // Removed stop logic to allow continuous play
             } else {
+                // Other Robots
                 const sequence = otherRobots.find(s => s.container === entry.target);
                 if (sequence) {
-                    if (entry.isIntersecting && !sequence.isRunning) {
-                        sequence.animate();
-                        sequence.animationInterval = setInterval(() => {
-                            sequence.animate();
-                        }, 8000);
-                    } else if (!entry.isIntersecting && sequence.animationInterval) {
-                        clearInterval(sequence.animationInterval);
-                        sequence.animationInterval = null;
-                        sequence.cleanup();
+                    if (entry.isIntersecting) {
+                        // Only set up interval if not already existing
+                        if (!sequence.animationInterval) {
+                            if (!sequence.isRunning) {
+                                sequence.animate();
+                            }
+                            sequence.animationInterval = setInterval(() => {
+                                sequence.animate();
+                            }, 8000);
+                        }
                     }
+                    // Removed stop logic to allow continuous play
                 }
             }
         });

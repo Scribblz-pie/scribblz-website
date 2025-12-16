@@ -300,7 +300,7 @@ class SystemDiagram {
 
     showTooltip(comp, targetEl) {
         this.tooltip.innerHTML = `
-            <h4 style="margin-bottom:0.5rem; color:${this.getColorHex(comp.color)}; font-family:'Permanent Marker'">${comp.name}</h4>
+            <h4 style="margin-bottom:0.5rem; color:${this.getColorHex(comp.color)}; font-size:1.2rem;">${comp.name}</h4>
             <p class="tooltip-desc">${comp.info}</p>
         `;
 
@@ -330,7 +330,7 @@ class SystemDiagram {
     showConnectionTooltip(conn, event) {
         const titleColor = conn.type === 'digital' ? 'white' : conn.color;
         this.tooltip.innerHTML = `
-            <h4 style="margin-bottom:0.5rem; color:${titleColor}; font-family:'Permanent Marker'">${conn.label}</h4>
+            <h4 style="margin-bottom:0.5rem; color:${titleColor}; font-size:1.2rem;">${conn.label}</h4>
             <p class="tooltip-desc">${conn.desc}</p>
         `;
         this.tooltip.classList.add('visible');
