@@ -6,6 +6,11 @@
     box-sizing: border-box;
 }
 
+html {
+    font-size: 75%;
+    /* Global zoom out */
+}
+
 body {
     font-family: 'Indie Flower', cursive;
     background: #F8F8F8;
@@ -444,7 +449,7 @@ body {
 /* Design Section */
 #design {
     background: #F0E6F6;
-    padding: 3rem 0 6rem 0;
+    padding: 1rem 0 6rem 0;
 }
 
 /* Features Section */
@@ -478,6 +483,16 @@ body {
 
 .featured-post header {
     margin-bottom: 2rem;
+}
+
+.video-container {
+    max-width: 80%;
+    margin: 0 auto 2rem auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #000;
 }
 
 .featured-post h2 {

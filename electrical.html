@@ -46,75 +46,109 @@
             <h2 class="section-title">Electrical Systems</h2>
 
             <article class="featured-post">
-                <h3>Custom PCB Design</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">🔌</span>
-                </div>
-                <p>We designed a custom PCB to integrate all electrical components into a compact, reliable package.
-                    The board includes motor drivers, power regulation, sensor interfaces, and communication modules.
-                </p>
-                <p><strong>PCB Features:</strong></p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li>4-layer design for optimal signal integrity</li>
-                    <li>Integrated motor driver circuits</li>
-                    <li>Power distribution network with multiple voltage rails</li>
-                    <li>ESD protection on all external interfaces</li>
-                </ul>
+                <h3>Original Design Goal</h3>
+                <div class="card-image"><span class="emoji-placeholder">🎯</span></div>
+                <p>Our original goal was to design a custom, compact, and lightweight PCB that could be mounted directly
+                    on the robot. This board would handle power regulation, use an <a href="#">ESP32</a> as the main
+                    controller, drive the robot’s wheels for vertical motion, and control the impeller system. To enable
+                    full mobility, the system was intended to be battery powered and fully wireless.</p>
             </article>
 
             <article class="featured-post">
-                <h3>Microcontroller & Processing</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">🧠</span>
-                </div>
-                <p>The system uses a dual-processor architecture:</p>
+                <h3>Initial Development & First PCB Iteration</h3>
+                <div class="card-image"><span class="emoji-placeholder">🛠️</span></div>
+                <p>To achieve this, we began by designing our own PCB in <a href="#">KiCad</a>. The initial architecture
+                    centered around the <a href="#">ESP32</a>, paired with a <a href="#">BNO055 IMU</a> for orientation
+                    sensing and <a href="#">DRV8231 motor drivers</a> to handle the primary actuation needs of the
+                    robot.</p>
+                <p>While this PCB was under development, we validated the robot’s mechanical and control concepts using
+                    an <a href="#">Arduino</a> with a <a href="#">motor shield</a>. This allowed us to test wheel
+                    control and impeller signaling early, independent of the custom board.</p>
+
+                <h4>First PCB Design</h4>
+                <p>This process resulted in our first full PCB design. The board included:</p>
                 <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li><strong>Raspberry Pi:</strong> Handles high-level control, wireless communication, and path
-                        planning</li>
-                    <li><strong>Microcontroller:</strong> Manages real-time motor control and sensor processing</li>
+                    <li>A <a href="#">USB connector</a> for programming and debugging</li>
+                    <li>An <a href="#">ESP32</a> microcontroller</li>
+                    <li><a href="#">IMU</a> and <a href="#">motor driver</a> circuitry</li>
+                    <li>Onboard <a href="#">power regulation</a></li>
                 </ul>
-                <p>This architecture allows us to leverage the Pi's processing power while maintaining precise real-time
-                    control.</p>
+
+                <img src="Electrical_Images/original_schematic.png" alt="Original PCB Schematic"
+                    style="width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+                <img src="Electrical_Images/Schematic_live.png" alt="PCB 3D Live View"
+                    style="width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+
+                <p>After finalizing the design, we ordered components and attempted assembly. During this phase, several
+                    issues became apparent:</p>
+                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+                    <li>The <a href="#">USB port</a> was not properly grounded</li>
+                    <li>The <a href="#">USB connector</a> was placed too close to the edge of the board, creating
+                        mechanical and assembly challenges</li>
+                    <li>Excess <a href="#">solder paste</a> led to shorted components</li>
+                    <li>Multiple faults arose that were difficult to debug within the available timeframe</li>
+                </ul>
+
+                <p>As the project deadline approached, we made the decision to pivot in order to ensure a reliable and
+                    functional final system. At the same time, we reassessed our initial battery-powered goal and found
+                    that <a href="#">battery</a> weight significantly reduced wall adhesion performance, making fully
+                    wireless operation impractical for this iteration.</p>
             </article>
 
             <article class="featured-post">
-                <h3>Power System</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">🔋</span>
-                </div>
-                <p>The power system was carefully designed to handle the high current demands of the impeller motor
-                    while providing clean, stable power to sensitive electronics.</p>
-                <p><strong>Power Specifications:</strong></p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li>Battery: [Type], [Voltage]V, [Capacity]mAh</li>
-                    <li>5V rail for Raspberry Pi (3A max)</li>
-                    <li>3.3V rail for microcontroller and sensors</li>
-                    <li>12V rail for motors (10A peak)</li>
-                    <li>Runtime: Approximately [X] minutes of continuous operation</li>
-                </ul>
+                <h3>Revised Design Goal</h3>
+                <div class="card-image"><span class="emoji-placeholder">🔄</span></div>
+                <p>Our updated goal became:</p>
+                <blockquote
+                    style="font-style: italic; background: #f9f9f9; padding: 1rem; border-left: 5px solid #2C3E50; margin: 1rem auto; max-width: 700px;">
+                    Create a functional, lightweight, and streamlined electrical system that operates reliably and does
+                    not interfere with the <a href="#">LiDAR</a> or overall robot operation.
+                </blockquote>
+                <p>Rather than prioritizing full battery-powered autonomy, we focused on robustness, simplicity, and
+                    successful integration with the rest of the system.</p>
             </article>
 
             <article class="featured-post">
-                <h3>Sensors & Feedback</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">📡</span>
-                </div>
-                <p>Multiple sensors provide feedback for precise control:</p>
+                <h3>Final Electrical Architecture</h3>
+                <div class="card-image"><span class="emoji-placeholder">⚡</span></div>
+                <p>Despite the pivot, our core requirements remained the same:</p>
                 <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li><strong>Encoders:</strong> Track wheel rotation for position estimation</li>
-                    <li><strong>IMU:</strong> Monitors orientation and detects wall contact</li>
-                    <li><strong>Current Sensors:</strong> Monitor motor health and detect obstacles</li>
-                    <li><strong>Proximity Sensors:</strong> Assist with docking station alignment</li>
+                    <li><a href="#">Motor drivers</a> for three wheels</li>
+                    <li>A <a href="#">WiFi-enabled microcontroller</a> for wireless teleoperation</li>
+                    <li>Reliable <a href="#">power regulation</a></li>
+                    <li><a href="#">IMU-based orientation feedback</a></li>
                 </ul>
-            </article>
 
-            <article class="featured-post">
-                <h3>Communication System</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">📶</span>
-                </div>
-                <p>Wireless communication is handled via WiFi, allowing the robot to receive drawing commands
-                    from the web interface and send status updates back to the user.</p>
+                <p>After reevaluating component choices, we arrived at the following final electrical stack:</p>
+
+                <h4>Main Components</h4>
+                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+                    <li><a href="https://docs.arduino.cc/hardware/nano-rp2040-connect/">Arduino Nano RP2040 Connect</a>
+                    </li>
+                    <li><a href="https://www.amazon.com/LM2596-Converter-3-0-40V-1-5-35V-Supply/dp/B08NV3JCBC">LM2596
+                            buck converter</a></li>
+                    <li><a
+                            href="https://www.robotshop.com/products/sunfounder-gy-521-mpu-6050-6-dof-gyro-accelerometer-imu?srsltid=AfmBOopvRt1xuLr0XvHxUcoYf9OO4sUus1k7Epz1yl1zkGAIWyPGf7LH">MPU-6050
+                            IMU module</a></li>
+                    <li><a
+                            href="https://www.amazon.com/dp/B0BLRSWTLM?ref=cm_sw_r_cp_ud_dp_W388SCJZCAXRA3G1BJTM&social_share=cm_sw_r_cp_ud_dp_W388SCJZCAXRA3G1BJTM">TB6612FNG
+                            dual DC motor driver</a></li>
+                    <li><a href="https://www.amazon.com/S-240-12-12v20A-Switching-Monitoring-Transformer/dp/B0DFBQ2ZRC">S-240-12
+                            power supply (12V, 20A)</a></li>
+                </ul>
+
+                <p>These components were used alongside the robot’s:</p>
+                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
+                    <li><a href="#">Brushless motor</a> (impeller)</li>
+                    <li><a href="#">DC motors</a> (drive wheels)</li>
+                    <li><a href="#">Servo motor</a></li>
+                </ul>
+
+                <h4>Final Schematic</h4>
+                <p>Using this revised architecture, we produced a final electrical schematic that met our functional
+                    needs while remaining lightweight and mechanically unobtrusive.</p>
+                <img src="Electrical_Images/Final_electrical_Schematic.png" alt="Final Electrical Schematic"
+                    style="width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
             </article>
 
             <div style="text-align: center; margin-top: 3rem;">
