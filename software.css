@@ -9,3 +9,9 @@
 }
 
 /* Any additional page-specific styling can go here */
+
+.main-title {
+    animation: none;
+    opacity: 1;
+    transform: none;
+}
