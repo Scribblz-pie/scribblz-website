@@ -456,6 +456,38 @@ body {
     overflow: visible;
 }
 
+.drawing-clipper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+}
+
+.side-drawing {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px;
+    opacity: 0.1;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+.side-drawing.left {
+    left: -80px;
+    transform: translateY(-50%) rotate(-15deg);
+}
+
+.side-drawing.right {
+    right: -80px;
+    transform: translateY(-50%) rotate(15deg);
+}
+
 #about-project .content-wrapper {
     max-width: 1400px;
     /* Wider for this section */
@@ -607,7 +639,7 @@ body {
 
 #final-system-section {
     background: #E8F4F8;
-    padding-top: 6rem;
+    padding-top: 3rem;
     padding-bottom: 6rem;
     position: relative;
     z-index: 2;
