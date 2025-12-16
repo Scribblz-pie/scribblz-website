@@ -83,7 +83,8 @@ const spotItShapes = [
 function createSpotItDoodles() {
     const introSection = document.getElementById('intro');
     const introHeight = introSection ? introSection.offsetHeight : window.innerHeight;
-    const totalHeight = document.body.scrollHeight;
+    const systemSection = document.getElementById('system');
+    const limitHeight = systemSection ? systemSection.offsetTop : document.body.scrollHeight;
     const width = window.innerWidth;
     const placedDoodles = [];
 
@@ -106,7 +107,7 @@ function createSpotItDoodles() {
 
                 size = 20 + Math.random() * 40;
                 // Random Y below intro with buffer
-                y = introHeight + size + 80 + (Math.random() * (totalHeight - introHeight - 200));
+                y = introHeight + size + 80 + (Math.random() * (limitHeight - introHeight - 200));
 
                 // Check overlap
                 let overlap = false;

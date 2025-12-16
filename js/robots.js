@@ -261,8 +261,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const otherRobots = [
         new RobotSequence('robot-design', 'design', flowerPath, 'right'),
         new RobotSequence('robot-features', 'features', sunPath, 'left'),
-        new RobotSequence('robot-system', 'system', spiralPath, 'right'),
-        new RobotSequence('robot-gallery', 'gallery', starPath, 'left')
+        new RobotSequence('robot-system', 'system', spiralPath, 'right')
     ].filter(seq => seq.container && seq.robot);
 
     const robotSequences = [heartRobot, starRobot, ...otherRobots].filter(seq => seq && seq.container && seq.robot);

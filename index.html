@@ -7,6 +7,7 @@
     <title>SCRIBBLZ - Wall Drawing Robot Project</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="system-diagram.css">
+    <link rel="stylesheet" href="gallery.css">
 </head>
 
 <body class="is-preload">
@@ -30,7 +31,7 @@
             <li><a href="mechanical.html">Mechanical</a></li>
             <li><a href="electrical.html">Electrical</a></li>
             <li><a href="software.html">Software</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
+
             <li><a href="about.html">About Us</a></li>
         </ul>
     </nav>
@@ -188,20 +189,17 @@
     <section id="gallery" class="wave-section">
         <div class="content-wrapper">
             <h2 class="section-title">Gallery</h2>
-            <article class="featured-post">
-                <p class="gallery-intro">Check out our robot in action! These photos and videos show the final prototype
-                    scaling walls, drawing doodles, and returning to its docking station.</p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">🎬</div>
-                    <div class="gallery-item">📸</div>
-                    <div class="gallery-item">🖼️</div>
-                    <div class="gallery-item">🎥</div>
-                    <div class="gallery-item">📷</div>
-                    <div class="gallery-item">🎞️</div>
+            <div class="gallery-showcase">
+                <div class="gallery-container" id="galleryContainer">
+                    <!-- Gallery items will be injected here by JS -->
                 </div>
-                <a href="gallery.html" class="cta-button"
-                    style="margin-top: 2rem; display: inline-block; text-decoration: none;">View Full Gallery</a>
-            </article>
+                <div class="gallery-controls">
+                    <button class="gallery-btn prev" id="prevBtn">❮</button>
+                    <div class="gallery-dots" id="galleryDots"></div>
+                    <button class="gallery-btn next" id="nextBtn">❯</button>
+                </div>
+                <p class="gallery-hint">✨ Swipe or drag to explore ✨</p>
+            </div>
         </div>
     </section>
 
@@ -218,6 +216,14 @@
     <script src="js/robots.js"></script>
     <script src="js/system-diagram.js"></script>
     <script src="js/navigation.js"></script>
+    <!-- Lightbox Modal -->
+    <div id="lightbox">
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged View">
+    </div>
+
+    <!-- Gallery Script -->
+    <script src="gallery.js"></script>
 </body>
 
 </html>

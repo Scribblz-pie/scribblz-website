@@ -8,14 +8,16 @@ const diagramData = {
             position: { x: 10, y: 50 },
             info: 'Propulsion system component that generates thrust for movement. The impeller uses rotating blades to create water flow, providing forward and reverse thrust capabilities. Connected directly to the main motor for primary propulsion control.',
             partLink: '',
+            image: 'system_diagram_images/impeller.png',
             icon: '🌪️'
         },
         buckConverter: {
             name: 'Buck Converter',
             color: 'red',
             position: { x: 180, y: 540 },
-            info: 'DC-DC step-down converter that efficiently reduces voltage from 14.4V battery level to 12V required by the motor driver. Uses switching regulation to minimize power loss and heat generation while providing stable voltage output.',
+            info: 'DC-DC step-down converter that reduces voltage from 14.4V battery level to 12V required by the motor driver. Uses switching regulation to minimize power loss and heat generation while providing stable voltage output.',
             partLink: '',
+            image: 'system_diagram_images/buck_converter.png',
             icon: '⚡'
         },
         imu: {
@@ -24,6 +26,7 @@ const diagramData = {
             position: { x: 220, y: 50 },
             info: 'Inertial Measurement Unit containing 3-axis accelerometer and gyroscope. Provides real-time orientation, angular velocity, and acceleration data to the Nano for stability control and navigation. Communicates via I2C or SPI protocol.',
             partLink: '',
+            image: 'system_diagram_images/IMU.png',
             icon: '🧭'
         },
         servo: {
@@ -32,6 +35,7 @@ const diagramData = {
             position: { x: 400, y: 50 },
             info: 'Precision servo motor with built-in position feedback for accurate angular control. Receives PWM control signals from the Nano to actuate the marker mechanism. Typically operates at 5V with adjustable positioning from 0-180 degrees.',
             partLink: '',
+            image: 'system_diagram_images/Servo.png',
             icon: '🦾'
         },
         marker: {
@@ -40,6 +44,7 @@ const diagramData = {
             position: { x: 580, y: 50 },
             info: 'Marking mechanism actuated by the servo motor. Used for identification, tracking, or dropping markers at specific locations. The servo provides the mechanical force needed to deploy or activate the marking system.',
             partLink: '',
+            image: 'system_diagram_images/marker.png',
             icon: '🖍️'
         },
         wheels: {
@@ -48,6 +53,7 @@ const diagramData = {
             position: { x: 880, y: 50 },
             info: 'Wheel assembly for ground-based locomotion and mobility. Mechanically coupled to the secondary motors for omnidirectional or differential drive movement. Provides traction and steering capabilities on solid surfaces.',
             partLink: '',
+            image: 'system_diagram_images/Wheels.png',
             icon: '🛞'
         },
         motor: {
@@ -56,6 +62,7 @@ const diagramData = {
             position: { x: 10, y: 200 },
             info: 'Primary brushless DC motor for main propulsion. Provides mechanical power to the impeller for thrust generation. Controlled by the ESC which regulates speed and direction based on PWM input signals.',
             partLink: '',
+            image: 'system_diagram_images/motor.png',
             icon: '⚙️'
         },
         esc: {
@@ -64,6 +71,7 @@ const diagramData = {
             position: { x: 185, y: 200 },
             info: 'Electronic Speed Controller that converts digital commands into precise motor control. Uses PWM signals to regulate motor speed and direction by modulating power delivery. Operates at ~14V from the main power supply.',
             partLink: '',
+            image: 'system_diagram_images/ESC.png',
             icon: '🎛️'
         },
         nano: {
@@ -72,6 +80,7 @@ const diagramData = {
             position: { x: 380, y: 200 },
             info: 'Arduino Nano microcontroller serving as the central control unit. Processes sensor data from the IMU, executes control algorithms, and manages communication with the RaspPi. Sends commands to ESC, servo, and motor driver for coordinated system operation.',
             partLink: '',
+            image: 'system_diagram_images/Nano.png',
             icon: '📟'
         },
         motorDriver: {
@@ -80,6 +89,7 @@ const diagramData = {
             position: { x: 700, y: 200 },
             info: 'H-Bridge motor driver IC for bidirectional control of secondary motors. Receives digital commands from Nano and PWM signals for speed control. Powered by 12V from buck converter, capable of handling high current loads for motor operation.',
             partLink: '',
+            image: 'system_diagram_images/Motor_driver.png',
             icon: '🔌'
         },
         motors: {
@@ -88,6 +98,7 @@ const diagramData = {
             position: { x: 880, y: 200 },
             info: 'Secondary motor array for auxiliary mechanical systems and wheel drive. Receives PWM control signals from the motor driver at 12V. Used for ground locomotion, steering, or other motorized functions independent of the main propulsion system.',
             partLink: '',
+            image: 'system_diagram_images/motors.png',
             icon: '🔋'
         },
         power: {
@@ -96,6 +107,7 @@ const diagramData = {
             position: { x: 180, y: 360 },
             info: 'Central power distribution module managing battery voltage output. Provides regulated 5V for Raspberry Pi and Arduino Nano, and raw 14.4V for ESC and buck converter. Includes protection circuits for overcurrent and reverse polarity.',
             partLink: '',
+            image: 'system_diagram_images/power_module.png',
             icon: '🔋'
         },
         raspi: {
@@ -104,6 +116,7 @@ const diagramData = {
             position: { x: 380, y: 360 },
             info: 'Raspberry Pi single-board computer running Linux. Handles high-level processing including computer vision, path planning, and decision making. Processes LiDAR data for mapping, streams video to external computer, and sends mission commands to Nano.',
             partLink: '',
+            image: 'system_diagram_images/Raspi.png',
             icon: '🥧'
         },
         computer: {
@@ -112,6 +125,7 @@ const diagramData = {
             position: { x: 580, y: 360 },
             info: 'External computer for remote monitoring, development, and control interface. Receives real-time video stream and telemetry data from RaspPi. Used for mission planning, debugging, and manual override capabilities via network connection.',
             partLink: '',
+            image: 'system_diagram_images/computer.png',
             icon: '💻'
         },
         lidar: {
@@ -120,6 +134,7 @@ const diagramData = {
             position: { x: 380, y: 540 },
             info: 'Light Detection and Ranging sensor using laser pulses to measure distances. Creates 2D or 3D maps of the environment for obstacle detection and navigation. Communicates with RaspPi via serial interface, providing real-time distance measurements up to several meters.',
             partLink: '',
+            image: 'system_diagram_images/Lidar.png',
             icon: '📡'
         }
     },
@@ -204,7 +219,7 @@ class SystemDiagram {
 
             el.innerHTML = `
                 <div class="sys-comp-box">
-                    <div class="sys-comp-icon">${comp.icon || '📦'}</div>
+                    <img src="${comp.image}" alt="${comp.name}" class="sys-comp-img">
                     <div class="sys-comp-label">${comp.name}</div>
                 </div>
             `;
@@ -287,7 +302,6 @@ class SystemDiagram {
         this.tooltip.innerHTML = `
             <h4 style="margin-bottom:0.5rem; color:${this.getColorHex(comp.color)}; font-family:'Permanent Marker'">${comp.name}</h4>
             <p class="tooltip-desc">${comp.info}</p>
-            <input type="text" class="tooltip-input" placeholder="Part link..." value="${comp.partLink}" onclick="event.stopPropagation()">
         `;
 
         this.tooltip.classList.add('visible');
@@ -296,7 +310,13 @@ class SystemDiagram {
         const rect = targetEl.getBoundingClientRect();
         const wrapperRect = this.wrapper.getBoundingClientRect();
 
-        let top = rect.bottom - wrapperRect.top + 10;
+        const tooltipHeight = this.tooltip.offsetHeight;
+        let top = rect.top - wrapperRect.top - tooltipHeight - 10;
+
+        // If not enough space above, place below
+        if (top < 10) {
+            top = rect.bottom - wrapperRect.top + 10;
+        }
         let left = rect.left - wrapperRect.left + (rect.width / 2) - 150; // Center 300px tooltip
 
         // Boundary checks
@@ -308,8 +328,9 @@ class SystemDiagram {
     }
 
     showConnectionTooltip(conn, event) {
+        const titleColor = conn.type === 'digital' ? 'white' : conn.color;
         this.tooltip.innerHTML = `
-            <h4 style="margin-bottom:0.5rem; color:${conn.color}; font-family:'Permanent Marker'">${conn.label}</h4>
+            <h4 style="margin-bottom:0.5rem; color:${titleColor}; font-family:'Permanent Marker'">${conn.label}</h4>
             <p class="tooltip-desc">${conn.desc}</p>
         `;
         this.tooltip.classList.add('visible');

@@ -3,10 +3,7 @@
 /* Inherit all base styles from styles.css */
 
 /* Page-specific intro section - shorter than index */
-#intro {
-    min-height: 50vh;
-    padding: 2rem 5%;
-}
+
 
 /* Gallery Showcase Wrapper */
 .gallery-showcase {
@@ -21,16 +18,7 @@
     perspective: 1000px;
 }
 
-/* Remove section padding override */
-#gallery {
-    padding-top: 0 !important;
-}
 
-/* Dim background sketches for this page */
-.sketch-container,
-.spot-it-container {
-    opacity: 0.05 !important;
-}
 
 /* The Scrolling Container */
 .gallery-container {
@@ -260,10 +248,4 @@
         opacity: 1;
         transform: scale(1.05);
     }
-}
-
-.main-title {
-    animation: none;
-    opacity: 1;
-    transform: none;
 }
