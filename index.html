@@ -55,8 +55,8 @@
     <!-- About Project Section -->
     <section id="about-project" class="wave-section">
         <div class="drawing-clipper">
-            <img src="system_diagram_images/impeller.png" class="side-drawing left" alt="Technical Drawing">
-            <img src="system_diagram_images/wheels.png" class="side-drawing right" alt="Technical Drawing">
+            <img src="system_diagram_images/impeller.png" class="side-drawing left" alt="Impeller Drawing">
+            <img src="system_diagram_images/wheels.png" class="side-drawing right" alt="Wheels Drawing">
         </div>
         <div class="content-wrapper">
             <h2 class="section-title">The Project</h2>
@@ -115,13 +115,15 @@
 
     <!-- Final System Section -->
     <section id="final-system-section" class="wave-section">
+        <div class="drawing-clipper">
+            <svg class="section-doodles-container"></svg>
+        </div>
         <div class="content-wrapper">
             <img id="robot-gallery" class="robot-element" src="images\content.png" alt="Robot Gallery">
             <h2 class="section-title">Final System</h2>
             <article class="featured-post">
                 <!-- YouTube Video Embed -->
                 <div class="video-container">
-                    <!-- Replace YOUR_VIDEO_ID with your actual YouTube video ID -->
                     <iframe width="100%" height="100%" src="https://www.youtube.com/watch?v=7QJ-N-AQJYc"
                         title="SCRIBBLZ Robot Demo" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -236,6 +238,9 @@
 
     <!-- Design Section -->
     <section id="design" class="section-content wave-section">
+        <div class="drawing-clipper">
+            <svg class="section-doodles-container"></svg>
+        </div>
         <div class="content-wrapper">
             <img id="robot-design" class="robot-element" src="images\content.png" alt="Robot Design">
             <h2 class="section-title">How We Built It</h2>
@@ -298,6 +303,9 @@
 
     <!-- System Diagram -->
     <section id="system" class="section-content wave-section">
+        <div class="drawing-clipper">
+            <svg class="section-doodles-container"></svg>
+        </div>
         <div class="content-wrapper">
             <h2 class="section-title">System Overview</h2>
             <!-- Dynamic System Diagram -->
@@ -328,6 +336,9 @@
 
     <!-- Bill of Materials Section -->
     <section id="bom" class="wave-section">
+        <div class="drawing-clipper">
+            <svg class="section-doodles-container"></svg>
+        </div>
         <div class="content-wrapper">
             <h2 class="section-title">Bill of Materials</h2>
             <p class="bom-intro">Complete list of components and materials used in the SCRIBBLZ project.</p>
@@ -340,24 +351,24 @@
                             <tr>
                                 <th>Item</th>
                                 <th>Quantity</th>
-                                <th>Description</th>
+                                <th>Cost</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Custom Impeller</td>
+                                <td><a href="#">Custom Impeller</a></td>
                                 <td>1</td>
-                                <td>3D printed suction fan</td>
+                                <td>$10.00</td>
                             </tr>
                             <tr>
-                                <td>Omni Wheels</td>
+                                <td><a href="#">Omni Wheels</a></td>
                                 <td>3</td>
-                                <td>48mm diameter</td>
+                                <td>$15.00</td>
                             </tr>
                             <tr>
-                                <td>Chassis Frame</td>
+                                <td><a href="#">Chassis Frame</a></td>
                                 <td>1</td>
-                                <td>Laser-cut acrylic</td>
+                                <td>$20.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -370,29 +381,29 @@
                             <tr>
                                 <th>Item</th>
                                 <th>Quantity</th>
-                                <th>Description</th>
+                                <th>Cost</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Arduino Nano RP2040</td>
+                                <td><a href="#">Arduino Nano RP2040</a></td>
                                 <td>1</td>
-                                <td>Main microcontroller</td>
+                                <td>$25.00</td>
                             </tr>
                             <tr>
-                                <td>DC Motors</td>
+                                <td><a href="#">DC Motors</a></td>
                                 <td>4</td>
-                                <td>12V brushed motors</td>
+                                <td>$20.00</td>
                             </tr>
                             <tr>
-                                <td>TB6612FNG Driver</td>
+                                <td><a href="#">TB6612FNG Driver</a></td>
                                 <td>1</td>
-                                <td>Dual motor driver</td>
+                                <td>$8.00</td>
                             </tr>
                             <tr>
-                                <td>LM2596 Buck Converter</td>
+                                <td><a href="#">LM2596 Buck Converter</a></td>
                                 <td>1</td>
-                                <td>12V to 5V step-down</td>
+                                <td>$3.00</td>
                             </tr>
                         </tbody>
                     </table>
@@ -405,28 +416,56 @@
                             <tr>
                                 <th>Item</th>
                                 <th>Quantity</th>
-                                <th>Description</th>
+                                <th>Cost</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>12V Power Supply</td>
+                                <td><a href="#">12V Power Supply</a></td>
                                 <td>1</td>
-                                <td>S-240-12 (20A)</td>
+                                <td>$30.00</td>
                             </tr>
                             <tr>
-                                <td>Dry Erase Marker</td>
+                                <td><a href="#">Dry Erase Marker</a></td>
                                 <td>1</td>
-                                <td>Standard size</td>
+                                <td>$2.00</td>
                             </tr>
                             <tr>
-                                <td>Solenoid</td>
+                                <td><a href="#">Solenoid</a></td>
                                 <td>1</td>
-                                <td>Marker lift mechanism</td>
+                                <td>$5.00</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- More Info Section -->
+    <section id="more-info" class="wave-section">
+        <div class="drawing-clipper">
+            <svg class="section-doodles-container"></svg>
+        </div>
+        <div class="content-wrapper">
+            <h2 class="section-title">More Resources</h2>
+            <div class="info-links-grid">
+                <a href="#" class="info-card">
+                    <img src="Additional_info_images\onshape.png" class="info-icon-img" alt="Onshape Logo">
+                    <h3>CAD Files</h3>
+                    <p>Download our 3D models</p>
+                </a>
+                <a href="#" class="info-card">
+                    <img src="Additional_info_images/GitHub-Logo.png" class="info-icon-img" alt="GitHub Logo">
+                    <h3>GitHub</h3>
+                    <p>Source code & Firmware</p>
+                </a>
+                <a href="#" class="info-card">
+                    <img src="Additional_info_images/Google_Drive_icon_(2020).svg.png" class="info-icon-img"
+                        alt="Google Drive Logo">
+                    <h3>Design Review</h3>
+                    <p>View our slide decks</p>
+                </a>
             </div>
         </div>
     </section>

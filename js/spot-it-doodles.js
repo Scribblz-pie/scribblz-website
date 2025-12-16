@@ -156,9 +156,102 @@ function createSpotItDoodles() {
     addSideDoodles(false); // Right
 }
 
+function createSectionDoodles() {
+    const containers = document.querySelectorAll('.section-doodles-container');
+
+    containers.forEach(container => {
+        // Clear existing
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+        }
+
+        const width = container.clientWidth || container.parentElement.clientWidth;
+        const height = container.clientHeight || container.parentElement.clientHeight;
+        const placedDoodles = [];
+
+        // Function to add doodles to a specific side of the section
+        const addSectionSideDoodles = (isLeft) => {
+            // Density: approx 1 doodle per 3000px^2 of gutter area? 
+            // Calculated for approx 20-30 doodles per side per section
+            const count = Math.floor(height / 30);
+
+            for (let i = 0; i < count; i++) {
+                let x, y, size;
+                let valid = false;
+                let attempts = 0;
+
+                while (!valid && attempts < 20) {
+                    if (isLeft) {
+                        x = Math.random() * 300; // Left side 0-300px from edge (Came in more)
+                    } else {
+                        x = width - 300 + (Math.random() * 300); // Right side
+                    }
+
+                    size = 15 + Math.random() * 25;
+                    y = Math.random() * height;
+
+                    // Check overlap
+                    let overlap = false;
+                    for (const p of placedDoodles) {
+                        const dx = x - p.x;
+                        const dy = y - p.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < (size + p.size) * 1.2) {
+                            overlap = true;
+                            break;
+                        }
+                    }
+
+                    if (!overlap) {
+                        valid = true;
+                    }
+                    attempts++;
+                }
+
+                if (valid) {
+                    placedDoodles.push({ x, y, size });
+
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    const shapeFunc = spotItShapes[Math.floor(Math.random() * spotItShapes.length)];
+                    const pathData = shapeFunc(x, y, size);
+
+                    path.setAttribute('d', pathData);
+                    path.setAttribute('class', 'spot-it-doodle');
+                    // Use dark color for visibility on light backgrounds
+                    path.setAttribute('stroke', '#2C3E50');
+                    path.setAttribute('stroke-width', '1.5');
+                    path.setAttribute('fill', 'none');
+
+                    path.style.transformOrigin = `${x}px ${y}px`;
+                    path.style.transform = `rotate(${Math.random() * 360}deg)`;
+                    path.style.opacity = '0.15'; // Subtle
+
+                    container.appendChild(path);
+                }
+            }
+        };
+
+        addSectionSideDoodles(true);
+        addSectionSideDoodles(false);
+    });
+}
+
 // Call immediately on load
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', createSpotItDoodles);
+    document.addEventListener('DOMContentLoaded', () => {
+        createSpotItDoodles();
+        createSectionDoodles();
+    });
 } else {
     createSpotItDoodles();
+    createSectionDoodles();
 }
+
+// Handle resize for sections
+let resizeTimeout;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        createSectionDoodles();
+    }, 250);
+});
