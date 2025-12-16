@@ -432,6 +432,10 @@ body {
     fill: #FFE8E8;
 }
 
+.fill-yellow {
+    fill: #FFF9C4;
+}
+
 /* The black stroke for the wave */
 .wave-line {
     fill: none;
@@ -441,33 +445,289 @@ body {
     vector-effect: non-scaling-stroke;
 }
 
+/* About Project Section */
+#about-project {
+    background: #FFF9C4;
+    /* Light Yellow */
+    padding-top: 2rem;
+    padding-bottom: 8rem;
+    position: relative;
+    z-index: 1;
+    overflow: visible;
+}
+
+#about-project .content-wrapper {
+    max-width: 1400px;
+    /* Wider for this section */
+    position: relative;
+    z-index: 20;
+    /* Explicitly higher */
+}
+
+/* Project Overview Grid Layout */
+.project-overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+    align-items: start;
+}
+
+/* Mobile responsive for grid */
+@media (max-width: 768px) {
+    .project-overview-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Left Column Styles */
+.project-left-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.project-goal-card {
+    background: #fff;
+    padding: 1.5rem;
+    border: 3px solid #FBC02D;
+    /* Darker yellow */
+    border-radius: 12px;
+    box-shadow: 4px 4px 0 rgba(251, 192, 45, 0.4);
+    transform: rotate(-1deg);
+}
+
+.project-goal-card h3 {
+    font-family: 'Permanent Marker', cursive;
+    color: #FBC02D;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-goal-card p {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.2rem;
+    color: #2C3E50;
+    line-height: 1.4;
+}
+
+.project-robot-image-container {
+    background: #fff;
+    padding: 1rem;
+    border: 3px solid #2C3E50;
+    border-radius: 12px;
+    transform: rotate(1deg);
+    text-align: center;
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+.project-robot-img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.img-caption {
+    font-family: 'Cabin Sketch', cursive;
+    color: #888;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Right Column Styles (Steps) */
+.project-steps-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.step-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: white;
+    padding: 1.2rem;
+    border-radius: 12px;
+    border: 3px solid #2C3E50;
+    box-shadow: 4px 4px 0 rgba(44, 62, 80, 0.2);
+    transition: transform 0.2s;
+}
+
+.step-card:hover {
+    transform: translateX(5px);
+}
+
+.step-number {
+    background: #FFADAD;
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.8rem;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 3px solid #2C3E50;
+    box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Specific colors for steps */
+.step-card:nth-child(2) .step-number {
+    background: #FFD6A5;
+}
+
+.step-card:nth-child(3) .step-number {
+    background: #FDFFB6;
+    color: #555;
+}
+
+.step-card:nth-child(4) .step-number {
+    background: #CAFFBF;
+    color: #555;
+}
+
+.step-content h4 {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1.4rem;
+    color: #2C3E50;
+    margin-bottom: 0.3rem;
+}
+
+.step-content p {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.1rem;
+    color: #555;
+    margin: 0;
+    line-height: 1.3;
+}
+
 #final-system-section {
     background: #E8F4F8;
-    padding-top: 1rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    position: relative;
+    z-index: 2;
 }
 
 /* Design Section */
 #design {
     background: #F0E6F6;
     padding: 1rem 0 6rem 0;
+    position: relative;
+    z-index: 4;
 }
 
 /* Features Section */
 #features {
     background: #E3F2E1;
     padding: 3rem 0 6rem 0;
+    position: relative;
+    z-index: 3;
+}
+
+/* Features content wrapper should be full width for stats marquee */
+#features .content-wrapper {
+    max-width: 100%;
+    padding: 0;
+}
+
+/* But keep title centered with padding */
+#features .section-title {
+    padding: 0 5%;
 }
 
 /* System Section */
 #system {
     background: #FFF4E6;
-    padding: 0 0 6rem 0;
+    padding: 3rem 0 6rem 0;
+    position: relative;
+    z-index: 5;
 }
 
 /* Gallery Section */
 #gallery {
     background: #FFE8E8;
-    padding: 1rem 0 3rem 0;
+    padding: 3rem 0 3rem 0;
+    position: relative;
+    z-index: 6;
+}
+
+/* Gallery content wrapper should be full width */
+#gallery .content-wrapper {
+    max-width: 100%;
+    padding: 0;
+}
+
+/* Bill of Materials Section */
+#bom {
+    background: #E8F4F8;
+    padding: 3rem 0 6rem 0;
+    position: relative;
+    z-index: 7;
+}
+
+.bom-intro {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.3rem;
+    color: #555;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.bom-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.bom-category {
+    background: white;
+    border: 3px solid #2C3E50;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 4px 4px 0 rgba(44, 62, 80, 0.2);
+}
+
+.bom-category h3 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.8rem;
+    color: #2C3E50;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.bom-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bom-table thead {
+    background: #f8f9fa;
+}
+
+.bom-table th {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1.2rem;
+    color: #2C3E50;
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 2px solid #2C3E50;
+}
+
+.bom-table td {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1.1rem;
+    color: #555;
+    padding: 0.75rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.bom-table tbody tr:hover {
+    background: #f8f9fa;
 }
 
 /* Featured Post */
@@ -840,6 +1100,16 @@ body {
     display: none !important;
 }
 
+/* About Project wave - smooth gentle waves for yellow section */
+#about-project.wave-section::before {
+    clip-path: polygon(0% 100%, 0% 40%,
+            5% 37%, 10% 35%, 15% 34%, 20% 34%, 25% 35%,
+            30% 37%, 35% 40%, 40% 43%, 45% 45%, 50% 46%,
+            55% 45%, 60% 43%, 65% 40%, 70% 37%, 75% 35%,
+            80% 34%, 85% 34%, 90% 35%, 95% 37%, 100% 40%,
+            100% 100%);
+}
+
 /* Wave Variation 1 - Gentle waves */
 #final-system-section.wave-section::before {
     clip-path: polygon(0% 100%, 0% 45%,
@@ -882,7 +1152,8 @@ body {
 
 /* Wave Variation 4 - Smooth rolling waves */
 #system.wave-section::before,
-#gallery.wave-section::before {
+#gallery.wave-section::before,
+#bom.wave-section::before {
     clip-path: polygon(0% 100%, 0% 43%,
             5% 40%, 10% 38%, 15% 37%, 20% 37%, 25% 38%,
             30% 40%, 35% 43%, 40% 46%, 45% 48%, 50% 49%,
@@ -902,6 +1173,12 @@ body {
     z-index: 2;
     transform: translateY(-100%);
     pointer-events: none;
+}
+
+/* Border for About Project wave */
+#about-project.wave-section::after {
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" preserveAspectRatio="none"><path d="M 0,32 C 5,29.6 10,28 15,27.2 C 20,27.2 25,28 30,29.6 C 35,32 40,34.4 45,36 C 50,36.8 55,36 60,34.4 C 65,32 70,29.6 75,28 C 80,27.2 85,27.2 90,28 C 95,29.6 100,32 100,32" stroke="%23333" stroke-width="2" fill="none" vector-effect="non-scaling-stroke"/></svg>') no-repeat;
+    background-size: 100% 100%;
 }
 
 /* Border for Wave Variation 1 - Gentle waves */
@@ -924,7 +1201,8 @@ body {
 
 /* Border for Wave Variation 4 - Smooth rolling waves */
 #system.wave-section::after,
-#gallery.wave-section::after {
+#gallery.wave-section::after,
+#bom.wave-section::after {
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 80" preserveAspectRatio="none"><path d="M 0,34.4 C 5,32 10,30.4 15,29.6 C 20,29.6 25,30.4 30,32 C 35,34.4 40,36.8 45,38.4 C 50,39.2 55,38.4 60,36.8 C 65,34.4 70,32 75,30.4 C 80,29.6 85,29.6 90,30.4 C 95,32 100,34.4 100,34.4" stroke="%23333" stroke-width="2" fill="none" vector-effect="non-scaling-stroke"/></svg>') no-repeat;
     background-size: 100% 100%;
 }
@@ -1131,4 +1409,77 @@ body.is-preload #intro {
 #robot-features {
     width: clamp(40px, 7vw, 90px);
     height: clamp(40px, 7vw, 90px);
+}
+
+/* Stats Marquee Styles */
+.stats-marquee-container {
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.stats-track {
+    display: flex;
+    gap: 3rem;
+    width: max-content;
+    animation: scrollStats 40s linear infinite;
+    padding-left: 3rem;
+}
+
+.stats-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollStats {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(calc(-20% - 1rem));
+    }
+}
+
+.stat-card {
+    background: white;
+    border: 3px solid #7B68EE;
+    border-radius: 16px;
+    padding: 2rem 3rem;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 0 rgba(123, 104, 238, 0.2);
+    transform: rotate(-1deg);
+    transition: transform 0.3s ease;
+}
+
+.stat-card:nth-child(even) {
+    transform: rotate(1deg);
+    border-color: #FFADAD;
+    box-shadow: 4px 4px 0 rgba(255, 173, 173, 0.2);
+}
+
+.stat-card:hover {
+    transform: scale(1.05) rotate(0deg);
+    z-index: 10;
+}
+
+.stat-number {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 3rem;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+    white-space: nowrap;
+}
+
+.stat-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1.5rem;
+    color: #555;
+    text-align: center;
+    white-space: nowrap;
 }

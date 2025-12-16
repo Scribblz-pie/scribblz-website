@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="system-diagram.css">
     <link rel="stylesheet" href="gallery.css">
+    <link rel="stylesheet" href="design-layout.css">
 </head>
 
 <body class="is-preload">
@@ -27,7 +28,6 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="general-design.html">General Design</a></li>
             <li><a href="mechanical.html">Mechanical</a></li>
             <li><a href="electrical.html">Electrical</a></li>
             <li><a href="software.html">Software</a></li>
@@ -51,6 +51,63 @@
             ⬇ Explore The Bot
         </button>
     </div>
+
+    <!-- About Project Section -->
+    <section id="about-project" class="wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">The Project</h2>
+            <div class="project-overview-grid">
+                <div class="project-left-col">
+                    <div class="project-goal-card">
+                        <h3>OUR GOAL</h3>
+                        <p>To design and build an autonomous robot capable of navigating vertical glass surfaces and
+                            creating precise drawings based on user input.</p>
+                    </div>
+                    <div class="project-robot-image-container">
+                        <img class="project-robot-img" src="images/content.png" alt="Scribblz V1 Prototype">
+                        <p class="img-caption">SCRIBBLZ V1 Prototype</p>
+                    </div>
+                </div>
+                <div class="project-steps-col">
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Suction System</h4>
+                            <p>High-powered custom impeller creates negative pressure for reliable adhesion to glass.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Wall Driving</h4>
+                            <p>Omni-wheel drivetrain enables holonomic motion for precise maneuvering in any direction.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Drawing Mechanism</h4>
+                            <p>Solenoid-activated marker lift allows for clean lines and complex, disconnected strokes.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Auto Docking</h4>
+                            <p>Computer vision guided return-to-home sequence for automatic recharging.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Final System Section -->
     <section id="final-system-section" class="wave-section">
@@ -76,103 +133,164 @@
         </div>
     </section>
 
+    <!-- Features Section (Stats) -->
+    <section id="features" class="wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">What Makes It Special!</h2>
+            <div class="stats-marquee-container">
+                <div class="stats-track">
+                    <div class="stat-card">
+                        <div class="stat-number">15 N</div>
+                        <div class="stat-label">Suction Force</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">350 g</div>
+                        <div class="stat-label">Total Weight</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5 cm/s</div>
+                        <div class="stat-label">Draw Speed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">RP2040</div>
+                        <div class="stat-label">Processor</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">WiFi</div>
+                        <div class="stat-label">Connectivity</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">45 min</div>
+                        <div class="stat-label">Battery Life</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12 V</div>
+                        <div class="stat-label">System Voltage</div>
+                    </div>
+                    <!-- Duplicate for seamless loop -->
+                    <div class="stat-card">
+                        <div class="stat-number">15 N</div>
+                        <div class="stat-label">Suction Force</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">350 g</div>
+                        <div class="stat-label">Total Weight</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5 cm/s</div>
+                        <div class="stat-label">Draw Speed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">RP2040</div>
+                        <div class="stat-label">Processor</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">WiFi</div>
+                        <div class="stat-label">Connectivity</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">45 min</div>
+                        <div class="stat-label">Battery Life</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12 V</div>
+                        <div class="stat-label">System Voltage</div>
+                    </div>
+                    <!-- Third set for longer marquee -->
+                    <div class="stat-card">
+                        <div class="stat-number">15 N</div>
+                        <div class="stat-label">Suction Force</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">350 g</div>
+                        <div class="stat-label">Total Weight</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5 cm/s</div>
+                        <div class="stat-label">Draw Speed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">RP2040</div>
+                        <div class="stat-label">Processor</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">WiFi</div>
+                        <div class="stat-label">Connectivity</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">45 min</div>
+                        <div class="stat-label">Battery Life</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">12 V</div>
+                        <div class="stat-label">System Voltage</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Design Section -->
     <section id="design" class="section-content wave-section">
         <div class="content-wrapper">
             <img id="robot-design" class="robot-element" src="images\content.png" alt="Robot Design">
             <h2 class="section-title">How We Built It</h2>
 
-            <div class="posts-grid">
-                <article class="post-card">
-                    <header>
-                        <h3>General Design</h3>
-                    </header>
-                    <div class="card-image">
-                        <span class="emoji-placeholder">📐</span>
-                    </div>
-                    <p>A look at the high-level design process, including trade-offs, rationale,
-                        and system-level diagrams. From concept to reality!</p>
-                    <a href="general-design.html" class="card-button"
-                        style="display: block; text-decoration: none; text-align: center;">View Design Details</a>
-                </article>
-
-                <article class="post-card">
+            <div class="design-layout">
+                <!-- Large Mechanical Card -->
+                <article class="mechanical-card-large">
                     <header>
                         <h3>Mechanical Design</h3>
                     </header>
-                    <div class="card-image">
-                        <span class="emoji-placeholder">⚙️</span>
+                    <div class="mechanical-photos">
+                        <div class="photo-placeholder">
+                            <span class="emoji-placeholder">🔧</span>
+                        </div>
+                        <div class="photo-placeholder">
+                            <span class="emoji-placeholder">⚙️</span>
+                        </div>
                     </div>
-                    <p>Deep dive into our mechanical design. The CAD, the chassis, custom parts,
-                        and how we made the impeller suction system work!</p>
-                    <a href="mechanical.html" class="card-button"
-                        style="display: block; text-decoration: none; text-align: center;">Full Details</a>
+                    <div class="mechanical-text">
+                        <p>Deep dive into our mechanical design. The CAD, the chassis, custom parts,
+                            and how we made the impeller suction system work!</p>
+                        <a href="mechanical.html" class="card-button"
+                            style="display: block; text-decoration: none; text-align: center;">Full Details</a>
+                    </div>
                 </article>
 
-                <article class="post-card">
-                    <header>
-                        <h3>Electrical Design</h3>
-                    </header>
-                    <div class="card-image" style="padding: 0.5rem; background: white;">
-                        <img src="Electrical_Images/Final_electrical_Schematic.png" alt="Electrical Schematic"
-                            style="width: 100%; height: auto; border-radius: 8px;">
-                    </div>
-                    <p>Our custom PCB, microcontroller choice, sensors, and power system.
-                        The full schematic and electrical analysis!</p>
-                    <a href="electrical.html" class="card-button"
-                        style="display: block; text-decoration: none; text-align: center;">Full Details</a>
-                </article>
+                <!-- Bottom Grid for Electrical and Software -->
+                <div class="posts-grid-bottom">
+                    <article class="post-card">
+                        <header>
+                            <h3>Electrical Design</h3>
+                        </header>
+                        <div class="card-image" style="padding: 0.5rem; background: white;">
+                            <img src="Electrical_Images/Final_electrical_Schematic.png" alt="Electrical Schematic"
+                                style="width: 100%; height: auto; border-radius: 8px;">
+                        </div>
+                        <p>Our custom PCB, microcontroller choice, sensors, and power system.
+                            The full schematic and electrical analysis!</p>
+                        <a href="electrical.html" class="card-button"
+                            style="display: block; text-decoration: none; text-align: center;">Full Details</a>
+                    </article>
 
-                <article class="post-card">
-                    <header>
-                        <h3>Software & Firmware</h3>
-                    </header>
-                    <div class="card-image">
-                        <span class="emoji-placeholder">💻</span>
-                    </div>
-                    <p>The brains of the operation! Main logic, RaspPi control, wireless communication,
-                        and the code architecture that brings it all together.</p>
-                    <a href="software.html" class="card-button"
-                        style="display: block; text-decoration: none; text-align: center;">Full Details</a>
-                </article>
+                    <article class="post-card">
+                        <header>
+                            <h3>Software & Firmware</h3>
+                        </header>
+                        <div class="card-image">
+                            <span class="emoji-placeholder">💻</span>
+                        </div>
+                        <p>The brains of the operation! Main logic, RaspPi control, wireless communication,
+                            and the code architecture that brings it all together.</p>
+                        <a href="software.html" class="card-button"
+                            style="display: block; text-decoration: none; text-align: center;">Full Details</a>
+                    </article>
+                </div>
             </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="wave-section">
-        <div class="content-wrapper">
-            <img id="robot-features" class="robot-element" src="images\content.png" alt="Robot Features">
-            <h2 class="section-title">What Makes It Special!</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <span class="feature-icon">🎨</span>
-                    <h3>Marker Magic!</h3>
-                    <p>Our robot draws with a real dry-erase marker! The precision marker head can create detailed
-                        doodles and sketches on any vertical surface.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🧲</span>
-                    <h3>Impeller Suction</h3>
-                    <p>Custom-designed impeller system creates negative pressure, allowing the bot to stick to walls
-                        and
-                        traverse vertically like a gecko!</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">📡</span>
-                    <h3>Wireless Control</h3>
-                    <p>Send drawings wirelessly from this website! The robot receives your input and brings your
-                        doodles
-                        to life on the wall.</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🏠</span>
-                    <h3>Auto Return</h3>
-                    <p>When the drawing is complete, the robot automatically returns to its docking station, ready
-                        for
-                        the next masterpiece!</p>
-                </div>
-            </div>
-    </section>
+
 
     <!-- System Diagram -->
     <section id="system" class="section-content wave-section">
@@ -200,6 +318,111 @@
                     <button class="gallery-btn next" id="nextBtn">❯</button>
                 </div>
                 <p class="gallery-hint">✨ Swipe or drag to explore ✨</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bill of Materials Section -->
+    <section id="bom" class="wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Bill of Materials</h2>
+            <p class="bom-intro">Complete list of components and materials used in the SCRIBBLZ project.</p>
+
+            <div class="bom-container">
+                <div class="bom-category">
+                    <h3>Mechanical Components</h3>
+                    <table class="bom-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Custom Impeller</td>
+                                <td>1</td>
+                                <td>3D printed suction fan</td>
+                            </tr>
+                            <tr>
+                                <td>Omni Wheels</td>
+                                <td>3</td>
+                                <td>48mm diameter</td>
+                            </tr>
+                            <tr>
+                                <td>Chassis Frame</td>
+                                <td>1</td>
+                                <td>Laser-cut acrylic</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bom-category">
+                    <h3>Electrical Components</h3>
+                    <table class="bom-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Arduino Nano RP2040</td>
+                                <td>1</td>
+                                <td>Main microcontroller</td>
+                            </tr>
+                            <tr>
+                                <td>DC Motors</td>
+                                <td>4</td>
+                                <td>12V brushed motors</td>
+                            </tr>
+                            <tr>
+                                <td>TB6612FNG Driver</td>
+                                <td>1</td>
+                                <td>Dual motor driver</td>
+                            </tr>
+                            <tr>
+                                <td>LM2596 Buck Converter</td>
+                                <td>1</td>
+                                <td>12V to 5V step-down</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bom-category">
+                    <h3>Power & Misc</h3>
+                    <table class="bom-table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantity</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12V Power Supply</td>
+                                <td>1</td>
+                                <td>S-240-12 (20A)</td>
+                            </tr>
+                            <tr>
+                                <td>Dry Erase Marker</td>
+                                <td>1</td>
+                                <td>Standard size</td>
+                            </tr>
+                            <tr>
+                                <td>Solenoid</td>
+                                <td>1</td>
+                                <td>Marker lift mechanism</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </section>
