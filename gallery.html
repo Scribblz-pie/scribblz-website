@@ -42,60 +42,27 @@
     <!-- Main Content Section -->
     <section id="gallery" class="section-content wave-section">
         <div class="content-wrapper">
-            <h2 class="section-title">Project Gallery</h2>
-
-            <article class="featured-post">
-                <p class="gallery-intro">
-                    Explore photos and videos of SCRIBBLZ in action! From early prototypes to the final system,
-                    see how our wall-drawing robot came to life.
-                </p>
-
-                <h3 style="margin-top: 3rem;">Robot in Action</h3>
-                <div class="gallery-grid">
-                    <div class="gallery-item">🎬</div>
-                    <div class="gallery-item">📸</div>
-                    <div class="gallery-item">🖼️</div>
-                    <div class="gallery-item">🎥</div>
-                    <div class="gallery-item">📷</div>
-                    <div class="gallery-item">🎞️</div>
+            <div class="gallery-showcase">
+                <div class="gallery-container" id="galleryContainer">
+                    <!-- Gallery items will be injected here by JS -->
                 </div>
-            </article>
-
-            <article class="featured-post" style="margin-top: 3rem;">
-                <h3>Development Process</h3>
-                <p class="gallery-intro">
-                    Behind-the-scenes photos from the design and build process.
-                </p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">🔧</div>
-                    <div class="gallery-item">⚙️</div>
-                    <div class="gallery-item">🔌</div>
-                    <div class="gallery-item">💻</div>
-                    <div class="gallery-item">🛠️</div>
-                    <div class="gallery-item">📐</div>
+                <div class="gallery-controls">
+                    <button class="gallery-btn prev" id="prevBtn">❮</button>
+                    <div class="gallery-dots" id="galleryDots"></div>
+                    <button class="gallery-btn next" id="nextBtn">❯</button>
                 </div>
-            </article>
-
-            <article class="featured-post" style="margin-top: 3rem;">
-                <h3>Robot Drawings</h3>
-                <p class="gallery-intro">
-                    Sample drawings created by SCRIBBLZ on various surfaces.
-                </p>
-                <div class="gallery-grid">
-                    <div class="gallery-item">✏️</div>
-                    <div class="gallery-item">🎨</div>
-                    <div class="gallery-item">🖊️</div>
-                    <div class="gallery-item">✍️</div>
-                    <div class="gallery-item">🖍️</div>
-                    <div class="gallery-item">🎭</div>
-                </div>
-            </article>
-
-            <div style="text-align: center; margin-top: 3rem;">
-                <a href="index.html" class="cta-button">← Back to Home</a>
+                <p class="gallery-hint">✨ Swipe or drag to explore ✨</p>
             </div>
+
+            <!-- Back to home removed -->
         </div>
     </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox">
+        <span id="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged View">
+    </div>
 
     <!-- Footer -->
     <footer id="copyright">
