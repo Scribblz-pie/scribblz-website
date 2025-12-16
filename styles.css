@@ -9,6 +9,7 @@
 html {
     font-size: 75%;
     /* Global zoom out */
+    scroll-behavior: smooth;
 }
 
 body {
@@ -137,7 +138,7 @@ body {
 
 .main-title {
     font-family: 'Permanent Marker', cursive;
-    font-size: clamp(3rem, 12vw, 6rem);
+    font-size: clamp(4rem, 15vw, 8rem);
     color: #2C3E50;
     margin-bottom: 2rem;
     text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.15);
@@ -281,15 +282,17 @@ body {
 /* Intro Section */
 #intro {
     position: relative;
-    min-height: 90vh;
+    min-height: 105vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 1rem 5%;
+    padding: 6rem 5% 15rem;
     z-index: 5;
     background: transparent;
+    width: 100%;
+    margin: 0;
 }
 
 @keyframes bounceIn {
@@ -320,6 +323,14 @@ body {
     max-width: 700px;
     line-height: 1.8;
     animation: fadeSlideUp 1s ease-out 0.3s both;
+}
+
+.subtitle strong {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2em;
+    color: #000000;
+    display: block;
+    margin-bottom: 0.5rem;
 }
 
 @keyframes fadeSlideUp {
@@ -371,8 +382,7 @@ body {
 #features,
 #system,
 #gallery,
-#final-system-section,
-#intro {
+#final-system-section {
     width: 100%;
     margin: 0;
     padding: 4rem 0 5rem;
@@ -454,6 +464,7 @@ body {
     position: relative;
     z-index: 1;
     overflow: visible;
+    scroll-margin-top: 130px;
 }
 
 .drawing-clipper {
