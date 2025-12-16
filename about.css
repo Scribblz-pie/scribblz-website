@@ -20,31 +20,135 @@
 
 /* Team Member Card */
 .member-card {
-    background: white;
+    background: transparent;
+    /* Changed from white for flip logic */
     border-radius: 20px;
-    padding: 2rem;
+    padding: 0;
+    /* Remove padding here, move inwards if needed */
     text-align: center;
-
-    /* Layout Sizing for 3-then-2 layout */
-    /* Basis 300px ensures 3 fit on desktop (approx 1000px+), 
-       but 4 won't fit within 1400px comfortably with gaps */
     flex: 0 1 350px;
     min-width: 300px;
-
-    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
+    height: 450px;
+    /* Fixed height required for consistent flip */
+    perspective: 1000px;
+    /* Enable 3D space */
     position: relative;
+    border: none;
+    /* Border moves to inner face */
+    overflow: visible;
+    /* Allow 3D pop */
+}
+
+/* Inner Container - The thing that flips */
+.member-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+/* Hover tilt effect is now on the whole inner card, but flip logic overrides it */
+.member-card:hover .member-card-inner {
+    /* Subtle lift when not flipped */
+    transform: translateY(-10px);
+}
+
+.member-card.flipped .member-card-inner {
+    transform: rotateY(180deg);
+}
+
+/* Front and Back Faces */
+.member-card-front,
+.member-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    background: white;
     border: 4px solid #E0E0E0;
-    /* Default fallback */
     overflow: hidden;
+}
+
+/* Front Face Styling */
+.member-card-front {
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
+    z-index: 2;
+}
 
-    /* Variable-based transform for clean animation */
-    --rotation: 0deg;
-    transform: rotate(0deg) translateY(0);
-    /* Default: straight */
-    opacity: 1;
+/* Back Face Styling */
+.member-card-back {
+    transform: rotateY(180deg);
+    background: #fff;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.member-detail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Show full image */
+    background: #f0f0f0;
+}
+
+/* Flip Toggles */
+.flip-toggle {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    background: #f8f9fa;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ddd;
+    box-shadow: 2px 2px 0 #ccc;
+    transition: all 0.2s;
+}
+
+.flip-toggle:hover {
+    transform: scale(1.1);
+    background: #eef;
+    border-color: #aaf;
+}
+
+.flip-toggle-back {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 100;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ddd;
+    box-shadow: 2px 2px 0 #ccc;
+}
+
+.flip-toggle-back:hover {
+    transform: scale(1.1);
+    background: white;
 }
 
 .member-card:hover {
@@ -72,63 +176,83 @@
    Matching the vibrant site theme 
 */
 
-/* Card 1: Purple */
-.member-card:nth-child(1) {
-    --rotation: -1.5deg;
-    border-color: #9B7EDE;
-    box-shadow: 0 10px 25px rgba(155, 126, 222, 0.2);
+/* Card 1: Light Green (Eleane) */
+.member-card:nth-child(1) .member-card-front,
+.member-card:nth-child(1) .member-card-back {
+    border-color: #95e195;
 }
 
-.member-card:nth-child(1):hover {
-    box-shadow: 0 20px 35px rgba(155, 126, 222, 0.3);
+.member-card:nth-child(1) .member-card-inner {
+    box-shadow: 0 10px 25px rgba(149, 225, 149, 0.15);
+    /* Reduced opacity */
 }
 
-/* Card 2: Green */
-.member-card:nth-child(2) {
-    --rotation: 1deg;
-    border-color: #66BB6A;
-    box-shadow: 0 10px 25px rgba(102, 187, 106, 0.2);
+.member-card:nth-child(1) .member-role {
+    color: #95e195;
 }
 
-.member-card:nth-child(2):hover {
-    box-shadow: 0 20px 35px rgba(102, 187, 106, 0.3);
+/* Card 2: Red (Liam) */
+.member-card:nth-child(2) .member-card-front,
+.member-card:nth-child(2) .member-card-back {
+    border-color: #ee3636;
 }
 
-/* Card 3: Blue */
-.member-card:nth-child(3) {
-    --rotation: -0.5deg;
-    border-color: #5A7C9E;
-    box-shadow: 0 10px 25px rgba(90, 124, 158, 0.2);
+.member-card:nth-child(2) .member-card-inner {
+    box-shadow: 0 10px 25px rgba(238, 54, 54, 0.15);
+    /* Reduced opacity */
 }
 
-.member-card:nth-child(3):hover {
-    box-shadow: 0 20px 35px rgba(90, 124, 158, 0.3);
+.member-card:nth-child(2) .member-role {
+    color: #ee3636;
 }
 
-/* Card 4: Orange */
-.member-card:nth-child(4) {
-    --rotation: 1.5deg;
-    border-color: #FF9F66;
-    box-shadow: 0 10px 25px rgba(255, 159, 102, 0.2);
+/* Card 3: Orange (David) */
+.member-card:nth-child(3) .member-card-front,
+.member-card:nth-child(3) .member-card-back {
+    border-color: #f99923;
 }
 
-.member-card:nth-child(4):hover {
-    box-shadow: 0 20px 35px rgba(255, 159, 102, 0.3);
+.member-card:nth-child(3) .member-card-inner {
+    box-shadow: 0 10px 25px rgba(249, 153, 35, 0.15);
+    /* Reduced opacity */
 }
 
-/* Card 5: Pink */
-.member-card:nth-child(5) {
-    --rotation: -1.2deg;
-    border-color: #ffadad;
-    box-shadow: 0 10px 25px rgba(255, 173, 173, 0.2);
+.member-card:nth-child(3) .member-role {
+    color: #f99923;
 }
 
-.member-card:nth-child(5):hover {
-    box-shadow: 0 20px 35px rgba(255, 173, 173, 0.31);
+/* Card 4: Purple (Enzo) */
+.member-card:nth-child(4) .member-card-front,
+.member-card:nth-child(4) .member-card-back {
+    border-color: #9762d0;
+}
+
+.member-card:nth-child(4) .member-card-inner {
+    box-shadow: 0 10px 25px rgba(151, 98, 208, 0.15);
+    /* Reduced opacity */
+}
+
+.member-card:nth-child(4) .member-role {
+    color: #9762d0;
+}
+
+/* Card 5: Blue (Michael) */
+.member-card:nth-child(5) .member-card-front,
+.member-card:nth-child(5) .member-card-back {
+    border-color: #0030de;
+}
+
+.member-card:nth-child(5) .member-card-inner {
+    box-shadow: 0 10px 25px rgba(0, 48, 222, 0.15);
+    /* Reduced opacity */
+}
+
+.member-card:nth-child(5) .member-role {
+    color: #0030de;
 }
 
 
-/* Circular Photo Link */
+/* Circular Photo Link - Restored */
 .member-photo-link {
     display: block;
     width: 180px;
@@ -180,7 +304,7 @@
     background-color: #eee;
 }
 
-/* Text Styling */
+/* Text Formatting */
 .member-name {
     font-family: 'Permanent Marker', cursive;
     font-size: 1.8rem;
@@ -191,7 +315,6 @@
 .member-role {
     font-family: 'Cabin Sketch', cursive;
     font-size: 1.2rem;
-    color: #7B68EE;
     font-weight: bold;
     margin-bottom: 1rem;
     display: block;
@@ -203,28 +326,6 @@
     color: #555;
     line-height: 1.6;
 }
-
-/* Link Colors for Roles to match border */
-.member-card:nth-child(1) .member-role {
-    color: #9B7EDE;
-}
-
-.member-card:nth-child(2) .member-role {
-    color: #66BB6A;
-}
-
-.member-card:nth-child(3) .member-role {
-    color: #5A7C9E;
-}
-
-.member-card:nth-child(4) .member-role {
-    color: #FF9F66;
-}
-
-.member-card:nth-child(5) .member-role {
-    color: #ffadad;
-}
-
 
 /* Decorative Elements */
 .member-card::before {

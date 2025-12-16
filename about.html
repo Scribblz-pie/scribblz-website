@@ -35,8 +35,11 @@
     <header class="page-header">
         <h1 class="page-title">Meet The Team</h1>
         <p class="subtitle" style="max-width: 700px; margin: 1rem auto;">
-            The team behing Scribblz! Feel free to connect with us on LinkedIn!
+            The team behind Scribblz! Feel free to connect with us on LinkedIn!
         </p>
+        <button id="flipAllBtn" class="cta-button" style="padding: 0.8rem 1.5rem; font-size: 1rem; margin-top: 1rem;">
+            Flip the Cards
+        </button>
     </header>
 
     <!-- Team Content -->
@@ -45,67 +48,116 @@
 
             <!-- Member 1 -->
             <article class="member-card">
-                <a href="https://www.linkedin.com/in/eleane-lin/" target="_blank" class="member-photo-link"
-                    title="Connect on LinkedIn">
-                    <!-- Placeholder image - in production replace src with actual photos -->
-                    <img src="https://ui-avatars.com/api/?name=Member+1&background=ffadad&color=fff&size=200"
-                        alt="Team Member 1" class="member-photo">
-                </a>
-                <h3 class="member-name">Eleane Lin</h3>
-                <span class="member-role">Project Manager</span>
-                <p class="member-bio">Passionate about algorithms and embedded systems. Built the core logic for
-                    SCRIBBLZ pathfinding.</p>
+                <div class="member-card-inner">
+                    <div class="member-card-front">
+                        <div class="flip-toggle" title="View Full Details">🔄</div>
+                        <a href="https://www.linkedin.com/in/eleane-lin/" target="_blank" class="member-photo-link"
+                            title="Connect on LinkedIn">
+                            <img src="https://ui-avatars.com/api/?name=Member+1&background=ffadad&color=fff&size=200"
+                                alt="Team Member 1" class="member-photo">
+                        </a>
+                        <h3 class="member-name">Eleane Lin</h3>
+                        <span class="member-role">Project Manager</span>
+                        <p class="member-bio">Passionate about algorithms and embedded systems. Built the core logic for
+                            SCRIBBLZ pathfinding.</p>
+                    </div>
+                    <div class="member-card-back">
+                        <img src="Cartoon_images\Cartoon_Eleane.png" alt="Eleane Full Detail" class="member-detail-img">
+                        <div class="flip-toggle-back" title="Go Back">🔄</div>
+                    </div>
+                </div>
             </article>
 
             <!-- Member 2 -->
             <article class="member-card">
-                <a href="https://www.linkedin.com/in/liamzcarlin/" target="_blank" class="member-photo-link"
-                    title="Connect on LinkedIn">
-                    <img src="https://ui-avatars.com/api/?name=Member+2&background=ffd6a5&color=fff&size=200"
-                        alt="Team Member 2" class="member-photo">
-                </a>
-                <h3 class="member-name">Liam Carlin</h3>
-                <span class="member-role">Mechanical Lead</span>
-                <p class="member-bio">CAD wizard who designed the impeller system and chassis. Loves 3D printing and
-                    rapid prototyping.</p>
+                <div class="member-card-inner">
+                    <div class="member-card-front">
+                        <div class="flip-toggle" title="View Full Details">🔄</div>
+                        <a href="https://www.linkedin.com/in/liamzcarlin/" target="_blank" class="member-photo-link"
+                            title="Connect on LinkedIn">
+                            <img src="https://ui-avatars.com/api/?name=Member+2&background=ffd6a5&color=fff&size=200"
+                                alt="Team Member 2" class="member-photo">
+                        </a>
+                        <h3 class="member-name">Liam Carlin</h3>
+                        <span class="member-role">Mechanical Lead</span>
+                        <p class="member-bio">CAD wizard who designed the impeller system and chassis. Loves 3D printing
+                            and
+                            rapid prototyping.</p>
+                    </div>
+                    <div class="member-card-back">
+                        <img src="Cartoon_images\Cartoon_Liam.png" alt="Liam Full Detail" class="member-detail-img">
+                        <div class="flip-toggle-back" title="Go Back">🔄</div>
+                    </div>
+                </div>
             </article>
 
             <!-- Member 3 -->
             <article class="member-card">
-                <a href="https://www.linkedin.com/in/davidmbarsoum/" target="_blank" class="member-photo-link"
-                    title="Connect on LinkedIn">
-                    <img src="https://ui-avatars.com/api/?name=Member+3&background=fdffb6&color=555&size=200"
-                        alt="Team Member 3" class="member-photo">
-                </a>
-                <h3 class="member-name">David Barsoum</h3>
-                <span class="member-role">Software Lead</span>
-                <p class="member-bio">Designed the custom PCB and power management system. Enjoys debugging circuits and
-                    soldering.</p>
+                <div class="member-card-inner">
+                    <div class="member-card-front">
+                        <div class="flip-toggle" title="View Full Details">🔄</div>
+                        <a href="https://www.linkedin.com/in/davidmbarsoum/" target="_blank" class="member-photo-link"
+                            title="Connect on LinkedIn">
+                            <img src="https://ui-avatars.com/api/?name=Member+3&background=fdffb6&color=555&size=200"
+                                alt="Team Member 3" class="member-photo">
+                        </a>
+                        <h3 class="member-name">David Barsoum</h3>
+                        <span class="member-role">Software Lead</span>
+                        <p class="member-bio">Designed the custom PCB and power management system. Enjoys debugging
+                            circuits and
+                            soldering.</p>
+                    </div>
+                    <div class="member-card-back">
+                        <img src="Cartoon_images\Cartoon_David.png" alt="David Full Detail" class="member-detail-img">
+                        <div class="flip-toggle-back" title="Go Back">🔄</div>
+                    </div>
+                </div>
             </article>
 
             <!-- Member 4 -->
             <article class="member-card">
-                <a href="https://linkedin.com" target="_blank" class="member-photo-link" title="Connect on LinkedIn">
-                    <img src="https://ui-avatars.com/api/?name=Member+4&background=caffbf&color=555&size=200"
-                        alt="Team Member 4" class="member-photo">
-                </a>
-                <h3 class="member-name">Enzo Smajlaj</h3>
-                <span class="member-role">Software Lead</span>
-                <p class="member-bio">Worked on the low-level motor control and sensor integration. Makes sure the robot
-                    moves smoothly.</p>
+                <div class="member-card-inner">
+                    <div class="member-card-front">
+                        <div class="flip-toggle" title="View Full Details">🔄</div>
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="member-photo-link"
+                            title="Connect on LinkedIn">
+                            <img src="https://ui-avatars.com/api/?name=Member+4&background=caffbf&color=555&size=200"
+                                alt="Team Member 4" class="member-photo">
+                        </a>
+                        <h3 class="member-name">Enzo Smajlaj</h3>
+                        <span class="member-role">Software Lead</span>
+                        <p class="member-bio">Worked on the low-level motor control and sensor integration. Makes sure
+                            the robot
+                            moves smoothly.</p>
+                    </div>
+                    <div class="member-card-back">
+                        <img src="Cartoon_images\Cartoon_Enzo.png" alt="Enzo Full Detail" class="member-detail-img">
+                        <div class="flip-toggle-back" title="Go Back">🔄</div>
+                    </div>
+                </div>
             </article>
 
             <!-- Member 5 -->
             <article class="member-card">
-                <a href="https://www.linkedin.com/in/michael-ku-jr-512b70194/" target="_blank" class="member-photo-link"
-                    title="Connect on LinkedIn">
-                    <img src="https://ui-avatars.com/api/?name=Member+5&background=a0c4ff&color=fff&size=200"
-                        alt="Team Member 5" class="member-photo">
-                </a>
-                <h3 class="member-name">Michael Ku</h3>
-                <span class="member-role">Electrical Lead</span>
-                <p class="member-bio">Coordinated the overall system integration and web interface. Loves full-stack
-                    capability.</p>
+                <div class="member-card-inner">
+                    <div class="member-card-front">
+                        <div class="flip-toggle" title="View Full Details">🔄</div>
+                        <a href="https://www.linkedin.com/in/michael-ku-jr-512b70194/" target="_blank"
+                            class="member-photo-link" title="Connect on LinkedIn">
+                            <img src="https://ui-avatars.com/api/?name=Member+5&background=a0c4ff&color=fff&size=200"
+                                alt="Team Member 5" class="member-photo">
+                        </a>
+                        <h3 class="member-name">Michael Ku</h3>
+                        <span class="member-role">Electrical Lead</span>
+                        <p class="member-bio">Coordinated the overall system integration and web interface. Loves
+                            full-stack
+                            capability.</p>
+                    </div>
+                    <div class="member-card-back">
+                        <img src="Cartoon_images\Cartoon_Mikey.png" alt="Michael Full Detail" class="member-detail-img">
+                        <div class="flip-toggle-back" title="Go Back">🔄</div>
+                    </div>
+                </div>
             </article>
 
         </div>

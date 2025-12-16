@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCRIBBLZ - Wall Drawing Robot Project</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="system-diagram.css">
 </head>
 
 <body class="is-preload">
@@ -174,31 +175,11 @@
     <!-- System Diagram -->
     <section id="system" class="section-content wave-section">
         <div class="content-wrapper">
-            <img id="robot-system" class="robot-element" src="images\content.png" alt="Robot System">
             <h2 class="section-title">System Overview</h2>
-            <article class="featured-post">
-                <div class="system-diagram">
-                    <div class="system-box">
-                        <h4>🖥️ Raspberry Pi</h4>
-                        <p>Main controller</p>
-                    </div>
-                    <div class="arrow">→</div>
-                    <div class="system-box">
-                        <h4>⚡ Custom PCB</h4>
-                        <p>Power & control</p>
-                    </div>
-                    <div class="arrow">→</div>
-                    <div class="system-box">
-                        <h4>🔧 Motors</h4>
-                        <p>Movement & suction</p>
-                    </div>
-                    <div class="arrow">→</div>
-                    <div class="system-box">
-                        <h4>🖊️ Marker Head</h4>
-                        <p>Drawing output</p>
-                    </div>
-                </div>
-            </article>
+            <!-- Dynamic System Diagram -->
+            <div id="system-diagram-container">
+                <!-- JS will populate this -->
+            </div>
         </div>
     </section>
 
@@ -235,6 +216,7 @@
     <script src="js/sketches.js"></script>
     <script src="js/spot-it-doodles.js"></script>
     <script src="js/robots.js"></script>
+    <script src="js/system-diagram.js"></script>
     <script src="js/navigation.js"></script>
 </body>
 

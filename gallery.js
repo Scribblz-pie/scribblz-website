@@ -17,7 +17,7 @@ const galleryData = [
         color: "#ffd6a5"
     },
     {
-        title: "Impeller Closeup",
+        title: "Impeller ",
         desc: "High-RPM suction system visualized.",
         badge: "Hardware",
         emoji: "🌪️",
