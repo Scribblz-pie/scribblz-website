@@ -48,7 +48,7 @@
     width: 100%;
     height: 100%;
     z-index: 5;
-    /* Lines above background, below components (or above?? Check React code) */
+    /* Lines below components so components can be interacted with */
     pointer-events: all;
     /* Allow line hovers */
 }
@@ -56,14 +56,17 @@
 /* Connection Lines */
 .connection-line {
     cursor: pointer;
-    transition: stroke-width 0.2s, stroke 0.2s;
+    stroke-width: 20;
+    /* Wide for easy clicking */
+    opacity: 0;
+    /* Invisible hit area */
 }
 
-.connection-line:hover {
-    stroke-width: 6;
-    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.3));
-    z-index: 50;
-    /* Bring to front */
+.connection-visible {
+    pointer-events: none;
+    /* Don't interfere with hit area */
+    stroke-width: 4;
+    opacity: 1;
 }
 
 
@@ -75,6 +78,8 @@
     height: 110px;
     cursor: pointer;
     z-index: 10;
+    pointer-events: auto;
+    /* Re-enable events since container is none */
     transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -151,8 +156,8 @@
     z-index: 100;
     width: 300px;
     font-size: 0.9rem;
-    pointer-events: auto;
-    /* allow interaction with inputs inside */
+    pointer-events: none;
+    /* Prevent tooltip from interfering with hover detection */
     opacity: 0;
     transform: translateY(10px);
     transition: opacity 0.2s, transform 0.2s;

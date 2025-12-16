@@ -5,7 +5,7 @@ const diagramData = {
         impeller: {
             name: 'Impeller',
             color: 'yellow',
-            position: { x: 30, y: 50 },
+            position: { x: 10, y: 50 },
             info: 'Propulsion system component that generates thrust for movement. The impeller uses rotating blades to create water flow, providing forward and reverse thrust capabilities. Connected directly to the main motor for primary propulsion control.',
             partLink: '',
             icon: '🌪️'
@@ -53,7 +53,7 @@ const diagramData = {
         motor: {
             name: 'Motor',
             color: 'blue',
-            position: { x: 30, y: 200 },
+            position: { x: 10, y: 200 },
             info: 'Primary brushless DC motor for main propulsion. Provides mechanical power to the impeller for thrust generation. Controlled by the ESC which regulates speed and direction based on PWM input signals.',
             partLink: '',
             icon: '⚙️'
@@ -125,14 +125,14 @@ const diagramData = {
     },
 
     connections: [
-        { id: 'motor-impeller', from: 'impeller', to: 'impeller-top', coords: { x1: 90, y1: 200, x2: 90, y2: 150 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical rotational energy transferred from motor to impeller blades' },
+        { id: 'motor-impeller', from: 'impeller', to: 'impeller-top', coords: { x1: 70, y1: 200, x2: 70, y2: 150 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical rotational energy transferred from motor to impeller blades' },
         { id: 'motors-wheels', coords: { x1: 940, y1: 200, x2: 940, y2: 150 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical energy drives wheels for locomotion' },
         { id: 'buck-driver', path: 'M 240 640 L 240 680 L 760 680 L 760 300', label: '12V', color: '#000000', type: 'electrical', desc: 'Stepped-down DC voltage to power motor driver circuitry' },
         { id: 'power-buck', coords: { x1: 240, y1: 460, x2: 240, y2: 540 }, label: '14.4V', color: '#000000', type: 'electrical', desc: 'Raw battery voltage fed to buck converter for regulation' },
         { id: 'imu-nano', coords: { x1: 280, y1: 150, x2: 380, y2: 200 }, label: 'Sensor data (1.3V)', color: '#0000FF', type: 'digital', startArrow: true, desc: 'Bidirectional I2C/SPI communication for orientation and acceleration data' },
         { id: 'servo-nano', coords: { x1: 440, y1: 150, x2: 440, y2: 200 }, label: 'Commands (5V)', color: '#0000FF', type: 'digital', desc: 'PWM control signals for servo positioning' },
         { id: 'servo-marker', coords: { x1: 520, y1: 100, x2: 580, y2: 100 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical actuation energy to operate marking mechanism' },
-        { id: 'motor-esc', coords: { x1: 150, y1: 240, x2: 185, y2: 240 }, label: 'PWM (~14V)', color: '#800080', type: 'analog', desc: 'Pulse-width modulated analog signal controls motor speed and direction' },
+        { id: 'motor-esc', coords: { x1: 130, y1: 240, x2: 185, y2: 240 }, label: 'PWM (~14V)', color: '#800080', type: 'analog', desc: 'Pulse-width modulated analog signal controls motor speed and direction' },
         { id: 'esc-nano', coords: { x1: 305, y1: 240, x2: 380, y2: 240 }, label: 'Commands', color: '#0000FF', type: 'digital', desc: 'Digital control signals for ESC operation' },
         { id: 'nano-driver', coords: { x1: 500, y1: 240, x2: 700, y2: 240 }, label: 'Commands (5V)', color: '#0000FF', type: 'digital', startArrow: true, desc: 'Bidirectional digital communication for motor control and feedback' },
         { id: 'driver-motors', coords: { x1: 820, y1: 240, x2: 880, y2: 240 }, label: 'PWM (12V)', color: '#800080', type: 'analog', desc: 'High-current PWM signals drive motors with variable speed control' },
@@ -182,6 +182,7 @@ class SystemDiagram {
         this.compContainer.style.width = '100%';
         this.compContainer.style.height = '100%';
         this.compContainer.style.zIndex = '10';
+        this.compContainer.style.pointerEvents = 'none'; // Allow clicks to pass through to SVG
         this.wrapper.appendChild(this.compContainer);
 
         // Tooltip Container
@@ -218,33 +219,55 @@ class SystemDiagram {
 
     renderConnections() {
         diagramData.connections.forEach(conn => {
-            let el;
+            // Create invisible wide hit area
+            let hitArea;
             if (conn.path) {
-                el = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                el.setAttribute('d', conn.path);
-                el.setAttribute('fill', 'none');
+                hitArea = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                hitArea.setAttribute('d', conn.path);
+                hitArea.setAttribute('fill', 'none');
             } else {
-                el = document.createElementNS("http://www.w3.org/2000/svg", "line");
-                el.setAttribute('x1', conn.coords.x1);
-                el.setAttribute('y1', conn.coords.y1);
-                el.setAttribute('x2', conn.coords.x2);
-                el.setAttribute('y2', conn.coords.y2);
+                hitArea = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                hitArea.setAttribute('x1', conn.coords.x1);
+                hitArea.setAttribute('y1', conn.coords.y1);
+                hitArea.setAttribute('x2', conn.coords.x2);
+                hitArea.setAttribute('y2', conn.coords.y2);
             }
+            hitArea.setAttribute('stroke', 'transparent');
+            hitArea.classList.add('connection-line');
 
-            el.setAttribute('stroke', conn.color);
-            el.setAttribute('stroke-width', '4');
-            el.setAttribute('marker-end', 'url(#arrowhead)');
+            // Create visible narrow line
+            let visibleLine;
+            if (conn.path) {
+                visibleLine = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                visibleLine.setAttribute('d', conn.path);
+                visibleLine.setAttribute('fill', 'none');
+            } else {
+                visibleLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+                visibleLine.setAttribute('x1', conn.coords.x1);
+                visibleLine.setAttribute('y1', conn.coords.y1);
+                visibleLine.setAttribute('x2', conn.coords.x2);
+                visibleLine.setAttribute('y2', conn.coords.y2);
+            }
+            visibleLine.setAttribute('stroke', conn.color);
+            visibleLine.setAttribute('marker-end', 'url(#arrowhead)');
             if (conn.startArrow) {
-                el.setAttribute('marker-start', 'url(#arrowhead-reverse)');
+                visibleLine.setAttribute('marker-start', 'url(#arrowhead-reverse)');
             }
-            el.classList.add('connection-line');
+            visibleLine.classList.add('connection-visible');
 
-            // Hover Events for Lines
-            el.addEventListener('mouseenter', (e) => this.showConnectionTooltip(conn, e));
-            el.addEventListener('mousemove', (e) => this.moveConnectionTooltip(e));
-            el.addEventListener('mouseleave', () => this.hideTooltip());
+            // Hover events on hit area only
+            hitArea.addEventListener('mouseenter', (e) => {
+                this.showConnectionTooltip(conn, e);
+                visibleLine.style.filter = 'drop-shadow(0 0 4px rgba(0, 0, 0, 0.3))';
+            });
+            hitArea.addEventListener('mousemove', (e) => this.moveConnectionTooltip(e));
+            hitArea.addEventListener('mouseleave', () => {
+                this.hideTooltip();
+                visibleLine.style.filter = '';
+            });
 
-            this.svg.appendChild(el);
+            this.svg.appendChild(hitArea);
+            this.svg.appendChild(visibleLine);
         });
     }
 
