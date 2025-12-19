@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Permanent+Marker&family=Cabin+Sketch:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Permanent+Marker&family=Cabin+Sketch:wght@700&display=swap');
 
 * {
     margin: 0;
@@ -13,7 +13,7 @@ html {
 }
 
 body {
-    font-family: 'Indie Flower', cursive;
+    font-family: 'Quicksand', sans-serif;
     background: #F8F8F8;
     color: #2C3E50;
     overflow-x: hidden;
@@ -316,8 +316,8 @@ body {
 }
 
 .subtitle {
-    font-family: 'Indie Flower', cursive;
-    font-size: clamp(1.2rem, 3vw, 1.4rem);
+    font-family: 'Quicksand', sans-serif;
+    font-size: clamp(1.5rem, 3.5vw, 1.8rem);
     margin-bottom: 2rem;
     color: #2C3E50;
     max-width: 700px;
@@ -565,10 +565,10 @@ body {
 }
 
 .project-goal-card p {
-    font-family: 'Indie Flower', cursive;
-    font-size: 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5rem;
     color: #2C3E50;
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 .project-robot-image-container {
@@ -658,11 +658,11 @@ body {
 }
 
 .step-content p {
-    font-family: 'Indie Flower', cursive;
-    font-size: 1.1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.4rem;
     color: #555;
     margin: 0;
-    line-height: 1.3;
+    line-height: 1.5;
 }
 
 #final-system-section {
@@ -731,8 +731,8 @@ body {
 }
 
 .bom-intro {
-    font-family: 'Indie Flower', cursive;
-    font-size: 1.3rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.6rem;
     color: #555;
     text-align: center;
     margin-bottom: 3rem;
@@ -779,8 +779,8 @@ body {
 }
 
 .bom-table td {
-    font-family: 'Indie Flower', cursive;
-    font-size: 1.1rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.3rem;
     color: #555;
     padding: 0.75rem;
     border-bottom: 1px solid #ddd;
@@ -823,8 +823,8 @@ body {
 }
 
 .featured-post p {
-    font-size: clamp(1rem, 2vw, 1.15rem);
-    line-height: 1.6;
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    line-height: 1.7;
     color: #2C3E50;
 }
 
@@ -946,7 +946,7 @@ body {
 }
 
 .post-card p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
     line-height: 1.8;
     margin-bottom: 1.5rem;
     color: #2C3E50;
@@ -1019,7 +1019,7 @@ body {
 }
 
 .feature-card p {
-    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
     line-height: 1.8;
     color: #2C3E50;
 }
@@ -1052,7 +1052,7 @@ body {
 }
 
 .system-box p {
-    font-size: 1.1rem;
+    font-size: 1.4rem;
     color: #2C3E50;
 }
 
@@ -1422,7 +1422,7 @@ body.is-preload #intro {
 }
 
 .video-description {
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-size: clamp(1.4rem, 3vw, 1.7rem);
     line-height: 1.8;
     color: #2C3E50;
     text-align: center;
@@ -1433,7 +1433,7 @@ body.is-preload #intro {
 
 /* Gallery Grid */
 .gallery-intro {
-    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    font-size: clamp(1.4rem, 3vw, 1.7rem);
     line-height: 1.8;
     color: #2C3E50;
     text-align: center;
@@ -1594,8 +1594,8 @@ body.is-preload #intro {
 }
 
 .info-card p {
-    font-family: 'Indie Flower', cursive;
-    font-size: 1.2rem;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.5rem;
     color: #666;
     margin: 0;
 }
