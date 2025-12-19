@@ -210,7 +210,7 @@
                     However, this development process resulted in inaccurate docking positions, as we assumed this could be integrated into the 
                     docking and undocking states from within the waypoint extraction. Additionally, the extent to which our robot had localization 
                     updates did not mesh well with the large amount of waypoints generated. Thus, for the final demonstration, we did not use the 
-                    image to path pipeline and instead had only a few predefined waypoints. 
+                    image to path pipeline and instead had only a few predefined waypoints. Throughout this debugging process, our ability to diagnose problems was consistently halted by incessant networking crashes and instability in our SSH connection. We would like to note that there may have been around 4 total hours of downtime through the project.
                 </p>
             </article>
 
@@ -278,15 +278,91 @@
                     <li>Scikit-Image</li>
                     <li>OpenCV</li>
                 </ul>
-            <br>
-            <br>
-            If given more time, we would hope to modify the algorithm to contain more intelligent features. 
-            We feel as if distinguishing between translational and rotational movement was an unelegant solution, 
-            but were forced to maintain this in order to further the development of the project. Additionally, 
-            solving a global problem via a map-wide cost function as opposed to attempting to classify the lines 
-            themselves is a more efficient method one could explore. Ultimately, the path following was developed 
-            quickly and given less prioritization as opposed to finalizing the system and functionality regarding 
-            firmware and communication. 
+                <br>
+                If given more time, we would hope to modify the algorithm to contain more intelligent features. 
+                We feel as if distinguishing between translational and rotational movement was an unelegant solution, 
+                but were forced to maintain this in order to further the development of the project. Additionally, 
+                solving a global problem via a map-wide cost function as opposed to attempting to classify the lines 
+                themselves is a more efficient method one could explore. Ultimately, the path following was developed 
+                quickly and given less prioritization as opposed to finalizing the system and functionality regarding 
+                firmware and communication. 
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">ROS Architecture</h4>
+                Our system functions with a ROS 2 graph where the combination of subscribing and publishing to topics via our nodes creates functionality within the robot.
+                <br>
+                <br>
+                The <i>state_machine_node</i> functions as the central part of the organization, as it controls the five main nodes of our system - teleop, docking, docked, undocking, and drawing. The system attempts to decouple each element such that it can be visualized and debugged in intermediary processes.
+                <br>
+                <br>
+                The aforementioned <i>state_machine_node</i> publishes a string corresponding to one of the five states to the <i>/robot_state topic</i>. Nearly all subsequent nodes will subscribe to this topic and behave in correspondence to certain features. 
+                <img src="Software_Images/ros architecture.png" alt="ROS Architecture Nodes"
+                        style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                The other nodes, which define each feature of the states, can be classified as localization and runtime nodes.
+                <br>
+                <br>
+                For our localization, we use the <i>lidar_pose node</i>, which listens to the UDP packets sent from the lidar for a 360 degree scan. With this data, we process it using the RANSAC circle fitting algorithm to determine the center of the robot, as explained in the process, and extract an x and y position. This node subscribes to the <i>/imu/data</i> topic published by the <i>udp_command_sender</i> node. Then, it publishes to <i>/robot_pose</i>, which contains all the physical details of the robot, like location and orientation. 
+                <br>
+                <br>
+                For runtime, our movement is based around inverse kinematics via our waypoints. Thus, we need to extract velocities for our robot in terms of direction, and apply this to the inverse kinematics matrix for wheel velocities, shown below:
+                <img src="Software_Images/inverse kinematics.png" alt="Inverse Kinematics Matrix"
+                        style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                To do this, the <i>path_follower</i> node subscribes to <i>/robot_pose</i> and <i>/execute_drawing_path</i> to calculate the positional error, in terms of both orientation and translation. This uses the tf2_ros buffer so that the map frame error is transformed into the robot body frame error. To calculate these velocities, we used a simple PID control loop.
+                <br>
+                <br>
+                Each state has special features. 
+                <br>When the state becomes <i>undocking</i>, the undocking waypoints will be published and the system will activate the impeller ramp up sequence via sending PWM signals to the motor using the <i>udp_command_sender</i> node. 
+                <br>When the state becomes docking, the docking waypoints will be published and the <i>/path_follower</i> node, which subscribes to <i>/execute_drawing_path</i>, will begin the waypoint following.
+                <br>When the state becomes <i>drawing</i>, the drawing waypoints will be published and the same occurs as in docking.
+                <br>When the state becomes <i>teleop</i>, we use a Foxglove toolkit that allows us to use our keyboard as a joystick for teleoperation commands. 
+                <br>
+                <br>
+                This stack is a comprehensive sensor feedback loop that lets our robot draw given waypoints effectively and accurately. 
+                <br>
+                <br>
+                In our development, we used Foxglove, which does not impact our system architecture but involves an additional requirement. This did not modify the behavior of any program but allowed us to view the stream of information in realtime. 
+                <br>
+                <br>
+                In this section, we have these new dependencies:
+                <ul>
+                    <li>rclpy</li>
+                    <li>std_msgs</li>
+                    <li>geometry_msgs</li>
+                    <li>sensor_msgs</li>
+                    <li>nav_msgs</li>
+                    <li>tf2_ros</li>
+                    <li>ament_index_python</li>
+                    <li>socket</li>
+                    <li>threading</li>
+                </ul>
+                <br>
+                For the future, we would have planned certain design decisions out more and connected with experienced ROS users who could have provided insight into actions not taken. We would implement the use of actions as opposed to reusing certain segments over and over. We understand that our current implementation was quite messy (as seen in the diagram) and would optimize our cleanup.
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Communication and Firmware</h4>
+                Our firmware existed mainly on the Arduino Nano on the robot. This was running one file that acts as a non-sophisticated bridge that executes and sends low-level commands, leaving intense computation to the docking station’s Raspberry Pi. 
+                <br>
+                <br>
+                For networking, we used UDP. This is ideal for our case as we should continue moving regardless of if a packet is lost, as compared to another network communication protocol, such as TCP. 
+                <br>
+                <br>
+                We hardcoded the Raspberry Pi’s IP into the Arduino. This was fine as we were using Tailscale in our development, meaning unless someone intentionally meddled with certain settings, the IP would not change no matter what. 
+                <br>
+                <br>
+                For the packet structure, we employed a text-based parsing protocol. All messages had identifying tags at the beginning, where motor commands looked like “CMD 1.0 -0.5 0.0”, fan commands looked like “FAN 1500”, marker commands looked “MARKER 2000” and outgoing sensor data looked like “IMU 0.12 -0.04 0.98 0.1 0.2 -0.1”
+                <br>
+                <br>
+                We then had to convert the wheel commands into speeds for the motor drivers, which simply used the PWM pins and a function to convert a value into the corresponding PWM signal value we derived. Similarly, the impeller spins with the ESC which also expects an electrical signal for the speed, with 1000 being off and 2000 being 100% speed. Additionally, we had to precalibrate the values for which the marker would be in the on and off state and then would send those values. This was done experimentally. 
+                <br>
+                <br>
+                These variables were all controlled via the UDP communication that happened between the Raspberry Pi and Arduino Nano as the Raspberry Pi was hosted and set up to be an access point. The Nano connected to the Raspberry Pi’s WiFi, which we set up with a custom name and password. This (theoretically) ensured a smooth setup and consistent connection. 
+                <br>
+                <br>
+                For this section, we had these dependencies:
+                <ul>
+                    <li>WiFiNINA.h</li>
+                    <li>SPI.h</li>
+                    <li>Wire.h</li>
+                    <li>Servo.h</li>
+                    <li>MPU6050.h</li>
+                </ul>
+                If given more time, we could have looked more into certain networking features and optimized the communication for minimal latency. Most of our research was done quickly and not fully fleshed out. It also would have been interesting to see if microROS could have been better, despite our initial hiccup and incompatibility. 
             </p>
             </article>
 
