@@ -160,7 +160,6 @@ class ContinuousGallery {
             };
 
             card.innerHTML = `
-                <div class="card-badge">${item.badge}</div>
                 <div class="card-inner">
                     <div class="card-image-wrapper" style="background-color: ${item.color}33;">
                          <div class="gallery-placeholder" style="font-size: 6rem;">
