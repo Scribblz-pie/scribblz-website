@@ -21,7 +21,7 @@
     /* No border on outer container */
     box-shadow: none;
     /* No shadow on outer container */
-    height: 600px;
+    height: 700px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -30,8 +30,8 @@
 /* Wrapper to hold specific pixel dimensions */
 #diagram-inner {
     position: relative;
-    width: 1050px;
-    height: 700px;
+    width: 1200px;
+    height: 800px;
     margin: 0 auto;
     /* Center within container */
     background: white;
@@ -210,10 +210,10 @@
     bottom: 20px;
     right: 20px;
     background: white;
-    padding: 1rem;
+    padding: 1.5rem 2rem;
     border-radius: 12px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    border: 2px solid #eee;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    border: 3px solid #2C3E50;
     z-index: 30;
     font-family: 'Indie Flower', cursive;
 }
@@ -221,13 +221,14 @@
 .legend-item {
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.95rem;
+    gap: 1.2rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.3rem;
+    font-weight: 600;
 }
 
 .legend-color {
-    width: 30px;
-    height: 4px;
-    border-radius: 2px;
+    width: 50px;
+    height: 6px;
+    border-radius: 3px;
 }

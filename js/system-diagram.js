@@ -5,8 +5,8 @@ const diagramData = {
         impeller: {
             name: 'Impeller',
             color: 'yellow',
-            position: { x: 10, y: 50 },
-            info: 'Propulsion system component that generates thrust for movement. The impeller uses rotating blades to create water flow, providing forward and reverse thrust capabilities. Connected directly to the main motor for primary propulsion control.',
+            position: { x: 10, y: 30 },
+            info: 'Backward curved centrifugal impeller that generates powerful suction to adhere the robot to the window surface. The backward curved blade design maximizes airflow and creates strong negative pressure, ensuring the robot maintains secure contact with the wall with as much force as possible. Connected directly to the brushless motor for reliable suction control.',
             partLink: '',
             image: 'system_diagram_images/impeller.png',
             icon: '🌪️'
@@ -14,8 +14,8 @@ const diagramData = {
         buckConverter: {
             name: 'Buck Converter',
             color: 'red',
-            position: { x: 180, y: 540 },
-            info: 'DC-DC step-down converter that reduces voltage from 14.4V battery level to 12V required by the motor driver. Uses switching regulation to minimize power loss and heat generation while providing stable voltage output.',
+            position: { x: 180, y: 580 },
+            info: 'DC-DC step-down converter added as a safeguard to ensure no excess voltage reaches sensitive components. Regulates voltage down to safe levels for the motor driver and other parts, preventing damage from voltage spikes or fluctuations. Uses switching regulation to provide stable, reliable power output.',
             partLink: '',
             image: 'system_diagram_images/buck_converter.png',
             icon: '⚡'
@@ -23,8 +23,8 @@ const diagramData = {
         imu: {
             name: 'IMU',
             color: 'blue',
-            position: { x: 220, y: 50 },
-            info: 'Inertial Measurement Unit containing 3-axis accelerometer and gyroscope. Provides real-time orientation, angular velocity, and acceleration data to the Nano for stability control and navigation. Communicates via I2C or SPI protocol.',
+            position: { x: 240, y: 30 },
+            info: 'Inertial Measurement Unit containing a 6-axis accelerometer and gyroscope. Provides real-time orientation data that, when paired with LiDAR imaging, allows us to detect where we are on the window and navigate to draw specific shapes.',
             partLink: '',
             image: 'system_diagram_images/IMU.png',
             icon: '🧭'
@@ -32,8 +32,8 @@ const diagramData = {
         servo: {
             name: 'Servo',
             color: 'blue',
-            position: { x: 400, y: 50 },
-            info: 'Precision servo motor with built-in position feedback for accurate angular control. Receives PWM control signals from the Nano to actuate the marker mechanism. Typically operates at 5V with adjustable positioning from 0-180 degrees.',
+            position: { x: 440, y: 30 },
+            info: 'Small 9g servo motor with built-in position feedback for accurate angular control. Receives PWM control signals from the Nano to actuate the marker mechanism and allow it to go up an down when ordered to do so.',
             partLink: '',
             image: 'system_diagram_images/Servo.png',
             icon: '🦾'
@@ -41,7 +41,7 @@ const diagramData = {
         marker: {
             name: 'Marker',
             color: 'yellow',
-            position: { x: 580, y: 50 },
+            position: { x: 640, y: 30 },
             info: 'Marking mechanism actuated by the servo motor. Used for identification, tracking, or dropping markers at specific locations. The servo provides the mechanical force needed to deploy or activate the marking system.',
             partLink: '',
             image: 'system_diagram_images/marker.png',
@@ -50,14 +50,14 @@ const diagramData = {
         wheels: {
             name: 'Wheels',
             color: 'yellow',
-            position: { x: 880, y: 50 },
-            info: 'Wheel assembly for ground-based locomotion and mobility. Mechanically coupled to the secondary motors for omnidirectional or differential drive movement. Provides traction and steering capabilities on solid surfaces.',
+            position: { x: 980, y: 30 },
+            info: 'Omni wheels configured in a kiwi drive arrangement for omnidirectional movement. Three wheels positioned at 120-degree angles allow the robot to move in any direction and rotate while navigating around the window surface. Provides precise control and maneuverability for drawing operations.',
             partLink: '',
             image: 'system_diagram_images/Wheels.png',
             icon: '🛞'
         },
         motor: {
-            name: 'Motor',
+            name: 'Brushless Motor',
             color: 'blue',
             position: { x: 10, y: 200 },
             info: 'Primary brushless DC motor for main propulsion. Provides mechanical power to the impeller for thrust generation. Controlled by the ESC which regulates speed and direction based on PWM input signals.',
@@ -69,7 +69,7 @@ const diagramData = {
             name: 'ESC',
             color: 'blue',
             position: { x: 185, y: 200 },
-            info: 'Electronic Speed Controller that converts digital commands into precise motor control. Uses PWM signals to regulate motor speed and direction by modulating power delivery. Operates at ~14V from the main power supply.',
+            info: 'Electronic Speed Controller that converts digital commands into precise motor control. Uses PWM signals to regulate motor speed and direction by modulating power delivery. Operates at ~12V from the main power supply.',
             partLink: '',
             image: 'system_diagram_images/ESC.png',
             icon: '🎛️'
@@ -78,7 +78,7 @@ const diagramData = {
             name: 'Nano',
             color: 'green',
             position: { x: 380, y: 200 },
-            info: 'Arduino Nano microcontroller serving as the central control unit. Processes sensor data from the IMU, executes control algorithms, and manages communication with the RaspPi. Sends commands to ESC, servo, and motor driver for coordinated system operation.',
+            info: 'Arduino Nano microcontroller serving as the central low-level control unit for the robot. Processes real-time sensor data from the IMU and executes control algorithms for motor coordination. Sends PWM commands to the ESC, servo, and motor driver while receiving high-level instructions from the RaspPi. Manages all real-time operations to ensure smooth, coordinated movement and drawing.',
             partLink: '',
             image: 'system_diagram_images/Nano.png',
             icon: '📟'
@@ -93,10 +93,10 @@ const diagramData = {
             icon: '🔌'
         },
         motors: {
-            name: 'Motors',
+            name: 'DC Motors',
             color: 'blue',
-            position: { x: 880, y: 200 },
-            info: 'Secondary motor array for auxiliary mechanical systems and wheel drive. Receives PWM control signals from the motor driver at 12V. Used for ground locomotion, steering, or other motorized functions independent of the main propulsion system.',
+            position: { x: 980, y: 200 },
+            info: 'Small 12V DC motors that drive the omni wheels in the kiwi drive configuration. Each motor is controlled via PWM (Pulse Width Modulation) signals from the motor driver, allowing precise speed and direction control. By varying the PWM duty cycle, the motors can be independently controlled to achieve omnidirectional movement, enabling the robot to navigate smoothly across the window surface in any direction.',
             partLink: '',
             image: 'system_diagram_images/motors.png',
             icon: '🔋'
@@ -105,7 +105,7 @@ const diagramData = {
             name: 'Power Module',
             color: 'red',
             position: { x: 180, y: 360 },
-            info: 'Central power distribution module managing battery voltage output. Provides regulated 5V for Raspberry Pi and Arduino Nano, and raw 14.4V for ESC and buck converter. Includes protection circuits for overcurrent and reverse polarity.',
+            info: 'Central power distribution module that provides 12V to the entire system. Manages battery voltage output and ensures adequate current is supplied to all components. Includes protection circuits for overcurrent and reverse polarity to safeguard the electronics.',
             partLink: '',
             image: 'system_diagram_images/power_module.png',
             icon: '🔋'
@@ -114,7 +114,7 @@ const diagramData = {
             name: 'RaspPi',
             color: 'green',
             position: { x: 380, y: 360 },
-            info: 'Raspberry Pi single-board computer running Linux. Handles high-level processing including computer vision, path planning, and decision making. Processes LiDAR data for mapping, streams video to external computer, and sends mission commands to Nano.',
+            info: 'Raspberry Pi single-board computer running Linux. Handles high-level processing including path planning and decision making. Processes LiDAR data for 2D mapping and IMU data for orientation tracking. Sends sensor data to the external computer and receives teleoperation commands, then relays mission instructions to the Nano for execution.',
             partLink: '',
             image: 'system_diagram_images/Raspi.png',
             icon: '🥧'
@@ -123,7 +123,7 @@ const diagramData = {
             name: 'Computer',
             color: 'red',
             position: { x: 580, y: 360 },
-            info: 'External computer for remote monitoring, development, and control interface. Receives real-time video stream and telemetry data from RaspPi. Used for mission planning, debugging, and manual override capabilities via network connection.',
+            info: 'External computer for remote monitoring, teleoperation, and control interface. Receives real-time IMU and LiDAR sensor data from the RaspPi over the network. Sends teleoperation commands back to the RaspPi to control the robot remotely. Used for mission planning, debugging, and manual control of drawing operations.',
             partLink: '',
             image: 'system_diagram_images/computer.png',
             icon: '💻'
@@ -131,8 +131,8 @@ const diagramData = {
         lidar: {
             name: 'LiDAR',
             color: 'blue',
-            position: { x: 380, y: 540 },
-            info: 'Light Detection and Ranging sensor using laser pulses to measure distances. Creates 2D or 3D maps of the environment for obstacle detection and navigation. Communicates with RaspPi via serial interface, providing real-time distance measurements up to several meters.',
+            position: { x: 380, y: 580 },
+            info: 'Light Detection and Ranging sensor positioned in the docking station. Provides 2D vision to track where the robot is physically located on the wall. Uses laser pulses to create a 2D map of the robot\'s position, enabling precise navigation and localization for drawing operations.',
             partLink: '',
             image: 'system_diagram_images/Lidar.png',
             icon: '📡'
@@ -140,22 +140,36 @@ const diagramData = {
     },
 
     connections: [
-        { id: 'motor-impeller', from: 'impeller', to: 'impeller-top', coords: { x1: 70, y1: 200, x2: 70, y2: 150 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical rotational energy transferred from motor to impeller blades' },
-        { id: 'motors-wheels', coords: { x1: 940, y1: 200, x2: 940, y2: 150 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical energy drives wheels for locomotion' },
-        { id: 'buck-driver', path: 'M 240 640 L 240 680 L 760 680 L 760 300', label: '12V', color: '#000000', type: 'electrical', desc: 'Stepped-down DC voltage to power motor driver circuitry' },
-        { id: 'power-buck', coords: { x1: 240, y1: 460, x2: 240, y2: 540 }, label: '14.4V', color: '#000000', type: 'electrical', desc: 'Raw battery voltage fed to buck converter for regulation' },
-        { id: 'imu-nano', coords: { x1: 280, y1: 150, x2: 380, y2: 200 }, label: 'Sensor data (1.3V)', color: '#0000FF', type: 'digital', startArrow: true, desc: 'Bidirectional I2C/SPI communication for orientation and acceleration data' },
-        { id: 'servo-nano', coords: { x1: 440, y1: 150, x2: 440, y2: 200 }, label: 'Commands (5V)', color: '#0000FF', type: 'digital', desc: 'PWM control signals for servo positioning' },
-        { id: 'servo-marker', coords: { x1: 520, y1: 100, x2: 580, y2: 100 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical actuation energy to operate marking mechanism' },
-        { id: 'motor-esc', coords: { x1: 130, y1: 240, x2: 185, y2: 240 }, label: 'PWM (~14V)', color: '#800080', type: 'analog', desc: 'Pulse-width modulated analog signal controls motor speed and direction' },
-        { id: 'esc-nano', coords: { x1: 305, y1: 240, x2: 380, y2: 240 }, label: 'Commands', color: '#0000FF', type: 'digital', desc: 'Digital control signals for ESC operation' },
-        { id: 'nano-driver', coords: { x1: 500, y1: 240, x2: 700, y2: 240 }, label: 'Commands (5V)', color: '#0000FF', type: 'digital', startArrow: true, desc: 'Bidirectional digital communication for motor control and feedback' },
-        { id: 'driver-motors', coords: { x1: 820, y1: 240, x2: 880, y2: 240 }, label: 'PWM (12V)', color: '#800080', type: 'analog', desc: 'High-current PWM signals drive motors with variable speed control' },
+        // Mechanical connections
+        { id: 'motor-impeller', coords: { x1: 70, y1: 200, x2: 70, y2: 130 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical rotational energy transferred from motor to impeller blades' },
+        { id: 'motors-wheels', coords: { x1: 1040, y1: 200, x2: 1040, y2: 130 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical energy drives wheels for locomotion' },
+        { id: 'servo-marker', coords: { x1: 560, y1: 100, x2: 640, y2: 100 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical actuation energy to operate marking mechanism' },
+
+        // Power connections (black)
+        { id: 'power-buck', coords: { x1: 240, y1: 460, x2: 240, y2: 580 }, label: '12V', color: '#000000', type: 'electrical', desc: 'Raw battery voltage fed to buck converter for regulation' },
+        { id: 'power-esc', coords: { x1: 250, y1: 360, x2: 250, y2: 300 }, label: '12V', color: '#000000', type: 'electrical', desc: 'High-current 12V 20A power supply for motor ESC' },
         { id: 'power-raspi', coords: { x1: 300, y1: 400, x2: 380, y2: 400 }, label: '5V', color: '#000000', type: 'electrical', desc: 'Regulated power supply for Raspberry Pi operation' },
-        { id: 'raspi-nano', coords: { x1: 440, y1: 360, x2: 440, y2: 300 }, label: 'Commands', color: '#0000FF', type: 'digital', desc: 'Serial/UART communication for high-level control instructions' },
-        { id: 'raspi-computer', coords: { x1: 500, y1: 400, x2: 580, y2: 400 }, label: 'Image', color: '#0000FF', type: 'digital', desc: 'Video stream and telemetry data over network connection' },
-        { id: 'lidar-raspi', coords: { x1: 440, y1: 540, x2: 440, y2: 460 }, label: 'Sensor data (5V)', color: '#0000FF', type: 'digital', startArrow: true, desc: 'Bidirectional serial communication for distance measurements and mapping' },
-        { id: 'power-esc', coords: { x1: 240, y1: 360, x2: 240, y2: 300 }, label: '14.4V', color: '#000000', type: 'electrical', desc: 'High-current power supply for motor ESC' },
+        { id: 'buck-driver', path: 'M 240 680 L 240 720 L 760 720 L 760 300', label: '12V', color: '#000000', type: 'electrical', desc: 'Stepped-down DC voltage to power motor driver circuitry' },
+        { id: 'raspi-lidar-power', coords: { x1: 430, y1: 460, x2: 430, y2: 580 }, label: '5V', color: '#000000', type: 'electrical', desc: '5V power supply to LiDAR sensor' },
+        { id: 'driver-nano-power', coords: { x1: 700, y1: 250, x2: 500, y2: 250 }, label: '12V', color: '#000000', type: 'electrical', desc: '12V power from motor driver to Nano' },
+        { id: 'nano-imu-power', coords: { x1: 460, y1: 240, x2: 315, y2: 130 }, label: '5V', color: '#000000', type: 'electrical', desc: '5V power supply to IMU sensor' },
+
+        // Data connections - Commands TO devices (blue)
+        { id: 'nano-servo', coords: { x1: 450, y1: 200, x2: 500, y2: 130 }, label: 'Commands', color: '#0000FF', type: 'digital', desc: 'PWM control signals for servo positioning' },
+        { id: 'nano-esc', coords: { x1: 380, y1: 235, x2: 305, y2: 235 }, label: 'Commands', color: '#0000FF', type: 'digital', desc: 'Digital control signals from Nano to ESC' },
+        { id: 'nano-driver', coords: { x1: 500, y1: 235, x2: 700, y2: 235 }, label: 'Commands', color: '#0000FF', type: 'digital', desc: 'Digital commands for motor control' },
+        { id: 'raspi-nano', coords: { x1: 430, y1: 360, x2: 430, y2: 300 }, label: 'Commands', color: '#0000FF', type: 'digital', desc: 'High-level control instructions via serial' },
+        { id: 'raspi-computer', coords: { x1: 500, y1: 395, x2: 580, y2: 395 }, label: 'IMU & LiDAR Data', color: '#0000FF', type: 'digital', desc: 'Sensor data from IMU and LiDAR sent to computer' },
+
+        // Data connections - Sensor data FROM devices (blue, return arrows)
+        { id: 'imu-nano-data', coords: { x1: 300, y1: 135, x2: 390, y2: 205 }, label: 'Sensor Data', color: '#0000FF', type: 'digital', desc: 'IMU orientation and acceleration data to Nano' },
+        { id: 'lidar-raspi-data', coords: { x1: 450, y1: 580, x2: 450, y2: 460 }, label: 'Sensor Data', color: '#0000FF', type: 'digital', desc: 'LiDAR distance measurements to RaspPi' },
+        { id: 'computer-raspi', coords: { x1: 580, y1: 415, x2: 500, y2: 415 }, label: 'TeleOp (Network)', color: '#0000FF', type: 'digital', desc: 'Teleoperation inputs sent through network to RaspPi' },
+
+        // Analog/PWM connections (purple)
+        { id: 'esc-motor', coords: { x1: 185, y1: 245, x2: 130, y2: 245 }, label: 'PWM', color: '#800080', type: 'analog', desc: 'PWM signal from ESC to motor' },
+        { id: 'driver-motors', coords: { x1: 820, y1: 235, x2: 980, y2: 235 }, label: 'PWM', color: '#0000FF', type: 'digital', desc: 'PWM signals drive motors with variable speed' },
+        { id: 'driver-motors-power', coords: { x1: 820, y1: 245, x2: 980, y2: 245 }, label: '12V', color: '#000000', type: 'electrical', desc: '12V power supply to DC motors' },
     ]
 };
 
@@ -328,7 +342,7 @@ class SystemDiagram {
     }
 
     showConnectionTooltip(conn, event) {
-        const titleColor = conn.type === 'digital' ? 'white' : conn.color;
+        const titleColor = conn.type === 'digital' ? 'white' : (conn.type === 'electrical' ? '#999999' : conn.color);
         this.tooltip.innerHTML = `
             <h4 style="margin-bottom:0.5rem; color:${titleColor}; font-size:1.2rem;">${conn.label}</h4>
             <p class="tooltip-desc">${conn.desc}</p>
