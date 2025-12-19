@@ -45,109 +45,172 @@
             <h2 class="section-title">Electrical Systems</h2>
 
             <article class="featured-post">
-                <h3>Original Design Goal</h3>
-                <div class="card-image"><span class="emoji-placeholder">🎯</span></div>
-                <p>Our original goal was to design a custom, compact, and lightweight PCB that could be mounted directly
-                    on the robot. This board would handle power regulation, use an <a href="#">ESP32</a> as the main
-                    controller, drive the robot’s wheels for vertical motion, and control the impeller system. To enable
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Original Design Goal</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">Our original goal was to design a custom, compact, and
+                    lightweight PCB that could be mounted directly
+                    on the robot. This board would handle power regulation, use an ESP32 as the main
+                    controller, drive the robot's wheels for vertical motion, and control the impeller system. To enable
                     full mobility, the system was intended to be battery powered and fully wireless.</p>
             </article>
 
             <article class="featured-post">
-                <h3>Initial Development & First PCB Iteration</h3>
-                <div class="card-image"><span class="emoji-placeholder">🛠️</span></div>
-                <p>To achieve this, we began by designing our own PCB in <a href="#">KiCad</a>. The initial architecture
-                    centered around the <a href="#">ESP32</a>, paired with a <a href="#">BNO055 IMU</a> for orientation
-                    sensing and <a href="#">DRV8231 motor drivers</a> to handle the primary actuation needs of the
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Initial Development & First PCB
+                    Iteration</h3>
+                <img src="Electrical_Images/built_PCB.jpg" alt="Built PCB"
+                    style="width: 100%; max-width: 700px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <p style="font-size: 1.1rem; line-height: 1.8;">To achieve this, we began by designing our own PCB in
+                    KiCad. The initial architecture
+                    centered around the ESP32, paired with a BNO055 IMU for orientation
+                    sensing and DRV8231 motor drivers to handle the primary actuation needs of the
                     robot.</p>
-                <p>While this PCB was under development, we validated the robot’s mechanical and control concepts using
-                    an <a href="#">Arduino</a> with a <a href="#">motor shield</a>. This allowed us to test wheel
+                <p style="font-size: 1.1rem; line-height: 1.8;">While this PCB was under development, we validated the
+                    robot's mechanical and control concepts using
+                    an Arduino with a motor shield. This allowed us to test wheel
                     control and impeller signaling early, independent of the custom board.</p>
 
-                <h4>First PCB Design</h4>
-                <p>This process resulted in our first full PCB design. The board included:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li>A <a href="#">USB connector</a> for programming and debugging</li>
-                    <li>An <a href="#">ESP32</a> microcontroller</li>
-                    <li><a href="#">IMU</a> and <a href="#">motor driver</a> circuitry</li>
-                    <li>Onboard <a href="#">power regulation</a></li>
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">First PCB Design</h4>
+                <p style="font-size: 1.1rem; line-height: 1.8;">This process resulted in our first full PCB design. The
+                    board included:</p>
+                <ul
+                    style="text-align: left; max-width: 700px; margin: 1rem auto; font-size: 1.05rem; line-height: 1.8;">
+                    <li>A USB connector for programming and debugging</li>
+                    <li>An ESP32 microcontroller</li>
+                    <li>IMU and motor driver circuitry</li>
+                    <li>Onboard power regulation</li>
                 </ul>
 
-                <img src="Electrical_Images/original_schematic.png" alt="Original PCB Schematic"
-                    style="width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
-                <img src="Electrical_Images/Schematic_live.png" alt="PCB 3D Live View"
-                    style="width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin: 2rem 0;">
+                    <img src="Electrical_Images/original_schematic.png" alt="Original PCB Schematic"
+                        style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                    <img src="Electrical_Images/Schematic_live.png" alt="PCB 3D Live View"
+                        style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                </div>
 
-                <p>After finalizing the design, we ordered components and attempted assembly. During this phase, several
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Challenges Encountered</h4>
+                <p style="font-size: 1.1rem; line-height: 1.8;">After finalizing the design, we ordered components and
+                    attempted assembly. During this phase, several
                     issues became apparent:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li>The <a href="#">USB port</a> was not properly grounded</li>
-                    <li>The <a href="#">USB connector</a> was placed too close to the edge of the board, creating
+                <ul
+                    style="text-align: left; max-width: 700px; margin: 1rem auto; font-size: 1.05rem; line-height: 1.8;">
+                    <li>The USB port was not properly grounded</li>
+                    <li>The USB connector was placed too close to the edge of the board, creating
                         mechanical and assembly challenges</li>
-                    <li>Excess <a href="#">solder paste</a> led to shorted components</li>
+                    <li>Excess solder paste led to shorted components</li>
                     <li>Multiple faults arose that were difficult to debug within the available timeframe</li>
                 </ul>
 
-                <p>As the project deadline approached, we made the decision to pivot in order to ensure a reliable and
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">As the project deadline approached,
+                    we made the decision to pivot in order to ensure a reliable and
                     functional final system. At the same time, we reassessed our initial battery-powered goal and found
-                    that <a href="#">battery</a> weight significantly reduced wall adhesion performance, making fully
+                    that battery weight significantly reduced wall adhesion performance, making fully
                     wireless operation impractical for this iteration.</p>
             </article>
 
             <article class="featured-post">
-                <h3>Revised Design Goal</h3>
-                <div class="card-image"><span class="emoji-placeholder">🔄</span></div>
-                <p>Our updated goal became:</p>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Revised Design Goal</h3>
                 <blockquote
-                    style="font-style: italic; background: #f9f9f9; padding: 1rem; border-left: 5px solid #2C3E50; margin: 1rem auto; max-width: 700px;">
+                    style="font-style: italic; background: #f9f9f9; padding: 1.5rem; border-left: 5px solid #2C3E50; margin: 1.5rem auto; max-width: 750px; font-size: 1.15rem; line-height: 1.8;">
                     Create a functional, lightweight, and streamlined electrical system that operates reliably and does
-                    not interfere with the <a href="#">LiDAR</a> or overall robot operation.
+                    not interfere with the LiDAR or overall robot operation.
                 </blockquote>
-                <p>Rather than prioritizing full battery-powered autonomy, we focused on robustness, simplicity, and
+                <p style="font-size: 1.1rem; line-height: 1.8;">Rather than prioritizing full battery-powered autonomy,
+                    we focused on robustness, simplicity, and
                     successful integration with the rest of the system.</p>
             </article>
 
             <article class="featured-post">
-                <h3>Final Electrical Architecture</h3>
-                <div class="card-image"><span class="emoji-placeholder">⚡</span></div>
-                <p>Despite the pivot, our core requirements remained the same:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li><a href="#">Motor drivers</a> for three wheels</li>
-                    <li>A <a href="#">WiFi-enabled microcontroller</a> for wireless teleoperation</li>
-                    <li>Reliable <a href="#">power regulation</a></li>
-                    <li><a href="#">IMU-based orientation feedback</a></li>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Final Electrical Architecture</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">Despite the pivot, our core requirements remained the
+                    same:</p>
+                <ul
+                    style="text-align: left; max-width: 700px; margin: 1rem auto; font-size: 1.05rem; line-height: 1.8;">
+                    <li>Motor drivers for three wheels</li>
+                    <li>A WiFi-enabled microcontroller for wireless teleoperation</li>
+                    <li>Reliable power regulation</li>
+                    <li>IMU-based orientation feedback</li>
                 </ul>
 
-                <p>After reevaluating component choices, we arrived at the following final electrical stack:</p>
-
-                <h4>Main Components</h4>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li><a href="https://docs.arduino.cc/hardware/nano-rp2040-connect/">Arduino Nano RP2040 Connect</a>
-                    </li>
-                    <li><a href="https://www.amazon.com/LM2596-Converter-3-0-40V-1-5-35V-Supply/dp/B08NV3JCBC">LM2596
-                            buck converter</a></li>
-                    <li><a
-                            href="https://www.robotshop.com/products/sunfounder-gy-521-mpu-6050-6-dof-gyro-accelerometer-imu?srsltid=AfmBOopvRt1xuLr0XvHxUcoYf9OO4sUus1k7Epz1yl1zkGAIWyPGf7LH">MPU-6050
-                            IMU module</a></li>
-                    <li><a
-                            href="https://www.amazon.com/dp/B0BLRSWTLM?ref=cm_sw_r_cp_ud_dp_W388SCJZCAXRA3G1BJTM&social_share=cm_sw_r_cp_ud_dp_W388SCJZCAXRA3G1BJTM">TB6612FNG
-                            dual DC motor driver</a></li>
-                    <li><a href="https://www.amazon.com/S-240-12-12v20A-Switching-Monitoring-Transformer/dp/B0DFBQ2ZRC">S-240-12
-                            power supply (12V, 20A)</a></li>
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Main Components</h4>
+                <ul
+                    style="text-align: left; max-width: 700px; margin: 1rem auto; font-size: 1.05rem; line-height: 1.8;">
+                    <li>Arduino Nano RP2040 Connect</li>
+                    <li>LM2596 buck converter</li>
+                    <li>MPU-6050 IMU module</li>
+                    <li>TB6612FNG dual DC motor driver</li>
+                    <li>S-240-12 power supply (12V, 20A)</li>
                 </ul>
 
-                <p>These components were used alongside the robot’s:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li><a href="#">Brushless motor</a> (impeller)</li>
-                    <li><a href="#">DC motors</a> (drive wheels)</li>
-                    <li><a href="#">Servo motor</a></li>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">These components were used alongside
+                    the robot's:</p>
+                <ul
+                    style="text-align: left; max-width: 700px; margin: 1rem auto; font-size: 1.05rem; line-height: 1.8;">
+                    <li>Brushless motor (impeller)</li>
+                    <li>DC motors (drive wheels)</li>
+                    <li>Servo motor</li>
                 </ul>
 
-                <h4>Final Schematic</h4>
-                <p>Using this revised architecture, we produced a final electrical schematic that met our functional
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Final Schematic</h4>
+                <p style="font-size: 1.1rem; line-height: 1.8;">Using this revised architecture, we produced a final
+                    electrical schematic that met our functional
                     needs while remaining lightweight and mechanically unobtrusive.</p>
                 <img src="Electrical_Images/Final_electrical_Schematic.png" alt="Final Electrical Schematic"
-                    style="width: 100%; height: auto; border-radius: 8px; margin: 1rem 0;">
+                    style="width: 100%; max-width: 900px; height: auto; border-radius: 12px; margin: 2rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+            </article>
+
+            <article class="featured-post">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Final Implementation & Integration
+                </h3>
+
+                <p style="font-size: 1.1rem; line-height: 1.8;">While we ultimately moved away from our custom PCB
+                    design, we remained committed to creating a clean, professional electrical system. Despite using
+                    prebuilt modules instead of a custom board, we carefully selected components that were compact
+                    enough to fit within the gaps in the top cap of our robot.</p>
+
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Compact Integration & Clean Wiring
+                </h4>
+                <p style="font-size: 1.1rem; line-height: 1.8;">Each module was strategically positioned to maximize
+                    space efficiency while maintaining accessibility for debugging and adjustments. We implemented
+                    meticulous wire management techniques to ensure the robot remained sleek and clean, with all
+                    connections properly routed and secured to prevent interference with the mechanical systems.</p>
+
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Power System Evolution</h4>
+                <p style="font-size: 1.1rem; line-height: 1.8;">One of our most significant design changes was the
+                    transition from battery power to a constant tethered power source. While this meant the robot was no
+                    longer fully wireless, it provided several critical advantages:</p>
+                <ul
+                    style="text-align: left; max-width: 700px; margin: 1rem auto; font-size: 1.05rem; line-height: 1.8;">
+                    <li>Unlimited runtime without battery weight compromising wall adhesion</li>
+                    <li>Consistent, reliable power delivery without voltage drops</li>
+                    <li>Elimination of battery charging downtime during testing</li>
+                </ul>
+
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">To manage the tethered connection
+                    cleanly, we incorporated a slip ring into our design. This rotary electrical contact allowed the
+                    robot to rotate freely while maintaining continuous power and data connections, preventing wire
+                    tangling and ensuring smooth operation during complex drawing maneuvers.</p>
+
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Trade-offs & Lessons Learned</h4>
+                <p style="font-size: 1.1rem; line-height: 1.8;">The shift to prebuilt modules represented a significant
+                    trade-off in our design philosophy. We sacrificed the elegance and compactness of a custom PCB for
+                    the reliability and rapid development time that commercial modules provided. While our original
+                    vision of a sleek, integrated custom board remained unrealized, the modular approach offered
+                    distinct advantages:</p>
+
+                <ul
+                    style="text-align: left; max-width: 700px; margin: 1rem auto; font-size: 1.05rem; line-height: 1.8;">
+                    <li><strong>Increased reliability:</strong> Proven, tested components reduced debugging time</li>
+                    <li><strong>Faster iteration:</strong> Easy component swapping enabled rapid prototyping</li>
+                    <li><strong>Simplified troubleshooting:</strong> Modular design made fault isolation straightforward
+                    </li>
+                    <li><strong>Reduced risk:</strong> Eliminated PCB fabrication and assembly uncertainties</li>
+                </ul>
+
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-top: 1.5rem;">In the end, our electrical system
+                    successfully met all functional requirements. While it may not have achieved the aesthetic
+                    perfection of our original custom PCB vision, it delivered a robust, reliable platform that allowed
+                    us to focus on perfecting the mechanical and software systems. The result was a fully functional
+                    robot that consistently performed its drawing tasks—proving that sometimes pragmatic engineering
+                    decisions lead to the best outcomes.</p>
             </article>
 
             <div style="text-align: center; margin-top: 3rem;">
