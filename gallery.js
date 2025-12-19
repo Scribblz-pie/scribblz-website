@@ -3,59 +3,59 @@
 
 const galleryData = [
     {
-        title: "Wall Scaling",
-        desc: "Testing the vertical adhesion on smooth drywall surfaces.",
-        badge: "Test #1",
-        emoji: "🧗",
+        title: "Rebuilt Top View",
+        desc: "Complete robot assembly from above showing all components.",
+        image: "gallery_images/rebuilt_topview.JPEG",
+        emoji: "🤖",
         color: "#ffadad"
     },
     {
-        title: "First Lines",
-        desc: "The very first automated doodle drawn by Scribblz.",
-        badge: "Milestone",
-        emoji: "✏️",
+        title: "Rebuilt Side View",
+        desc: "Side profile of the rebuilt robot system.",
+        image: "gallery_images/rebuilt_sideview.JPEG",
+        emoji: "📐",
         color: "#ffd6a5"
     },
     {
-        title: "Impeller ",
-        desc: "High-RPM suction system visualized.",
-        badge: "Hardware",
-        emoji: "🌪️",
+        title: "Rebuilt Bottom View",
+        desc: "Bottom view showing the omni-wheel kiwi drive configuration.",
+        image: "gallery_images/rebuilt_bottomview.JPEG",
+        emoji: "🛞",
         color: "#fdffb6"
     },
     {
-        title: "System Core",
-        desc: "The custom PCB and Raspberry Pi brain assembly.",
-        badge: "Electronics",
-        emoji: "🧠",
+        title: "Rebuilt Other Side",
+        desc: "Alternative side view of the complete robot.",
+        image: "gallery_images/rebuilt_othersideview.JPEG",
+        emoji: "🔄",
         color: "#caffbf"
     },
     {
-        title: "Wireless Comms",
-        desc: "Sending drawing data from phone to robot.",
-        badge: "Software",
-        emoji: "📡",
+        title: "Omni Wheel Closeup",
+        desc: "Detailed view of the omni wheel mechanism.",
+        image: "gallery_images/omniwheel_closeup.JPEG",
+        emoji: "⚙️",
         color: "#9bf6ff"
     },
     {
-        title: "Final Polish",
-        desc: "The complete system ready for presentation.",
-        badge: "Showcase",
-        emoji: "✨",
+        title: "Docking Station",
+        desc: "The docking station with LiDAR for robot positioning.",
+        image: "gallery_images/docking_station.JPEG",
+        emoji: "🏠",
         color: "#a0c4ff"
     },
     {
-        title: "Star Pattern",
-        desc: "Complex geometric shapes drawn with precision.",
-        badge: "Art",
-        emoji: "⭐",
+        title: "Window Angle",
+        desc: "Robot posted in docking station from distant angle",
+        image: "gallery_images/window.JPEG",
+        emoji: "🪟",
         color: "#bdb2ff"
     },
     {
-        title: "Debug Mode",
-        desc: "Late night calibration sessions.",
-        badge: "BTS",
-        emoji: "🐞",
+        title: "Bottom View (Explosion)",
+        desc: "Robot post explosion after demo day",
+        image: "gallery_images/breakage_bottomview.JPEG",
+        emoji: "🔧",
         color: "#ffc6ff"
     }
 ];
@@ -130,12 +130,8 @@ class ContinuousGallery {
     }
 
     openLightbox(item) {
-        // Since we are using placeholders + one real image source for now, 
-        // we'll just show the placeholder content or the general image.
-        // ideally 'item' would have a high-res image URL.
-
-        // For this demo, let's use the content image:
-        this.lightboxImg.src = "images/content.png";
+        // Display the actual high-res image
+        this.lightboxImg.src = item.image;
 
         this.lightbox.classList.add('visible');
         this.currentSpeed = 0; // Pause animation
@@ -162,10 +158,7 @@ class ContinuousGallery {
             card.innerHTML = `
                 <div class="card-inner">
                     <div class="card-image-wrapper" style="background-color: ${item.color}33;">
-                         <div class="gallery-placeholder" style="font-size: 6rem;">
-                            ${item.emoji}
-                         </div>
-                         <img src="images/content.png" style="opacity: 0.1; position: absolute; width: 100%; height: 100%; object-fit: cover; mix-blend-mode: overlay;">
+                         <img src="${item.image}" alt="${item.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
                     </div>
                     <div class="card-content">
                         <h3 class="card-title">${item.title}</h3>

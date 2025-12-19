@@ -163,6 +163,7 @@ const diagramData = {
 
         // Data connections - Sensor data FROM devices (blue, return arrows)
         { id: 'imu-nano-data', coords: { x1: 300, y1: 135, x2: 390, y2: 205 }, label: 'Sensor Data', color: '#0000FF', type: 'digital', desc: 'IMU orientation and acceleration data to Nano' },
+        { id: 'nano-raspi-imu', coords: { x1: 445, y1: 300, x2: 445, y2: 360 }, label: 'IMU Data', color: '#0000FF', type: 'digital', desc: 'IMU sensor data forwarded from Nano to RaspPi for transmission to computer' },
         { id: 'lidar-raspi-data', coords: { x1: 450, y1: 580, x2: 450, y2: 460 }, label: 'Sensor Data', color: '#0000FF', type: 'digital', desc: 'LiDAR distance measurements to RaspPi' },
         { id: 'computer-raspi', coords: { x1: 580, y1: 415, x2: 500, y2: 415 }, label: 'TeleOp (Network)', color: '#0000FF', type: 'digital', desc: 'Teleoperation inputs sent through network to RaspPi' },
 
