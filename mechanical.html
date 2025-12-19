@@ -7,6 +7,8 @@
     <title>Mechanical Design - SCRIBBLZ</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="mechanical.css">
+    <!-- Google's model-viewer for 3D models -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.3.0/model-viewer.min.js"></script>
 </head>
 
 <body class="is-preload">
@@ -26,7 +28,6 @@
             <li><a href="mechanical.html" class="active">Mechanical</a></li>
             <li><a href="electrical.html">Electrical</a></li>
             <li><a href="software.html">Software</a></li>
-
             <li><a href="about.html">About Us</a></li>
         </ul>
     </nav>
@@ -34,76 +35,1504 @@
     <div id="intro">
         <h1 class="main-title">Mechanical Design</h1>
         <p class="subtitle">
-            Deep dive into our mechanical design. The CAD, the chassis, custom parts,
-            and how we made the impeller suction system work!
+            Deep dive into our mechanical design journey—from initial propeller experiments to CFD-optimized 
+            centrifugal impellers, custom chassis design, and the docking station that brings it all together.
         </p>
     </div>
 
-    <!-- Main Content Section -->
-    <section id="features" class="section-content wave-section">
+    <!-- Quick Nav -->
+    <nav class="section-nav">
+        <div class="nav-pills">
+            <a href="#overview" class="nav-pill">Overview</a>
+            <a href="#chassis" class="nav-pill">Chassis</a>
+            <a href="#impeller" class="nav-pill">Impeller System</a>
+            <a href="#drive" class="nav-pill">Drive System</a>
+            <a href="#skirt" class="nav-pill">Skirt Design</a>
+            <a href="#power" class="nav-pill">Power System</a>
+            <a href="#docking" class="nav-pill">Docking Station</a>
+        </div>
+    </nav>
+
+    <!-- Overview Section -->
+    <section id="overview" class="section-content wave-section">
         <div class="content-wrapper">
-            <h2 class="section-title">Mechanical Systems</h2>
-
-            <article class="featured-post">
-                <h3>Chassis Design</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">🏗️</span>
+            <h2 class="section-title">System Overview</h2>
+            
+            <article class="featured-post fade-in-up">
+                <h3>The Core Concept</h3>
+                <div class="model-viewer-container">
+                    <!-- 3D Model Viewer using Google's model-viewer -->
+                    <model-viewer 
+                        id="full-assembly-viewer"
+                        src="Mechanical_content/models/full-assembly.gltf"
+                        alt="SCRIBBLZ Robot Full Assembly"
+                        camera-controls
+                        touch-action="pan-y"
+                        auto-rotate-delay="3000"
+                        interaction-prompt="auto"
+                        shadow-intensity="2"
+                        shadow-softness="0.5"
+                        exposure="0.8"
+                        environment-image="neutral"
+                        tone-mapping="commerce"
+                        style="width: 100%; height: 400px; background: linear-gradient(135deg, #e8f4f8 0%, #d4e4f7 100%); border-radius: 16px;">
+                        
+                        <!-- Loading placeholder while model loads -->
+                        <div class="model-loading" slot="poster">
+                            <span class="placeholder-icon">🤖</span>
+                            <p>Loading 3D Model...</p>
+                            <span class="placeholder-hint">Full Robot Assembly</span>
+                        </div>
+                    </model-viewer>
+                    
+                    <div class="model-controls">
+                        <button class="model-btn" onclick="toggleAutoRotate()">Auto Rotate</button>
+                    </div>
                 </div>
-                <p>The chassis was designed in CAD software with a focus on lightweight construction while
-                    maintaining structural rigidity. We used a combination of 3D-printed components and laser-cut
-                    acrylic to achieve the optimal strength-to-weight ratio.</p>
+                <p>We're building a <strong>wall-climbing robot</strong> that uses suction to create a vacuum (pressure differential) 
+                between the window and the robot itself. The robot adheres to the window using an impeller and uses an 
+                external marker mechanism to draw on vertical surfaces.</p>
+                
+                <div class="key-subsystems">
+                    <div class="subsystem-card">
+                        <span class="subsystem-icon">🏗️</span>
+                        <h4>Chassis</h4>
+                        <p>Lightweight 3D-printed frame with integrated shrouding</p>
+                    </div>
+                    <div class="subsystem-card">
+                        <span class="subsystem-icon">🌪️</span>
+                        <h4>Impeller</h4>
+                        <p>CFD-optimized centrifugal design for maximum suction</p>
+                    </div>
+                    <div class="subsystem-card">
+                        <span class="subsystem-icon">⚙️</span>
+                        <h4>Kiwi Drive</h4>
+                        <p>Three omni-wheels for omnidirectional movement</p>
+                    </div>
+                    <div class="subsystem-card">
+                        <span class="subsystem-icon">🔌</span>
+                        <h4>Tether System</h4>
+                        <p>360° slip ring with motorized spool management</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Chassis Section -->
+    <section id="chassis" class="section-content wave-section alt-bg">
+        <div class="content-wrapper">
+            <h2 class="section-title">Chassis Design</h2>
+
+            <article class="featured-post fade-in-up">
+                <h3>Design Constraints & Evolution</h3>
+                <div class="split-content">
+                    <div class="content-text">
+                        <p>The chassis integrates with the shrouding and has several critical constraints:</p>
+                        <ul class="feature-list">
+                            <li><span class="list-icon">🔧</span> Must mount <strong>three motors</strong> for Kiwi drive configuration</li>
+                            <li><span class="list-icon">⚖️</span> Keep weight as low as possible—more weight = harder to climb</li>
+                            <li><span class="list-icon">📐</span> Low center of mass to reduce peel-off torque</li>
+                            <li><span class="list-icon">🔄</span> Integrate shrouding for impeller suction</li>
+                        </ul>
+                    </div>
+                    <div class="content-visual">
+                        <model-viewer 
+                            id="chassis-viewer"
+                            src="Mechanical_content/models/chassis.gltf"
+                            alt="SCRIBBLZ Chassis Design"
+                            camera-controls
+                            touch-action="pan-y"
+                            auto-rotate
+                            shadow-intensity="2"
+                            shadow-softness="0.5"
+                            exposure="0.8"
+                            environment-image="neutral"
+                            tone-mapping="commerce"
+                            orientation="180deg 0deg 0deg"
+                            style="width: 100%; height: 300px; background: linear-gradient(135deg, #e8f4f8 0%, #d4e4f7 100%); border-radius: 16px;">
+                            
+                            <div class="model-loading" slot="poster">
+                                <span class="placeholder-icon">🏗️</span>
+                                <p>Loading Chassis...</p>
+                            </div>
+                        </model-viewer>
+                    </div>
+                </div>
+
+                <div class="evolution-timeline">
+                    <h4>Design Evolution</h4>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker">V1</div>
+                            <div class="timeline-content">
+                                <h5>Initial Design</h5>
+                                <p>Mixed-flow impeller integration, cantilevered motor mounts with adjustability</p>
+                                <span class="timeline-stat negative">Higher CoM, mount play issues</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">V2</div>
+                            <div class="timeline-content">
+                                <h5>Centrifugal Redesign</h5>
+                                <p>New chassis around centrifugal impeller, fully 3D-printed, lower profile</p>
+                                <span class="timeline-stat positive">110g lighter than V1</span>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker">V3</div>
+                            <div class="timeline-content">
+                                <h5>Final Optimization</h5>
+                                <p>Fully constrained wheel mounts (front & back), 1mm shroud tolerance</p>
+                                <span class="timeline-stat positive">Minimal slippage, reliable climbing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="comparison-images">
+                    <div class="image-placeholder" data-image="chassis-v1">
+                        <img src="Mechanical_content/chassis-v1.png" alt="V1 Chassis">
+                        <span class="placeholder-label">V1 Chassis</span>
+                    </div>
+                    <div class="comparison-arrow">→</div>
+                    <div class="image-placeholder" data-image="chassis-v3">
+                        <img src="Mechanical_content/chassis-v3.png" alt="V3 Chassis">
+                        <span class="placeholder-label">V3 Chassis</span>
+                    </div>
+                </div>
             </article>
 
-            <article class="featured-post">
-                <h3>Impeller Suction System</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">🌪️</span>
+            <article class="featured-post fade-in-up">
+                <h3>Motor Mount Evolution</h3>
+                <div class="insight-box">
+                    <span class="insight-icon">💡</span>
+                    <div class="insight-content">
+                        <h4>Key Learning</h4>
+                        <p>Our first motor mounts were <strong>cantilevered</strong> for adjustability, but they had play. 
+                        This play caused force to "leak" into the skirt instead of being driven into the wheels, reducing traction. 
+                        The fix: <strong>fully constrain each wheel on front AND back</strong>, locking them in place.</p>
+                    </div>
                 </div>
-                <p>The heart of our wall-climbing capability is the custom-designed impeller system. By creating
-                    negative pressure between the robot and the wall, we achieve reliable adhesion across various
-                    surface types. The impeller was optimized through multiple iterations to maximize suction while
-                    minimizing power consumption.</p>
-                <p><strong>Key Specifications:</strong></p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li>Impeller diameter: [X] mm</li>
-                    <li>Maximum suction force: [X] N</li>
-                    <li>Operating RPM: [X] - [X]</li>
-                    <li>Power consumption: [X] W</li>
-                </ul>
+                <div class="before-after">
+                    <div class="ba-item">
+                        <div class="image-placeholder" data-image="mount-cantilevered">
+                            <img src="Mechanical_content/mount-cantilevered.png" alt="Cantilevered Mount">
+                            <span class="placeholder-label">❌ Cantilevered Mount</span>
+                        </div>
+                        <p>Play in mounts → force leaks to skirt</p>
+                    </div>
+                    <div class="ba-item">
+                        <div class="image-placeholder" data-image="mount-constrained">
+                            <img src="Mechanical_content/mount-constrained.png" alt="Fully Constrained Mount">
+                            <span class="placeholder-label">✅ Fully Constrained</span>
+                        </div>
+                        <p>Locked in place → force to wheels</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Impeller System Section -->
+    <section id="impeller" class="section-content wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Impeller Suction System</h2>
+
+            <article class="featured-post fade-in-up">
+                <h3>The Journey: From Propeller to Centrifugal Impeller</h3>
+                
+                <div class="approach-cards">
+                    <div class="approach-card failed">
+                        <div class="approach-header">
+                            <span class="approach-status">❌ Attempt 1</span>
+                            <h4>FPV Drone Propeller</h4>
+                        </div>
+                        <div class="image-placeholder small" data-image="propeller-test">
+                            <img src="Mechanical_content/propeller-test.png" alt="Propeller Test Setup">
+                            <span class="placeholder-label">Propeller Setup</span>
+                        </div>
+                        <p>Instead of pulling vacuum, we tried <strong>pushing into the wall</strong> using thrust to increase normal force.</p>
+                        <div class="approach-result">
+                            <strong>Result:</strong> Could hold robot up, but didn't solve the vacuum problem. Propellers are optimized 
+                            for moving air and creating thrust, not building static pressure.
+                        </div>
+                        <div class="tech-note">
+                            <span class="note-icon">⚠️</span>
+                            <p>A propeller <em>chokes</em> when it doesn't have enough air to move—it slows down and can't maintain performance.</p>
+                        </div>
+                    </div>
+
+                    <div class="approach-card partial">
+                        <div class="approach-header">
+                            <span class="approach-status">⚡ Attempt 2</span>
+                            <h4>Mixed-Flow Impeller</h4>
+                        </div>
+                        <div class="image-placeholder small" data-image="mixed-flow">
+                            <img src="Mechanical_content/mixed-flow.png" alt="Mixed-Flow Impeller Design">
+                            <span class="placeholder-label">Mixed-Flow Design</span>
+                        </div>
+                        <p>Found a credible design online. Used shrouding integrated into chassis with a <strong>4S 2200KV motor</strong>.</p>
+                        <div class="approach-result">
+                            <strong>Result:</strong> Worked reasonably well, but physically large (turbo-style) and didn't create enough 
+                            pressure differential. Also raised center of mass.
+                        </div>
+                        <div class="spec-highlight">
+                            <span class="spec-label">CFD Result:</span>
+                            <span class="spec-value">~3,000 Pa</span>
+                        </div>
+                    </div>
+
+                    <div class="approach-card success">
+                        <div class="approach-header">
+                            <span class="approach-status">✅ Final Design</span>
+                            <h4>Centrifugal Backward-Facing Impeller</h4>
+                        </div>
+                        <div class="image-placeholder small" data-image="centrifugal-impeller">
+                            <img src="Mechanical_content/centrifugal-impeller.png" alt="Centrifugal Impeller Design">
+                            <span class="placeholder-label">Centrifugal Design</span>
+                        </div>
+                        <p>CFD-optimized design by <strong>Liam Carlin & David Rasun</strong>. More compact, sits lower, significantly better performance.</p>
+                        <div class="approach-result success-result">
+                            <strong>Result:</strong> Massive improvement in suction while reducing height and weight.
+                        </div>
+                        <div class="spec-highlight success-spec">
+                            <span class="spec-label">CFD Result:</span>
+                            <span class="spec-value">~14,000 Pa</span>
+                            <span class="spec-improvement">+366% vs mixed-flow!</span>
+                        </div>
+                    </div>
+                </div>
             </article>
 
-            <article class="featured-post">
-                <h3>Omniwheel Drive System</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">⚙️</span>
+            <article class="featured-post fade-in-up">
+                <h3>Why Centrifugal?</h3>
+                <div class="comparison-table-container">
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Aspect</th>
+                                <th>Mixed-Flow</th>
+                                <th>Centrifugal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Optimization</td>
+                                <td>Compromise (flow + pressure)</td>
+                                <td class="highlight">Pressure-focused</td>
+                            </tr>
+                            <tr>
+                                <td>Physical Size</td>
+                                <td>Large, turbo-style</td>
+                                <td class="highlight">Compact</td>
+                            </tr>
+                            <tr>
+                                <td>Center of Mass</td>
+                                <td>Higher</td>
+                                <td class="highlight">Lower</td>
+                            </tr>
+                            <tr>
+                                <td>Pressure Output</td>
+                                <td>~3,000 Pa</td>
+                                <td class="highlight">~14,000 Pa</td>
+                            </tr>
+                            <tr>
+                                <td>Our Need</td>
+                                <td colspan="2" class="need-cell">Suction (stick to window) > Air movement</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <p>We implemented an omniwheel configuration to enable precise movement in any direction.
-                    This was crucial for accurate drawing, allowing the robot to move smoothly along complex paths
-                    without needing to rotate its body.</p>
+                
+                <div class="tech-note centered">
+                    <span class="note-icon">🔬</span>
+                    <p><strong>Key Insight:</strong> With an impeller, if there's less air (less load), it actually spins <em>faster</em> 
+                    because there's less resistance. This is the opposite of a propeller!</p>
+                </div>
             </article>
 
-            <article class="featured-post">
-                <h3>Marker Mechanism</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">✏️</span>
+            <!-- INTERACTIVE: Centrifugal Impeller Fluid Dynamics Demo -->
+            <article class="featured-post fade-in-up interactive-demo">
+                <h3>🎮 Interactive: Centrifugal Flow Visualization</h3>
+                <p class="demo-instruction">Control the impeller speed and watch how centrifugal force accelerates air particles outward, creating pressure!</p>
+                
+                <div class="impeller-demo-container">
+                    <div class="impeller-visualization">
+                        <!-- Info callouts -->
+                        <div class="impeller-callouts">
+                            <div class="callout inlet-callout">
+                                <span class="callout-icon">⬇️</span>
+                                <span class="callout-text">Air Inlet<br><small>Low pressure draws air in</small></span>
+                            </div>
+                            <div class="callout outlet-callout">
+                                <span class="callout-icon">➡️</span>
+                                <span class="callout-text">High Pressure Outlet<br><small>Compressed air exits tangentially</small></span>
+                            </div>
+                        </div>
+                        
+                        <!-- Pressure gauge -->
+                        <div class="pressure-gauge">
+                            <div class="gauge-label">Vacuum Pressure</div>
+                            <div class="gauge-bar">
+                                <div class="gauge-fill" id="pressureGauge"></div>
+                                <div class="gauge-markers">
+                                    <span>0</span>
+                                    <span>7k</span>
+                                    <span>14k Pa</span>
+                                </div>
+                            </div>
+                            <div class="gauge-value" id="pressureValue">0 Pa</div>
+                        </div>
+                        
+                        <!-- Impeller SVG -->
+                        <svg class="impeller-svg" viewBox="0 0 300 300" id="impellerSvg">
+                            <!-- Outer housing -->
+                            <circle cx="150" cy="150" r="140" class="impeller-housing" />
+                            
+                            <!-- Pressure zones (color coded) -->
+                            <defs>
+                                <radialGradient id="pressureGradient" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" style="stop-color:#42a5f5;stop-opacity:0.3" />
+                                    <stop offset="50%" style="stop-color:#66bb6a;stop-opacity:0.3" />
+                                    <stop offset="100%" style="stop-color:#ef5350;stop-opacity:0.3" />
+                                </radialGradient>
+                            </defs>
+                            <circle cx="150" cy="150" r="120" fill="url(#pressureGradient)" class="pressure-zone" id="pressureZone"/>
+                            
+                            <!-- Volute/scroll casing -->
+                            <path d="M 150 10 A 140 140 0 1 1 290 150 Q 290 200 240 220 L 300 220 L 300 240 L 220 240 Q 180 240 180 200 A 50 50 0 1 1 150 150" 
+                                  class="impeller-volute" fill="none" stroke="#5A7C9E" stroke-width="3"/>
+                            
+                            <!-- Center hub -->
+                            <circle cx="150" cy="150" r="25" class="impeller-hub" />
+                            
+                            <!-- Zone labels -->
+                            <text x="150" y="70" class="zone-label low" text-anchor="middle">LOW P</text>
+                            <text x="240" y="150" class="zone-label high" text-anchor="middle">HIGH P</text>
+                            
+                            <!-- Impeller blades group (will rotate) -->
+                            <g id="impellerBlades" class="impeller-blades">
+                                <path d="M 150 125 Q 130 100 100 90 Q 120 110 125 150 Z" class="blade" />
+                                <path d="M 175 150 Q 200 130 210 100 Q 190 120 150 125 Z" class="blade" />
+                                <path d="M 150 175 Q 170 200 200 210 Q 180 190 175 150 Z" class="blade" />
+                                <path d="M 125 150 Q 100 170 90 200 Q 110 180 150 175 Z" class="blade" />
+                                <path d="M 165 130 Q 185 105 175 70 Q 170 100 150 125 Z" class="blade" />
+                                <path d="M 170 165 Q 195 185 230 175 Q 195 175 175 150 Z" class="blade" />
+                                <path d="M 135 170 Q 115 195 125 230 Q 130 200 150 175 Z" class="blade" />
+                                <path d="M 130 135 Q 105 115 70 125 Q 105 125 125 150 Z" class="blade" />
+                            </g>
+                            
+                            <!-- Air particles container -->
+                            <g id="airParticles"></g>
+                            
+                            <!-- Flow direction arrows -->
+                            <g class="flow-arrows" id="flowArrows">
+                                <!-- Inlet arrow -->
+                                <path d="M 150 30 L 150 60" class="flow-arrow inlet" marker-end="url(#arrowhead)"/>
+                                <!-- Outlet arrow -->
+                                <path d="M 260 230 L 290 230" class="flow-arrow outlet" marker-end="url(#arrowhead)"/>
+                            </g>
+                            
+                            <!-- Arrow marker definition -->
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#ffadad" />
+                                </marker>
+                            </defs>
+                        </svg>
+                        
+                        <!-- RPM display -->
+                        <div class="rpm-display">
+                            <span class="rpm-value" id="rpmValue">0</span>
+                            <span class="rpm-label">RPM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="impeller-controls">
+                        <label for="speedSlider">Motor Power</label>
+                        <input type="range" id="speedSlider" min="0" max="100" value="0" class="speed-slider">
+                        <div class="speed-labels">
+                            <span>OFF</span>
+                            <span>50%</span>
+                            <span>100%</span>
+                        </div>
+                        <button id="toggleParticles" class="demo-btn">Hide Particle Trails</button>
+                        
+                        <div class="physics-explanation">
+                            <h4>The Physics</h4>
+                            <ol>
+                                <li><strong>Blades spin</strong> → air molecules get "caught"</li>
+                                <li><strong>Centrifugal force</strong> → flings air outward</li>
+                                <li><strong>Volute casing</strong> → converts velocity to pressure</li>
+                                <li><strong>Low pressure</strong> at center creates suction!</li>
+                            </ol>
+                        </div>
+                    </div>
                 </div>
-                <p>The marker deployment mechanism uses a servo-controlled arm to press the marker against the
-                    wall with consistent force. This ensures uniform line quality throughout the drawing process.
-                    The mechanism also allows for marker retraction during non-drawing movements.</p>
+                
+                <div class="demo-legend">
+                    <div class="legend-item">
+                        <span class="legend-color inlet-color"></span>
+                        <span>Low Pressure (Inlet)</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color mid-color"></span>
+                        <span>Accelerating Air</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color outlet-color"></span>
+                        <span>High Pressure (Outlet)</span>
+                    </div>
+                </div>
             </article>
 
-            <article class="featured-post">
-                <h3>CAD Models & Manufacturing</h3>
-                <p>All custom parts were designed in [CAD Software] and manufactured using a combination of:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li>FDM 3D printing for complex geometries</li>
-                    <li>Laser cutting for flat structural components</li>
-                    <li>CNC machining for high-precision parts</li>
-                </ul>
+            <article class="featured-post fade-in-up">
+                <h3>Design Variables & Optimization</h3>
+                <p>Centrifugal impellers have many design variables that affect performance:</p>
+                
+                <div class="variable-grid">
+                    <div class="variable-item">
+                        <span class="var-icon">📏</span>
+                        <span class="var-name">Blade Length</span>
+                    </div>
+                    <div class="variable-item">
+                        <span class="var-icon">⭕</span>
+                        <span class="var-name">Blade Diameter</span>
+                    </div>
+                    <div class="variable-item">
+                        <span class="var-icon">📐</span>
+                        <span class="var-name">Blade Pitch</span>
+                    </div>
+                    <div class="variable-item">
+                        <span class="var-icon">〰️</span>
+                        <span class="var-name">Blade Curvature</span>
+                    </div>
+                    <div class="variable-item">
+                        <span class="var-icon">🔵</span>
+                        <span class="var-name">Outer Diameter</span>
+                    </div>
+                    <div class="variable-item">
+                        <span class="var-icon">↕️</span>
+                        <span class="var-name">Overall Height</span>
+                    </div>
+                </div>
+
+                <div class="insight-box critical">
+                    <span class="insight-icon">🎯</span>
+                    <div class="insight-content">
+                        <h4>Critical Discovery from SharkNinja Engineer</h4>
+                        <p>In shrouding, the difference between a <strong>1mm and 2mm gap</strong> can result in 
+                        <strong>~50% loss of total suction power!</strong></p>
+                        <p class="insight-action">We improved our shrouding tolerance from 2mm → 1mm for significantly increased suction.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Drive System Section -->
+    <section id="drive" class="section-content wave-section alt-bg">
+        <div class="content-wrapper">
+            <h2 class="section-title">Kiwi Drive System</h2>
+
+            <article class="featured-post fade-in-up">
+                <h3>Why Kiwi Drive?</h3>
+                <div class="split-content">
+                    <div class="content-visual">
+                        <div class="video-placeholder">
+                            <video autoplay loop muted playsinline>
+                                <source src="Mechanical_content/kiwi-drive.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+                    <div class="content-text">
+                        <p>We chose <strong>Kiwi drive</strong> because it allows the robot to <strong>translate and rotate simultaneously</strong>—
+                        changing heading while moving. This is essential for drawing complex shapes.</p>
+                        
+                        <div class="specs-box">
+                            <h4>Drive Specifications</h4>
+                            <ul class="specs-list">
+                                <li><span class="spec-name">Configuration:</span> <span class="spec-val">3 omni-wheels, 3 motors</span></li>
+                                <li><span class="spec-name">Motors:</span> <span class="spec-val">Geared DC motors @ 150 RPM</span></li>
+                                <li><span class="spec-name">Design Priority:</span> <span class="spec-val">Small & light as possible</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- INTERACTIVE: Kiwi Drive Simulator -->
+            <article class="featured-post fade-in-up interactive-demo">
+                <h3>🎮 Interactive: Kiwi Drive Simulator</h3>
+                <p class="demo-instruction">Use the joystick or arrow keys to drive the robot! Watch how the three omni-wheels work together for omnidirectional movement.</p>
+                
+                <div class="kiwi-demo-container">
+                    <div class="kiwi-arena">
+                        <!-- Glass surface background -->
+                        <div class="glass-surface">
+                            <div class="glass-reflection"></div>
+                        </div>
+                        
+                        <!-- Robot Image -->
+                        <img class="kiwi-robot" id="kiwiRobot" src="Mechanical_content/robot-overhead.png" alt="SCRIBBLZ Robot Overhead View">
+                        
+                        <!-- Trail canvas -->
+                        <canvas id="trailCanvas" class="trail-canvas"></canvas>
+                        
+                        <!-- Movement indicators -->
+                        <div class="movement-vector" id="movementVector"></div>
+                    </div>
+                    
+                    <div class="kiwi-controls">
+                        <!-- Virtual joystick -->
+                        <div class="joystick-container" id="joystickContainer">
+                            <div class="joystick-base">
+                                <div class="joystick-knob" id="joystickKnob"></div>
+                            </div>
+                            <span class="joystick-label">Drag to Move</span>
+                        </div>
+                        
+                        <!-- Rotation control -->
+                        <div class="rotation-control">
+                            <button class="rotate-btn" id="rotateCCW">↺</button>
+                            <span>Rotate</span>
+                            <button class="rotate-btn" id="rotateCW">↻</button>
+                        </div>
+                        
+                        <!-- Wheel speed display -->
+                        <div class="wheel-speeds">
+                            <div class="wheel-speed">
+                                <span class="wheel-label">Wheel 1</span>
+                                <div class="speed-bar"><div class="speed-fill" id="wheel1Speed"></div></div>
+                            </div>
+                            <div class="wheel-speed">
+                                <span class="wheel-label">Wheel 2</span>
+                                <div class="speed-bar"><div class="speed-fill" id="wheel2Speed"></div></div>
+                            </div>
+                            <div class="wheel-speed">
+                                <span class="wheel-label">Wheel 3</span>
+                                <div class="speed-bar"><div class="speed-fill" id="wheel3Speed"></div></div>
+                            </div>
+                        </div>
+                        
+                        <button id="clearTrail" class="demo-btn">Clear Trail</button>
+                    </div>
+                </div>
+                
+                <div class="demo-tip">
+                    <span class="tip-icon">💡</span>
+                    <p><strong>Tip:</strong> Try moving diagonally while rotating! This is what makes Kiwi drive special—simultaneous translation and rotation.</p>
+                </div>
+            </article>
+
+            <article class="featured-post fade-in-up">
+                <h3>The Friction Challenge</h3>
+                <div class="challenge-breakdown">
+                    <div class="challenge-intro">
+                        <p>Kiwi drive requires <strong>omni-wheels</strong>, which have inherently <strong>low coefficient of friction (μ)</strong>. 
+                        This creates a "stacked" friction problem:</p>
+                    </div>
+                    
+                    <div class="friction-stack">
+                        <div class="friction-layer">
+                            <span class="layer-num">1</span>
+                            <span class="layer-issue">Low μ from omni-wheels</span>
+                        </div>
+                        <div class="stack-plus">+</div>
+                        <div class="friction-layer">
+                            <span class="layer-num">2</span>
+                            <span class="layer-issue">Low friction against glass</span>
+                        </div>
+                        <div class="stack-plus">+</div>
+                        <div class="friction-layer">
+                            <span class="layer-num">3</span>
+                            <span class="layer-issue">Small contact patch (rollers don't deform)</span>
+                        </div>
+                        <div class="stack-equals">=</div>
+                        <div class="friction-result">
+                            <span class="result-text">Need HIGH vacuum for enough traction!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="solution-box">
+                    <h4>Our Solution</h4>
+                    <p>This friction challenge is exactly why we needed to maximize our impeller's pressure output. 
+                    The centrifugal impeller's ~14,000 Pa gives us the normal force required to generate sufficient wheel traction.</p>
+                </div>
+            </article>
+
+            <!-- INTERACTIVE: Free Body Diagram Demo -->
+            <article class="featured-post fade-in-up interactive-demo">
+                <h3>🎮 Interactive: Force Distribution (Why Wheels Matter!)</h3>
+                <p class="demo-instruction">Adjust the sliders to see how force distribution affects the robot's ability to drive. The goal: maximize force to wheels, minimize force lost to skirt!</p>
+                
+                <div class="fbd-demo-container">
+                    <div class="fbd-visualization">
+                        <svg class="fbd-svg" viewBox="0 0 450 350" id="fbdSvg">
+                            <!-- Glass surface -->
+                            <rect x="0" y="280" width="450" height="70" class="fbd-glass"/>
+                            <text x="225" y="320" class="fbd-surface-label" text-anchor="middle">Glass Surface</text>
+                            
+                            <!-- Robot body (side view) -->
+                            <g class="fbd-robot" transform="translate(225, 180)">
+                                <!-- Main chassis -->
+                                <rect x="-100" y="-60" width="200" height="50" rx="8" class="fbd-chassis"/>
+                                <text x="0" y="-35" class="fbd-label" text-anchor="middle">Robot Chassis</text>
+                                
+                                <!-- Impeller representation -->
+                                <circle cx="0" cy="-30" r="20" class="fbd-impeller"/>
+                                <text x="0" y="-25" class="fbd-imp-label" text-anchor="middle">⟳</text>
+                                
+                                <!-- Left wheel -->
+                                <g class="fbd-wheel" transform="translate(-70, 0)">
+                                    <circle r="18" class="fbd-wheel-circle"/>
+                                    <line x1="-12" y1="0" x2="12" y2="0" stroke="#333" stroke-width="2"/>
+                                    <line x1="0" y1="-12" x2="0" y2="12" stroke="#333" stroke-width="2"/>
+                                </g>
+                                
+                                <!-- Right wheel -->
+                                <g class="fbd-wheel" transform="translate(70, 0)">
+                                    <circle r="18" class="fbd-wheel-circle"/>
+                                    <line x1="-12" y1="0" x2="12" y2="0" stroke="#333" stroke-width="2"/>
+                                    <line x1="0" y1="-12" x2="0" y2="12" stroke="#333" stroke-width="2"/>
+                                </g>
+                                
+                                <!-- Left skirt -->
+                                <path d="M -100 -10 L -100 95" class="fbd-skirt" id="fbdLeftSkirt"/>
+                                
+                                <!-- Right skirt -->
+                                <path d="M 100 -10 L 100 95" class="fbd-skirt" id="fbdRightSkirt"/>
+                            </g>
+                            
+                            <!-- FORCES -->
+                            <!-- Vacuum force (down - normal force) -->
+                            <g id="vacuumForceGroup">
+                                <line x1="225" y1="30" x2="225" y2="100" class="force-arrow vacuum" id="vacuumForce" marker-end="url(#arrowVacuum)"/>
+                                <text x="225" y="20" class="force-label vacuum" text-anchor="middle">F_vacuum</text>
+                                <text x="270" y="70" class="force-value" id="vacuumForceValue">10 N</text>
+                            </g>
+                            
+                            <!-- Weight (down) -->
+                            <g id="weightForceGroup">
+                                <line x1="225" y1="160" x2="225" y2="200" class="force-arrow weight" marker-end="url(#arrowWeight)"/>
+                                <text x="260" y="185" class="force-label weight">W = mg</text>
+                            </g>
+                            
+                            <!-- Normal force on wheels -->
+                            <g id="wheelNormalGroup">
+                                <line x1="155" y1="280" x2="155" y2="230" class="force-arrow normal" id="wheelNormal1" marker-end="url(#arrowNormal)"/>
+                                <line x1="295" y1="280" x2="295" y2="230" class="force-arrow normal" id="wheelNormal2" marker-end="url(#arrowNormal)"/>
+                                <text x="155" y="295" class="force-label normal" text-anchor="middle" id="wheelNormalLabel1">N_wheel</text>
+                            </g>
+                            
+                            <!-- Friction force on wheels (horizontal - what moves the robot!) -->
+                            <g id="wheelFrictionGroup">
+                                <line x1="155" y1="262" x2="100" y2="262" class="force-arrow friction good" id="wheelFriction1" marker-end="url(#arrowFriction)"/>
+                                <line x1="295" y1="262" x2="240" y2="262" class="force-arrow friction good" id="wheelFriction2" marker-end="url(#arrowFriction)"/>
+                                <text x="70" y="255" class="force-label friction">F_drive</text>
+                            </g>
+                            
+                            <!-- Skirt friction (bad - opposes motion) -->
+                            <g id="skirtFrictionGroup">
+                                <line x1="125" y1="275" x2="170" y2="275" class="force-arrow friction bad" id="skirtFriction1" marker-end="url(#arrowBad)"/>
+                                <line x1="325" y1="275" x2="370" y2="275" class="force-arrow friction bad" id="skirtFriction2" marker-end="url(#arrowBad)"/>
+                                <text x="370" y="270" class="force-label friction bad">F_skirt (LOSS!)</text>
+                            </g>
+                            
+                            <!-- Arrow markers -->
+                            <defs>
+                                <marker id="arrowVacuum" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#5A7C9E"/>
+                                </marker>
+                                <marker id="arrowWeight" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+                                </marker>
+                                <marker id="arrowNormal" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#66bb6a"/>
+                                </marker>
+                                <marker id="arrowFriction" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#66bb6a"/>
+                                </marker>
+                                <marker id="arrowBad" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#ef5350"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                    
+                    <div class="fbd-controls">
+                        <div class="fbd-slider-group">
+                            <label>Vacuum Pressure</label>
+                            <input type="range" id="fbdVacuumSlider" min="0" max="100" value="70" class="fbd-slider"/>
+                            <span class="slider-value" id="fbdVacuumValue">70%</span>
+                        </div>
+                        
+                        <div class="fbd-slider-group">
+                            <label>Skirt Friction (μ_skirt)</label>
+                            <input type="range" id="fbdSkirtFriction" min="0" max="100" value="20" class="fbd-slider"/>
+                            <span class="slider-value" id="fbdSkirtValue">Low (Straws)</span>
+                        </div>
+                        
+                        <div class="fbd-results">
+                            <div class="fbd-result good">
+                                <span class="result-label">Drive Force Available</span>
+                                <span class="result-value" id="driveForceResult">8.5 N</span>
+                                <div class="result-bar"><div class="result-fill good" id="driveForceBar"></div></div>
+                            </div>
+                            <div class="fbd-result bad">
+                                <span class="result-label">Force Lost to Skirt</span>
+                                <span class="result-value" id="lostForceResult">1.5 N</span>
+                                <div class="result-bar"><div class="result-fill bad" id="lostForceBar"></div></div>
+                            </div>
+                            <div class="fbd-result net">
+                                <span class="result-label">Net Driving Force</span>
+                                <span class="result-value" id="netForceResult">7.0 N</span>
+                            </div>
+                        </div>
+                        
+                        <div class="fbd-presets">
+                            <button class="preset-btn" data-vacuum="70" data-friction="20">Straws (Best)</button>
+                            <button class="preset-btn" data-vacuum="70" data-friction="70">Foam (Bad)</button>
+                            <button class="preset-btn" data-vacuum="40" data-friction="20">Low Vacuum</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="fbd-insight">
+                    <h4>💡 Key Insight</h4>
+                    <p><strong>F_drive = μ_wheel × N_wheel</strong> — We want ALL the normal force going through the wheels!</p>
+                    <p>Any force the skirt absorbs is <strong>wasted</strong> because it creates friction that opposes motion instead of enabling it.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Skirt Design Section -->
+    <section id="skirt" class="section-content wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Skirt Compliance System</h2>
+
+            <article class="featured-post fade-in-up">
+                <h3>The Sealing Challenge</h3>
+                <div class="analogy-box">
+                    <span class="analogy-icon">🎈</span>
+                    <p>Think of the skirt like a <strong>balloon</strong>: when it's sealed, pressure holds; when it leaks, pressure drops.</p>
+                </div>
+
+                <p>The skirt's job is to maintain the vacuum seal and reduce airflow leakage. It needs to do <strong>two things at once</strong>:</p>
+                
+                <div class="dual-requirement">
+                    <div class="requirement">
+                        <span class="req-num">1</span>
+                        <h4>Be Compliant</h4>
+                        <p>Conform to seal against imperfect surfaces (glass isn't perfectly flat, neither are 3D prints)</p>
+                    </div>
+                    <div class="requirement">
+                        <span class="req-num">2</span>
+                        <h4>Low Friction</h4>
+                        <p>Don't waste drive force dragging the skirt—transfer force to the wheels instead</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- INTERACTIVE: Vacuum Seal Demo -->
+            <article class="featured-post fade-in-up interactive-demo">
+                <h3>🎮 Interactive: Vacuum Seal Visualization</h3>
+                <p class="demo-instruction">Click and drag on the glass surface to create imperfections. Watch how different skirt types handle the seal!</p>
+                
+                <div class="vacuum-demo-container">
+                    <div class="vacuum-visualization">
+                        <!-- Cross-section view -->
+                        <svg class="vacuum-svg" viewBox="0 0 400 250" id="vacuumSvg">
+                            <!-- Glass surface with bumps -->
+                            <path id="glassSurface" d="M 0 200 L 400 200" class="glass-line"/>
+                            
+                            <!-- Robot body -->
+                            <rect x="50" y="80" width="300" height="60" rx="10" class="vacuum-robot-body"/>
+                            
+                            <!-- Impeller representation -->
+                            <g class="vacuum-impeller" transform="translate(200, 110)">
+                                <circle r="20" class="impeller-circle"/>
+                                <g id="vacuumImpellerBlades">
+                                    <line x1="0" y1="-18" x2="0" y2="-10" class="v-blade"/>
+                                    <line x1="18" y1="0" x2="10" y2="0" class="v-blade"/>
+                                    <line x1="0" y1="18" x2="0" y2="10" class="v-blade"/>
+                                    <line x1="-18" y1="0" x2="-10" y2="0" class="v-blade"/>
+                                </g>
+                            </g>
+                            
+                            <!-- Skirt elements -->
+                            <g id="skirtGroup">
+                                <!-- Left skirt -->
+                                <path id="leftSkirt" d="M 50 140 Q 50 170 50 200" class="skirt-line"/>
+                                <!-- Right skirt -->
+                                <path id="rightSkirt" d="M 350 140 Q 350 170 350 200" class="skirt-line"/>
+                            </g>
+                            
+                            <!-- Air leak indicators -->
+                            <g id="airLeaks" class="air-leaks"></g>
+                            
+                            <!-- Vacuum chamber area -->
+                            <path id="vacuumChamber" class="vacuum-chamber"/>
+                            
+                            <!-- Pressure arrows (showing vacuum) -->
+                            <g id="pressureArrows" class="pressure-arrows"></g>
+                            
+                            <!-- Labels -->
+                            <text x="200" y="30" class="diagram-label" text-anchor="middle">Robot Cross-Section</text>
+                            <text x="200" y="240" class="diagram-label small" text-anchor="middle">Glass Surface (click to add bumps)</text>
+                        </svg>
+                        
+                        <!-- Pressure indicator -->
+                        <div class="vacuum-pressure-display">
+                            <div class="pressure-dial">
+                                <svg viewBox="0 0 100 60" class="dial-svg">
+                                    <path d="M 10 50 A 40 40 0 0 1 90 50" class="dial-bg"/>
+                                    <path id="dialNeedle" d="M 50 50 L 50 15" class="dial-needle"/>
+                                </svg>
+                                <span class="dial-label">Vacuum</span>
+                            </div>
+                            <div class="pressure-reading">
+                                <span id="vacuumReading">0</span>
+                                <span class="pressure-unit">Pa</span>
+                            </div>
+                            <div class="seal-status" id="sealStatus">
+                                <span class="status-indicator good"></span>
+                                <span>Seal: Good</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="vacuum-controls">
+                        <div class="skirt-selector">
+                            <label>Skirt Type:</label>
+                            <div class="skirt-options">
+                                <button class="skirt-btn active" data-type="straw">🥤 Straws</button>
+                                <button class="skirt-btn" data-type="hard">🔲 Hard</button>
+                                <button class="skirt-btn" data-type="foam">🧽 Foam</button>
+                                <button class="skirt-btn" data-type="none">❌ None</button>
+                            </div>
+                        </div>
+                        <div class="surface-controls">
+                            <button id="addBump" class="demo-btn">Add Random Bump</button>
+                            <button id="resetSurface" class="demo-btn secondary">Reset Surface</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="demo-insight">
+                    <p>Notice how the <strong>straw skirt</strong> conforms to surface imperfections while maintaining seal. 
+                    Hard skirts create gaps, and foam drags too much!</p>
+                </div>
+            </article>
+
+            <article class="featured-post fade-in-up">
+                <h3>Materials Tested</h3>
+                <div class="test-grid">
+                    <div class="test-item failed">
+                        <span class="test-icon">🧽</span>
+                        <span class="test-name">Foam</span>
+                        <span class="test-result">❌</span>
+                    </div>
+                    <div class="test-item failed">
+                        <span class="test-icon">📋</span>
+                        <span class="test-name">Sticky Foam</span>
+                        <span class="test-result">❌</span>
+                    </div>
+                    <div class="test-item failed">
+                        <span class="test-icon">🔲</span>
+                        <span class="test-name">Hard Skirt</span>
+                        <span class="test-result">❌</span>
+                    </div>
+                    <div class="test-item failed">
+                        <span class="test-icon">⭕</span>
+                        <span class="test-name">No Skirt</span>
+                        <span class="test-result">❌</span>
+                    </div>
+                    <div class="test-item success">
+                        <span class="test-icon">🥤</span>
+                        <span class="test-name">Straws (cut in half)</span>
+                        <span class="test-result">✅</span>
+                    </div>
+                </div>
+
+                <div class="winning-solution">
+                    <h4>🏆 Winner: Straws!</h4>
+                    <div class="image-placeholder" data-image="straw-skirt">
+                        <img src="Mechanical_content/straw-skirt.png" alt="Straw Skirt Implementation">
+                        <span class="placeholder-label">Straw Skirt Implementation</span>
+                    </div>
+                    <ul class="solution-benefits">
+                        <li><span class="benefit-icon">✓</span> Compliant enough to conform and seal</li>
+                        <li><span class="benefit-icon">✓</span> Very low coefficient of friction</li>
+                        <li><span class="benefit-icon">✓</span> Transfers maximum force to wheels</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="featured-post fade-in-up">
+                <h3>Voltage Optimization</h3>
+                <div class="voltage-comparison">
+                    <div class="voltage-case">
+                        <h4>14.8V (Battery)</h4>
+                        <p>Smaller skirt contact area worked fine</p>
+                    </div>
+                    <div class="voltage-arrow">→</div>
+                    <div class="voltage-case">
+                        <h4>12V (Tethered)</h4>
+                        <p>Needed to maximize skirt surface area to compensate for lower voltage</p>
+                    </div>
+                </div>
+                <div class="tech-note">
+                    <span class="note-icon">⚡</span>
+                    <p><strong>Solution:</strong> Increased skirt coverage on the bottom of the robot to improve seal and maintain suction performance at 12V.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Power System Section -->
+    <section id="power" class="section-content wave-section alt-bg">
+        <div class="content-wrapper">
+            <h2 class="section-title">Power System Evolution</h2>
+
+            <article class="featured-post fade-in-up">
+                <h3>The Weight vs. Capacity Tradeoff</h3>
+                <p>Our goal was a <strong>fully battery-powered robot</strong>, but batteries add weight, and weight kills climbing performance.</p>
+
+                <div class="power-timeline">
+                    <div class="power-attempt">
+                        <div class="attempt-header">
+                            <span class="attempt-num">1</span>
+                            <h4>LiPo Batteries</h4>
+                        </div>
+                        <p>Started here, but needed ~4,000 mAh capacity for drawing operations.</p>
+                        <span class="attempt-status">⚡ Capacity limited</span>
+                    </div>
+                    
+                    <div class="power-attempt">
+                        <div class="attempt-header">
+                            <span class="attempt-num">2</span>
+                            <h4>Li-Ion Pack</h4>
+                        </div>
+                        <p>Built a pack: 4× 3.7V cells (4,000 mAh each) fused together.</p>
+                        <span class="attempt-status warning">⚠️ Too heavy—robot could adhere but couldn't drive upward reliably</span>
+                    </div>
+                    
+                    <div class="power-attempt success">
+                        <div class="attempt-header">
+                            <span class="attempt-num">3</span>
+                            <h4>Tethered System</h4>
+                        </div>
+                        <p>Pivoted to external power via docking station. Used a <strong>slip ring</strong> in the center so the tether can rotate 360° without losing electrical connection.</p>
+                        <span class="attempt-status success">✅ Removed onboard battery weight entirely!</span>
+                    </div>
+                </div>
+            </article>
+
+            <!-- INTERACTIVE: Slip Ring Demo -->
+            <article class="featured-post fade-in-up interactive-demo">
+                <h3>🎮 Interactive: How a Slip Ring Works</h3>
+                <p class="demo-instruction">Drag the rotor to rotate it and see how electrical connections are maintained through continuous contact between rings and brushes!</p>
+                
+                <div class="slip-ring-demo-container">
+                    <div class="slip-ring-visualization">
+                        <svg class="slip-ring-svg" viewBox="0 0 400 300" id="slipRingSvg">
+                            <!-- Background labels -->
+                            <text x="70" y="25" class="sr-section-label">STATIONARY (Stator)</text>
+                            <text x="260" y="25" class="sr-section-label">ROTATING (Rotor)</text>
+                            
+                            <!-- Dividing line -->
+                            <line x1="200" y1="35" x2="200" y2="260" class="sr-divider" stroke-dasharray="5,5"/>
+                            
+                            <!-- STATOR SIDE (Left) - Stationary -->
+                            <g class="stator-side">
+                                <!-- Wire input from power source -->
+                                <g class="power-source">
+                                    <rect x="10" y="70" width="40" height="80" rx="5" class="power-box"/>
+                                    <text x="30" y="95" class="power-label" text-anchor="middle">12V</text>
+                                    <text x="30" y="115" class="power-label small" text-anchor="middle">DC</text>
+                                    <line x1="30" y1="55" x2="30" y2="70" class="power-wire positive"/>
+                                    <line x1="30" y1="150" x2="30" y2="165" class="power-wire negative"/>
+                                    <text x="30" y="50" class="wire-label" text-anchor="middle">+</text>
+                                    <text x="30" y="175" class="wire-label" text-anchor="middle">−</text>
+                                </g>
+                                
+                                <!-- Wires to brushes -->
+                                <path d="M 50 85 L 90 85 L 90 100" class="power-wire positive" id="wire1"/>
+                                <path d="M 50 135 L 90 135 L 90 150" class="power-wire negative" id="wire2"/>
+                                
+                                <!-- Brush holders (stationary) -->
+                                <g class="brush-assembly">
+                                    <!-- Brush 1 (positive) -->
+                                    <rect x="80" y="100" width="20" height="30" class="brush-holder"/>
+                                    <rect x="100" y="107" width="15" height="16" rx="2" class="brush positive" id="brush1"/>
+                                    <text x="90" y="145" class="brush-label" text-anchor="middle">Brush 1</text>
+                                    
+                                    <!-- Brush 2 (negative) -->
+                                    <rect x="80" y="150" width="20" height="30" class="brush-holder"/>
+                                    <rect x="100" y="157" width="15" height="16" rx="2" class="brush negative" id="brush2"/>
+                                    <text x="90" y="195" class="brush-label" text-anchor="middle">Brush 2</text>
+                                </g>
+                            </g>
+                            
+                            <!-- ROTOR SIDE (Right) - Rotates -->
+                            <g id="slipRingRotor" class="rotor-side">
+                                <!-- Slip ring assembly (cross-section view) -->
+                                <g transform="translate(200, 140)">
+                                    <!-- Shaft -->
+                                    <rect x="90" y="-60" width="30" height="120" class="rotor-shaft"/>
+                                    
+                                    <!-- Ring 1 (positive) - outer -->
+                                    <rect x="-30" y="-25" width="120" height="20" rx="3" class="slip-ring positive" id="ring1"/>
+                                    
+                                    <!-- Insulator -->
+                                    <rect x="-30" y="0" width="120" height="10" class="ring-insulator"/>
+                                    
+                                    <!-- Ring 2 (negative) - inner -->
+                                    <rect x="-30" y="15" width="120" height="20" rx="3" class="slip-ring negative" id="ring2"/>
+                                    
+                                    <!-- Wire connections from rings -->
+                                    <path d="M 120 -15 L 145 -15 L 145 -50" class="rotor-wire positive"/>
+                                    <path d="M 120 25 L 155 25 L 155 60" class="rotor-wire negative"/>
+                                </g>
+                                
+                                <!-- Output labels -->
+                                <text x="345" y="80" class="output-label">To Motor +</text>
+                                <text x="345" y="210" class="output-label">To Motor −</text>
+                                
+                                <!-- Motor symbol -->
+                                <g transform="translate(345, 140)">
+                                    <circle r="30" class="motor-symbol"/>
+                                    <text x="0" y="5" class="motor-m" text-anchor="middle">M</text>
+                                </g>
+                                
+                                <!-- Output wires -->
+                                <path d="M 345 90 L 345 110" class="rotor-wire positive"/>
+                                <path d="M 355 200 L 355 170" class="rotor-wire negative"/>
+                            </g>
+                            
+                            <!-- Electrical flow particles -->
+                            <g id="electricalFlow" class="electrical-flow"></g>
+                            
+                            <!-- Contact sparks -->
+                            <g id="contactSparks" class="contact-sparks"></g>
+                            
+                            <!-- Instructions -->
+                            <text x="200" y="285" class="sr-label" text-anchor="middle">↻ Drag anywhere to rotate the rotor</text>
+                        </svg>
+                        
+                        <!-- Status panel -->
+                        <div class="slip-ring-status">
+                            <div class="rotation-counter">
+                                <span class="counter-value" id="rotationCount">0°</span>
+                                <span class="counter-label">Total Rotation</span>
+                            </div>
+                            <div class="connection-status" id="connectionStatus">
+                                <span class="status-light connected"></span>
+                                <span>Circuit Complete</span>
+                            </div>
+                            <div class="current-flow">
+                                <span class="flow-label">Current Flow:</span>
+                                <span class="flow-value" id="currentFlow">0.0 A</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="slip-ring-info">
+                        <h4>How a Slip Ring Works</h4>
+                        <div class="info-steps">
+                            <div class="info-step">
+                                <span class="step-num">1</span>
+                                <div class="step-content">
+                                    <strong>Conductive Rings</strong>
+                                    <p>Metal rings mounted on the rotating shaft, each electrically isolated</p>
+                                </div>
+                            </div>
+                            <div class="info-step">
+                                <span class="step-num">2</span>
+                                <div class="step-content">
+                                    <strong>Stationary Brushes</strong>
+                                    <p>Spring-loaded contacts that press against the rings, staying in place</p>
+                                </div>
+                            </div>
+                            <div class="info-step">
+                                <span class="step-num">3</span>
+                                <div class="step-content">
+                                    <strong>Continuous Contact</strong>
+                                    <p>Brushes slide along rings as rotor spins—electrical path never breaks!</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slip-ring-controls">
+                            <button id="autoRotateSlipRing" class="demo-btn">▶ Auto Rotate</button>
+                            <button id="toggleCurrentFlow" class="demo-btn secondary">Show Current Flow</button>
+                        </div>
+                        <div class="why-box">
+                            <strong>Why we need this:</strong> The robot spins 360°+ while drawing. Without a slip ring, the power cable would twist and break!
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-post fade-in-up">
+                <h3>Slip Ring Integration</h3>
+                <div class="split-content">
+                    <div class="content-text">
+                        <p>The <strong>slip ring</strong> is mounted at the center of the robot, allowing the tether to rotate freely without twisting or losing electrical connection.</p>
+                        <p>Around the slip ring, we placed a <strong>cylindrical target</strong> that the LiDAR can reliably detect for localization.</p>
+                    </div>
+                    <div class="content-visual">
+                        <div class="image-placeholder" data-image="slip-ring">
+                            <img src="Mechanical_content/slip-ring.png" alt="Slip Ring Assembly">
+                            <span class="placeholder-label">Slip Ring Assembly</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Localization Section -->
+    <section id="localization" class="section-content wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Localization System</h2>
+
+            <article class="featured-post fade-in-up">
+                <h3>Knowing Where We Are</h3>
+                <p>For accurate drawing, we need to know exactly where the robot is on the window. We use <strong>two localization signals together</strong>:</p>
+                
+                <div class="localization-methods">
+                    <div class="loc-method">
+                        <span class="loc-icon">📡</span>
+                        <h4>LiDAR</h4>
+                        <p>Position in window reference frame</p>
+                    </div>
+                    <div class="loc-plus">+</div>
+                    <div class="loc-method">
+                        <span class="loc-icon">🧭</span>
+                        <h4>6-Axis IMU</h4>
+                        <p>Heading/orientation</p>
+                    </div>
+                    <div class="loc-equals">=</div>
+                    <div class="loc-result">
+                        <span class="loc-icon">🎯</span>
+                        <h4>Waypoint Navigation</h4>
+                        <p>Drive to targets & maintain heading for drawing</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-post fade-in-up">
+                <h3>LiDAR Target Design</h3>
+                <div class="split-content reverse">
+                    <div class="content-visual">
+                        <div class="image-placeholder" data-image="lidar-target">
+                            <img src="Mechanical_content/lidar-target.png" alt="LiDAR Target Cylinder">
+                            <span class="placeholder-label">LiDAR Target Cylinder</span>
+                        </div>
+                    </div>
+                    <div class="content-text">
+                        <p>To make LiDAR tracking work, we added a <strong>recognizable target shape</strong>: a round cylinder near the top of the robot, next to the swivel mount for the tether.</p>
+                        <p>The cylinder sits about <strong>100mm (10cm)</strong> above the glass surface, giving the LiDAR a clear, consistent feature to track.</p>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Docking Station Section -->
+    <section id="docking" class="section-content wave-section alt-bg">
+        <div class="content-wrapper">
+            <h2 class="section-title">Docking Station</h2>
+
+            <article class="featured-post fade-in-up">
+                <h3>Multi-Function Hub</h3>
+                <div class="model-viewer-container">
+                    <!-- 3D Model Viewer for Docking Station -->
+                    <model-viewer 
+                        id="docking-station-viewer"
+                        src="Mechanical_content/models/docking-station.gltf"
+                        alt="SCRIBBLZ Docking Station"
+                        camera-controls
+                        touch-action="pan-y"
+                        auto-rotate-delay="3000"
+                        interaction-prompt="auto"
+                        shadow-intensity="2"
+                        shadow-softness="0.5"
+                        exposure="0.8"
+                        environment-image="neutral"
+                        tone-mapping="commerce"
+                        style="width: 100%; height: 400px; background: linear-gradient(135deg, #e8f4f8 0%, #d4e4f7 100%); border-radius: 16px;">
+                        
+                        <!-- Loading placeholder while model loads -->
+                        <div class="model-loading" slot="poster">
+                            <span class="placeholder-icon">🏠</span>
+                            <p>Loading 3D Model...</p>
+                            <span class="placeholder-hint">Docking Station</span>
+                        </div>
+                    </model-viewer>
+                    
+                    <div class="model-controls">
+                        <button class="model-btn" onclick="toggleDockingAutoRotate()">Auto Rotate</button>
+                    </div>
+                </div>
+
+                <p>The docking station isn't just a parking spot—it's a critical part of the system:</p>
+                
+                <div class="function-grid">
+                    <div class="function-card">
+                        <span class="function-icon">🤖</span>
+                        <h4>Robot Holder</h4>
+                        <p>Holds robot when not in use</p>
+                    </div>
+                    <div class="function-card">
+                        <span class="function-icon">📡</span>
+                        <h4>LiDAR Mount</h4>
+                        <p>Positions sensor for tracking</p>
+                    </div>
+                    <div class="function-card">
+                        <span class="function-icon">🖥️</span>
+                        <h4>Pi Housing</h4>
+                        <p>Raspberry Pi for computation</p>
+                    </div>
+                    <div class="function-card">
+                        <span class="function-icon">🧵</span>
+                        <h4>Spool Winder</h4>
+                        <p>Motorized tether management</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- INTERACTIVE: Tether Spool Demo -->
+            <article class="featured-post fade-in-up interactive-demo">
+                <h3>🎮 Interactive: Tether Spool System</h3>
+                <p class="demo-instruction">Drag the robot across the window and watch how the spool automatically manages tether tension to keep the LiDAR path clear!</p>
+                
+                <div class="spool-demo-container">
+                    <div class="spool-visualization">
+                        <svg class="spool-svg" viewBox="0 0 500 300" id="spoolSvg">
+                            <!-- Window background -->
+                            <rect x="0" y="50" width="500" height="250" class="window-bg"/>
+                            
+                            <!-- Window frame (top) -->
+                            <rect x="0" y="0" width="500" height="50" class="window-frame-top"/>
+                            <text x="250" y="30" class="frame-label" text-anchor="middle">Window Frame (Top Edge)</text>
+                            
+                            <!-- Docking station (on frame) -->
+                            <g class="docking-station" transform="translate(70, 50)">
+                                <!-- Station body -->
+                                <rect x="-25" y="-45" width="50" height="45" rx="5" class="station-body"/>
+                                <text x="0" y="-52" class="station-label" text-anchor="middle">Dock</text>
+                                
+                                <!-- Spool wheel -->
+                                <g class="spool-unit" transform="translate(0, -25)">
+                                    <circle r="15" class="spool-wheel-bg"/>
+                                    <g id="spoolWheel">
+                                        <circle r="15" fill="none" stroke="#5A7C9E" stroke-width="3"/>
+                                        <line x1="-10" y1="0" x2="10" y2="0" stroke="#5A7C9E" stroke-width="2"/>
+                                        <line x1="0" y1="-10" x2="0" y2="10" stroke="#5A7C9E" stroke-width="2"/>
+                                    </g>
+                                    <circle r="4" class="spool-center"/>
+                                </g>
+                                
+                                <!-- LiDAR sensor -->
+                                <g class="lidar-sensor" transform="translate(0, 0)">
+                                    <rect x="-12" y="-8" width="24" height="8" rx="2" class="lidar-body"/>
+                                    <text x="0" y="12" class="lidar-label" text-anchor="middle" font-size="8">LiDAR</text>
+                                </g>
+                            </g>
+                            
+                            <!-- LiDAR beam (horizontal scan) -->
+                            <line id="lidarBeam" x1="95" y1="50" x2="500" y2="50" class="lidar-beam"/>
+                            
+                            <!-- Tether line -->
+                            <path id="tetherPath" class="tether-cable" d="M 70 25 Q 150 20 250 150"/>
+                            
+                            <!-- Robot -->
+                            <g id="spoolRobot" class="spool-robot" transform="translate(250, 150)">
+                                <circle r="30" class="spool-robot-body"/>
+                                <circle r="10" class="spool-robot-target"/>
+                                <polygon points="0,-22 10,-10 -10,-10" class="spool-robot-dir"/>
+                                <text y="45" class="robot-label" text-anchor="middle">Robot</text>
+                            </g>
+                            
+                            <!-- Glass surface label -->
+                            <text x="450" y="290" class="glass-label" text-anchor="end">Glass Surface</text>
+                        </svg>
+                        
+                        <!-- Status displays -->
+                        <div class="spool-status">
+                            <div class="status-item">
+                                <span class="status-label">Tether Length</span>
+                                <span class="status-value" id="tetherLength">200mm</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">Spool Action</span>
+                                <span class="status-value" id="spoolDirection">—</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="status-label">LiDAR Path</span>
+                                <span class="status-value" id="lidarStatus">
+                                    <span class="status-dot good"></span> Clear
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="spool-controls">
+                        <button id="demoPath" class="demo-btn">▶ Demo: Draw Square</button>
+                        <button id="returnToDock" class="demo-btn secondary">↩ Return to Dock</button>
+                    </div>
+                </div>
+                
+                <div class="demo-insight">
+                    <p>The tether always exits <strong>above the LiDAR beam</strong> so it never blocks the sensor's view of the robot!</p>
+                </div>
+            </article>
+
+            <article class="featured-post fade-in-up">
+                <h3>The Spool System</h3>
+                <div class="spool-explanation">
+                    <div class="spool-problem">
+                        <h4>The Problem</h4>
+                        <p>The LiDAR needs <strong>unobstructed line of sight</strong> to the robot's target. If the tether crosses through the LiDAR's scan line, we get false readings.</p>
+                    </div>
+                    
+                    <div class="spool-solution">
+                        <h4>The Solution</h4>
+                        <div class="image-placeholder" data-image="spool-system">
+                            <img src="Mechanical_content/spool-system.png" alt="Motorized Spool System">
+                            <span class="placeholder-label">Motorized Spool</span>
+                        </div>
+                        <ul class="solution-steps">
+                            <li><strong>Stepper motor</strong> (controlled by Raspberry Pi) spools tether in/out</li>
+                            <li><strong>Robot moves away:</strong> spool lets wire out</li>
+                            <li><strong>Robot returns:</strong> spool reels wire in to keep tether taut</li>
+                            <li><strong>Tether exits above LiDAR</strong> so it doesn't interfere with beams</li>
+                        </ul>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-post fade-in-up">
+                <h3>LiDAR Placement Constraints</h3>
+                <div class="constraint-diagram">
+                    <div class="image-placeholder wide" data-image="lidar-placement">
+                        <img src="Mechanical_content/lidar-placement.png" alt="LiDAR Position Diagram">
+                        <span class="placeholder-label">LiDAR Position Diagram</span>
+                    </div>
+                </div>
+                <div class="constraints-list">
+                    <div class="constraint">
+                        <span class="constraint-icon">⬇️</span>
+                        <p>Must be <strong>below</strong> the wire path</p>
+                    </div>
+                    <div class="constraint">
+                        <span class="constraint-icon">⬆️</span>
+                        <p>Must be <strong>above</strong> the rest of the docking station (no blocking)</p>
+                    </div>
+                    <div class="constraint">
+                        <span class="constraint-icon">📏</span>
+                        <p>Mounted ~<strong>10cm above surface</strong></p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-post fade-in-up">
+                <h3>Docking & Calibration</h3>
+                <div class="split-content">
+                    <div class="content-text">
+                        <p>For <strong>repeatable docking and calibration</strong>, we use the robot's circular LiDAR target as a locating feature.</p>
+                        <p>A <strong>laser-cut U-shaped acrylic guide</strong> lets the robot slide into the exact same position every time, giving us a known pose to reset the IMU and position consistently at startup.</p>
+                    </div>
+                    <div class="content-visual">
+                        <div class="image-placeholder" data-image="docking-guide">
+                            <img src="Mechanical_content/docking-guide.png" alt="U-Shaped Docking Guide">
+                            <span class="placeholder-label">U-Shaped Docking Guide</span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="featured-post fade-in-up">
+                <h3>Electronics Bay</h3>
+                <div class="electronics-layout">
+                    <div class="image-placeholder wide" data-image="electronics-bay">
+                        <img src="Mechanical_content/electronics-bay.png" alt="Electronics Bay Layout">
+                        <span class="placeholder-label">Electronics Bay Layout</span>
+                    </div>
+                </div>
+                <div class="electronics-features">
+                    <ul class="feature-columns">
+                        <li><span class="feature-icon">🖥️</span> Raspberry Pi bay with antenna</li>
+                        <li><span class="feature-icon">⚡</span> Stepper motor drivers</li>
+                        <li><span class="feature-icon">🔌</span> Buck converters</li>
+                        <li><span class="feature-icon">📡</span> LiDAR mounts</li>
+                        <li><span class="feature-icon">🌀</span> Ventilation for airflow (prevents overheating)</li>
+                        <li><span class="feature-icon">🔗</span> Single main wire entry—spliced internally</li>
+                    </ul>
+                </div>
+                <div class="tech-note">
+                    <span class="note-icon">📋</span>
+                    <p>Wiring for LiDAR and stepper motor routed through a shared under-channel for clean cable management. The docking station mounts to the window using double-sided tape.</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Summary Section -->
+    <section id="summary" class="section-content wave-section">
+        <div class="content-wrapper">
+            <h2 class="section-title">Key Refinements Summary</h2>
+
+            <article class="featured-post fade-in-up">
+                <div class="refinements-grid">
+                    <div class="refinement-card">
+                        <span class="refinement-icon">🌪️</span>
+                        <h4>Impeller</h4>
+                        <p>Mixed-flow → Centrifugal backward-facing</p>
+                        <span class="refinement-impact">+366% pressure</span>
+                    </div>
+                    <div class="refinement-card">
+                        <span class="refinement-icon">📐</span>
+                        <h4>Center of Mass</h4>
+                        <p>Lowered significantly with new design</p>
+                        <span class="refinement-impact">Reduced peel torque</span>
+                    </div>
+                    <div class="refinement-card">
+                        <span class="refinement-icon">🔧</span>
+                        <h4>Motor Mounts</h4>
+                        <p>Cantilevered → Fully constrained</p>
+                        <span class="refinement-impact">Eliminated play</span>
+                    </div>
+                    <div class="refinement-card">
+                        <span class="refinement-icon">📏</span>
+                        <h4>Shroud Tolerance</h4>
+                        <p>2mm → 1mm gap</p>
+                        <span class="refinement-impact">~50% more suction</span>
+                    </div>
+                    <div class="refinement-card">
+                        <span class="refinement-icon">⚖️</span>
+                        <h4>Chassis Weight</h4>
+                        <p>Complete redesign</p>
+                        <span class="refinement-impact">-110 grams</span>
+                    </div>
+                    <div class="refinement-card">
+                        <span class="refinement-icon">🔋</span>
+                        <h4>Power System</h4>
+                        <p>Onboard battery → Tethered</p>
+                        <span class="refinement-impact">Major weight reduction</span>
+                    </div>
+                </div>
             </article>
 
             <div style="text-align: center; margin-top: 3rem;">
-                <a href="index.html" class="cta-button">← Back to Home</a>
+                <a href="electrical.html" class="cta-button">Explore Electrical Design →</a>
+                <a href="index.html" class="cta-button secondary">← Back to Home</a>
             </div>
         </div>
     </section>
@@ -117,6 +1546,65 @@
     <script src="js/sketches.js"></script>
     <script src="js/spot-it-doodles.js"></script>
     <script src="mechanical.js"></script>
+    
+    <!-- 3D Model Viewer Controls -->
+    <script>
+        // Full Assembly Viewer Controls
+        function loadAssemblyView(view) {
+            const viewer = document.getElementById('full-assembly-viewer');
+            const buttons = document.querySelectorAll('.model-controls .model-btn');
+            
+            // Update button states
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            if (view === 'exploded') {
+                viewer.src = 'Mechanical_content/models/full-assembly-exploded.gltf';
+                buttons[1].classList.add('active'); // Exploded button
+            } else {
+                viewer.src = 'Mechanical_content/models/full-assembly.gltf';
+                buttons[0].classList.add('active'); // Assembled button
+            }
+        }
+        
+        function toggleAutoRotate() {
+            const viewer = document.getElementById('full-assembly-viewer');
+            const rotateBtn = document.querySelector('.model-controls .model-btn:last-child');
+            
+            viewer.autoRotate = !viewer.autoRotate;
+            
+            // Toggle button visual state
+            if (viewer.autoRotate) {
+                rotateBtn.classList.add('active');
+                rotateBtn.textContent = '⏸ Stop Rotate';
+            } else {
+                rotateBtn.classList.remove('active');
+                rotateBtn.textContent = '▶ Auto Rotate';
+            }
+        }
+        
+        // Docking Station Viewer Controls
+        function toggleDockingAutoRotate() {
+            const viewer = document.getElementById('docking-station-viewer');
+            const rotateBtn = event.target;
+            
+            viewer.autoRotate = !viewer.autoRotate;
+            
+            // Toggle button visual state
+            if (viewer.autoRotate) {
+                rotateBtn.classList.add('active');
+                rotateBtn.textContent = '⏸ Stop Rotate';
+            } else {
+                rotateBtn.classList.remove('active');
+                rotateBtn.textContent = '▶ Auto Rotate';
+            }
+        }
+        
+        // Initialize assembled button as active on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const assembledBtn = document.querySelector('.model-controls .model-btn:first-child');
+            if (assembledBtn) assembledBtn.classList.add('active');
+        });
+    </script>
 </body>
 
 </html>

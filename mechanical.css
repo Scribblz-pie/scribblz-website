@@ -15,3 +15,3714 @@
     opacity: 1;
     transform: none;
 }
+
+/* Match electrical page content-wrapper width (1400px like #system) */
+#overview .content-wrapper,
+#chassis .content-wrapper,
+#impeller .content-wrapper,
+#drive .content-wrapper,
+#skirt .content-wrapper,
+#power .content-wrapper,
+#localization .content-wrapper,
+#docking .content-wrapper,
+#summary .content-wrapper {
+    max-width: 1400px;
+    position: relative;
+    z-index: 20;
+}
+
+/* ============================================
+   SECTION NAVIGATION (Quick Nav Pills)
+   ============================================ */
+.section-nav {
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    background: rgba(248, 248, 248, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+.nav-pills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.nav-pill {
+    font-family: 'Cabin Sketch', cursive;
+    background: white;
+    color: #2C3E50;
+    padding: 0.5rem 1.25rem;
+    border: 3px solid #2C3E50;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 3px 3px 0px #2C3E50;
+}
+
+.nav-pill:hover {
+    background: #ffadad;
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 0px #2C3E50;
+}
+
+/* ============================================
+   SECTION STYLING
+   ============================================ */
+.wave-section {
+    padding: 4rem 0;
+    position: relative;
+}
+
+.alt-bg {
+    background: #f0f4f8;
+}
+
+/* Scroll margins for navigation */
+section[id] {
+    scroll-margin-top: 160px;
+}
+
+/* ============================================
+   MODEL VIEWER & PLACEHOLDERS
+   ============================================ */
+.model-viewer-container {
+    margin: 2rem auto;
+    max-width: 700px;
+}
+
+.model-placeholder,
+.image-placeholder {
+    background: linear-gradient(135deg, #e8f4f8 0%, #d4e4f7 100%);
+    border: 3px dashed #5A7C9E;
+    border-radius: 16px;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 3D Model Viewer Styles */
+model-viewer {
+    border: 3px solid #5A7C9E;
+    border-radius: 16px;
+    --poster-color: transparent;
+}
+
+model-viewer::part(default-progress-bar) {
+    background-color: #5A7C9E;
+    height: 6px;
+}
+
+.model-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background: linear-gradient(135deg, #e8f4f8 0%, #d4e4f7 100%);
+}
+
+.model-loading .placeholder-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s ease infinite;
+}
+
+.model-loading p {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1.2rem;
+    color: #5A7C9E;
+    margin: 0;
+}
+
+.model-loading .placeholder-hint {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.image-placeholder img {
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+}
+
+.image-placeholder.small img {
+    max-height: 150px;
+}
+
+.image-placeholder.wide img {
+    max-height: 200px;
+    max-width: 100%;
+}
+
+/* Video placeholder styling */
+.video-placeholder {
+    background: linear-gradient(135deg, #e8f4f8 0%, #d4e4f7 100%);
+    border: 3px solid #5A7C9E;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-placeholder video {
+    width: 100%;
+    height: auto;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.model-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s ease;
+}
+
+.model-placeholder:hover::before {
+    left: 100%;
+}
+
+.model-placeholder:hover,
+.image-placeholder:hover {
+    border-style: solid;
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(90, 124, 158, 0.2);
+}
+
+.model-placeholder.small,
+.image-placeholder.small {
+    min-height: 150px;
+    padding: 2rem 1.5rem;
+}
+
+.model-placeholder.large {
+    min-height: 300px;
+    padding: 4rem 2rem;
+}
+
+.image-placeholder.wide {
+    min-height: 180px;
+}
+
+.placeholder-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.placeholder-icon {
+    font-size: 3rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.placeholder-hint {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+.placeholder-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1.1rem;
+    color: #5A7C9E;
+    font-weight: bold;
+}
+
+.model-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.model-btn {
+    font-family: 'Cabin Sketch', cursive;
+    background: white;
+    border: 2px solid #5A7C9E;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
+}
+
+.model-btn:hover {
+    background: #5A7C9E;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.model-btn.active {
+    background: #5A7C9E;
+    color: white;
+    box-shadow: 0 4px 12px rgba(90, 124, 158, 0.4);
+}
+
+/* ============================================
+   KEY SUBSYSTEMS GRID
+   ============================================ */
+.key-subsystems {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.subsystem-card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.subsystem-card:hover {
+    border-color: #ffadad;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.subsystem-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.subsystem-card h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.subsystem-card p {
+    font-size: 0.95rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* ============================================
+   SPLIT CONTENT LAYOUT
+   ============================================ */
+.split-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.split-content.reverse {
+    direction: rtl;
+}
+
+.split-content.reverse > * {
+    direction: ltr;
+}
+
+@media (max-width: 768px) {
+    .split-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .split-content.reverse {
+        direction: ltr;
+    }
+}
+
+.content-text {
+    padding: 1rem 0;
+}
+
+.content-visual {
+    width: 100%;
+}
+
+/* ============================================
+   FEATURE LIST
+   ============================================ */
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.feature-list li:last-child {
+    border-bottom: none;
+}
+
+.list-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+/* ============================================
+   EVOLUTION TIMELINE
+   ============================================ */
+.evolution-timeline {
+    margin: 2.5rem 0;
+}
+
+.evolution-timeline h4 {
+    font-family: 'Permanent Marker', cursive;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #2C3E50;
+    margin-bottom: 1.5rem;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 60px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 25px;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #ffadad, #ffd6a5, #caffbf);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+    border-color: #ffadad;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -47px;
+    top: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background: #ffadad;
+    border: 3px solid #2C3E50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 0.9rem;
+    color: #2C3E50;
+}
+
+.timeline-content h5 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2rem;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-stat {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+.timeline-stat.positive {
+    background: #caffbf;
+    color: #2d5a27;
+}
+
+.timeline-stat.negative {
+    background: #ffadad;
+    color: #8b3a3a;
+}
+
+/* ============================================
+   COMPARISON IMAGES
+   ============================================ */
+.comparison-images {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.comparison-arrow {
+    font-size: 2rem;
+    color: #5A7C9E;
+    font-weight: bold;
+}
+
+/* ============================================
+   INSIGHT BOX
+   ============================================ */
+.insight-box {
+    background: linear-gradient(135deg, #fff9c4 0%, #ffe082 100%);
+    border: 3px solid #f9a825;
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    margin: 2rem 0;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+.insight-box.critical {
+    background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+    border-color: #e53935;
+}
+
+.insight-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.insight-content h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.insight-action {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 2px dashed rgba(0,0,0,0.1);
+    font-weight: bold;
+}
+
+/* ============================================
+   BEFORE/AFTER COMPARISON
+   ============================================ */
+.before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 600px) {
+    .before-after {
+        grid-template-columns: 1fr;
+    }
+}
+
+.ba-item {
+    text-align: center;
+}
+
+.ba-item p {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* ============================================
+   APPROACH CARDS (Impeller Evolution)
+   ============================================ */
+.approach-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.approach-card {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 3px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.approach-card.failed {
+    border-color: #ffadad;
+}
+
+.approach-card.partial {
+    border-color: #ffd6a5;
+}
+
+.approach-card.success {
+    border-color: #caffbf;
+    box-shadow: 0 4px 20px rgba(202, 255, 191, 0.4);
+}
+
+.approach-header {
+    margin-bottom: 1rem;
+}
+
+.approach-status {
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.approach-card h4 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.3rem;
+    color: #2C3E50;
+}
+
+.approach-result {
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    font-size: 0.95rem;
+}
+
+.approach-result.success-result {
+    background: #e8f5e9;
+}
+
+.spec-highlight {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: #f0f4f8;
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+.spec-highlight.success-spec {
+    background: #e8f5e9;
+}
+
+.spec-label {
+    font-weight: bold;
+    color: #666;
+}
+
+.spec-value {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2rem;
+    color: #2C3E50;
+}
+
+.spec-improvement {
+    background: #caffbf;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #2d5a27;
+    margin-left: auto;
+}
+
+/* ============================================
+   TECH NOTE
+   ============================================ */
+.tech-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #f8f9fa;
+    border-left: 4px solid #5A7C9E;
+    margin: 1.5rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.tech-note.centered {
+    justify-content: center;
+    border-left: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}
+
+.note-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.tech-note p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ============================================
+   COMPARISON TABLE
+   ============================================ */
+.comparison-table-container {
+    overflow-x: auto;
+    margin: 2rem 0;
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.comparison-table th,
+.comparison-table td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.comparison-table th {
+    background: #2C3E50;
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+}
+
+.comparison-table td.highlight {
+    background: #e8f5e9;
+    font-weight: bold;
+}
+
+.comparison-table .need-cell {
+    text-align: center;
+    background: #fff9c4;
+    font-style: italic;
+}
+
+/* ============================================
+   VARIABLE GRID
+   ============================================ */
+.variable-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.variable-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.variable-item:hover {
+    border-color: #5A7C9E;
+    transform: translateX(5px);
+}
+
+.var-icon {
+    font-size: 1.3rem;
+}
+
+.var-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ============================================
+   MANUFACTURING COMPARISON
+   ============================================ */
+.manufacturing-comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .manufacturing-comparison {
+        grid-template-columns: 1fr;
+    }
+}
+
+.mfg-method {
+    padding: 1.5rem;
+    border-radius: 16px;
+    border: 3px solid;
+}
+
+.mfg-method.failed-method {
+    border-color: #ffadad;
+    background: #fff5f5;
+}
+
+.mfg-method.success-method {
+    border-color: #caffbf;
+    background: #f5fff5;
+}
+
+.mfg-method h4 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2C3E50;
+}
+
+.mfg-issues,
+.mfg-benefits {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.mfg-issues li,
+.mfg-benefits li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.mfg-issues li::before {
+    content: '✗';
+    position: absolute;
+    left: 0;
+    color: #e53935;
+    font-weight: bold;
+}
+
+.mfg-benefits li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #43a047;
+    font-weight: bold;
+}
+
+.failure-story {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    margin-top: 1rem;
+    border: 2px solid #ffadad;
+}
+
+.story-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.success-stat {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+    border: 2px solid #caffbf;
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+}
+
+/* ============================================
+   CHALLENGE BREAKDOWN (Drive System)
+   ============================================ */
+.challenge-breakdown {
+    margin: 2rem 0;
+}
+
+.challenge-intro {
+    margin-bottom: 1.5rem;
+}
+
+.friction-stack {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 16px;
+}
+
+.friction-layer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    border: 2px solid #ffadad;
+}
+
+.layer-num {
+    width: 28px;
+    height: 28px;
+    background: #ffadad;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.layer-issue {
+    font-size: 0.95rem;
+}
+
+.stack-plus,
+.stack-equals {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #666;
+}
+
+.friction-result {
+    background: #e53935;
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-top: 1rem;
+    width: 100%;
+    text-align: center;
+}
+
+.result-text {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2rem;
+}
+
+.solution-box {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+    border: 2px solid #66bb6a;
+}
+
+.solution-box h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2d5a27;
+    margin-bottom: 0.75rem;
+}
+
+/* ============================================
+   SPECS BOX
+   ============================================ */
+.specs-box {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    border: 2px solid #e0e0e0;
+}
+
+.specs-box h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.specs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.specs-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.specs-list li:last-child {
+    border-bottom: none;
+}
+
+.spec-name {
+    font-weight: bold;
+    color: #666;
+}
+
+.spec-val {
+    color: #2C3E50;
+}
+
+/* ============================================
+   ANALOGY BOX
+   ============================================ */
+.analogy-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    border-radius: 12px;
+    margin: 1.5rem 0;
+    border: 2px solid #42a5f5;
+}
+
+.analogy-icon {
+    font-size: 2.5rem;
+    flex-shrink: 0;
+}
+
+.analogy-box p {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+/* ============================================
+   DUAL REQUIREMENT
+   ============================================ */
+.dual-requirement {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 600px) {
+    .dual-requirement {
+        grid-template-columns: 1fr;
+    }
+}
+
+.requirement {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    position: relative;
+    padding-top: 2.5rem;
+}
+
+.req-num {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    background: #ffadad;
+    border: 3px solid #2C3E50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2rem;
+}
+
+.requirement h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   TEST GRID (Materials Tested)
+   ============================================ */
+.test-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.test-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+.test-item.failed {
+    border-color: #ffadad;
+    background: #fff5f5;
+}
+
+.test-item.success {
+    border-color: #caffbf;
+    background: #f5fff5;
+    transform: scale(1.05);
+    box-shadow: 0 4px 16px rgba(202, 255, 191, 0.4);
+}
+
+.test-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.test-name {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.test-result {
+    font-size: 1.2rem;
+}
+
+/* ============================================
+   WINNING SOLUTION
+   ============================================ */
+.winning-solution {
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    padding: 2rem;
+    border-radius: 16px;
+    margin-top: 2rem;
+    border: 3px solid #66bb6a;
+}
+
+.winning-solution h4 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.5rem;
+    color: #2d5a27;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.solution-benefits {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.5rem;
+}
+
+.solution-benefits li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.benefit-icon {
+    color: #43a047;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* ============================================
+   VOLTAGE COMPARISON
+   ============================================ */
+.voltage-comparison {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    flex-wrap: wrap;
+}
+
+.voltage-case {
+    background: white;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+}
+
+.voltage-case h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+}
+
+.voltage-arrow {
+    font-size: 2rem;
+    color: #5A7C9E;
+}
+
+/* ============================================
+   POWER TIMELINE
+   ============================================ */
+.power-timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.power-attempt {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    position: relative;
+    padding-left: 4rem;
+}
+
+.power-attempt.success {
+    border-color: #caffbf;
+    background: #f5fff5;
+}
+
+.attempt-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.attempt-num {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    background: #f0f4f8;
+    border: 2px solid #5A7C9E;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.power-attempt.success .attempt-num {
+    background: #caffbf;
+    border-color: #43a047;
+}
+
+.attempt-header h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin: 0;
+}
+
+.attempt-status {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+    background: #f0f4f8;
+}
+
+.attempt-status.warning {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.attempt-status.success {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+/* ============================================
+   LOCALIZATION METHODS
+   ============================================ */
+.localization-methods {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-radius: 16px;
+}
+
+.loc-method,
+.loc-result {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    text-align: center;
+    min-width: 150px;
+}
+
+.loc-result {
+    border-color: #caffbf;
+    background: #f5fff5;
+}
+
+.loc-icon {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.loc-method h4,
+.loc-result h4 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    color: #2C3E50;
+    margin-bottom: 0.25rem;
+}
+
+.loc-method p,
+.loc-result p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.loc-plus,
+.loc-equals {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #666;
+}
+
+/* ============================================
+   FUNCTION GRID (Docking Station)
+   ============================================ */
+.function-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.function-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.function-card:hover {
+    border-color: #5A7C9E;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.function-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.function-card h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+}
+
+.function-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+/* ============================================
+   SPOOL EXPLANATION
+   ============================================ */
+.spool-explanation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .spool-explanation {
+        grid-template-columns: 1fr;
+    }
+}
+
+.spool-problem,
+.spool-solution {
+    padding: 1.5rem;
+    border-radius: 12px;
+}
+
+.spool-problem {
+    background: #fff3e0;
+    border: 2px solid #ffb74d;
+}
+
+.spool-solution {
+    background: #e8f5e9;
+    border: 2px solid #66bb6a;
+}
+
+.spool-problem h4,
+.spool-solution h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin-bottom: 1rem;
+}
+
+.solution-steps {
+    list-style: none;
+    padding: 0;
+    margin-top: 1rem;
+}
+
+.solution-steps li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.solution-steps li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: #43a047;
+}
+
+/* ============================================
+   CONSTRAINTS LIST
+   ============================================ */
+.constraint-diagram {
+    margin: 2rem 0;
+}
+
+.constraints-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.constraint {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border: 2px solid #e0e0e0;
+}
+
+.constraint-icon {
+    font-size: 1.5rem;
+}
+
+/* ============================================
+   ELECTRONICS LAYOUT
+   ============================================ */
+.electronics-layout {
+    margin: 2rem 0;
+}
+
+.electronics-features {
+    margin-top: 1.5rem;
+}
+
+.feature-columns {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 0.75rem;
+}
+
+.feature-columns li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.feature-icon {
+    font-size: 1.3rem;
+}
+
+/* ============================================
+   REFINEMENTS GRID (Summary)
+   ============================================ */
+.refinements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.refinement-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.refinement-card:hover {
+    border-color: #caffbf;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.refinement-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.refinement-card h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin-bottom: 0.5rem;
+}
+
+.refinement-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+}
+
+.refinement-impact {
+    display: inline-block;
+    background: #caffbf;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    color: #2d5a27;
+}
+
+/* ============================================
+   CTA BUTTONS
+   ============================================ */
+.cta-button.secondary {
+    background: white;
+    color: #2C3E50;
+    margin-left: 1rem;
+}
+
+.cta-button.secondary:hover {
+    background: #f0f4f8;
+}
+
+/* ============================================
+   FADE IN ANIMATION
+   ============================================ */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation for multiple items */
+.featured-post:nth-child(1) { animation-delay: 0.1s; }
+.featured-post:nth-child(2) { animation-delay: 0.2s; }
+.featured-post:nth-child(3) { animation-delay: 0.3s; }
+.featured-post:nth-child(4) { animation-delay: 0.4s; }
+
+/* ============================================
+   ARTICLE H3 STYLING
+   ============================================ */
+.featured-post h3 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.6rem;
+    color: #2C3E50;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 3px solid #ffadad;
+    display: inline-block;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+@media (max-width: 480px) {
+    .nav-pills {
+        gap: 0.5rem;
+    }
+    
+    .nav-pill {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .friction-stack {
+        padding: 1rem;
+    }
+    
+    .friction-layer {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .timeline {
+        padding-left: 40px;
+    }
+    
+    .timeline-marker {
+        left: -35px;
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ============================================
+   INTERACTIVE DEMOS - SHARED STYLES
+   ============================================ */
+.interactive-demo {
+    background: linear-gradient(135deg, #fff 0%, #f8fafc 100%);
+    border: 3px solid #5A7C9E !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.interactive-demo::before {
+    content: '🎮 INTERACTIVE';
+    position: absolute;
+    top: 15px;
+    right: -35px;
+    background: #ffadad;
+    color: #2C3E50;
+    padding: 0.25rem 2.5rem;
+    font-size: 0.75rem;
+    font-weight: bold;
+    transform: rotate(45deg);
+    font-family: 'Cabin Sketch', cursive;
+}
+
+.demo-instruction {
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #42a5f5;
+    font-style: italic;
+}
+
+.demo-btn {
+    font-family: 'Cabin Sketch', cursive;
+    background: #ffadad;
+    color: #2C3E50;
+    border: 2px solid #2C3E50;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    box-shadow: 3px 3px 0 #2C3E50;
+}
+
+.demo-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 0 #2C3E50;
+}
+
+.demo-btn:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 0 #2C3E50;
+}
+
+.demo-btn.secondary {
+    background: white;
+}
+
+.demo-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+.legend-color.inlet-color { background: #42a5f5; }
+.legend-color.outlet-color { background: #ef5350; }
+.legend-color.particle-color { background: #66bb6a; }
+
+.demo-tip, .demo-insight {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #fff9c4;
+    border-radius: 8px;
+    margin-top: 1.5rem;
+    border: 2px solid #fbc02d;
+}
+
+.tip-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.demo-insight {
+    background: #e8f5e9;
+    border-color: #66bb6a;
+}
+
+/* ============================================
+   IMPELLER FLUID DYNAMICS DEMO
+   ============================================ */
+.impeller-demo-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .impeller-demo-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.impeller-visualization {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 20px 20px 20px;
+}
+
+.impeller-svg {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    background: radial-gradient(circle at center, #f0f4f8 0%, #e3e8ed 100%);
+    border-radius: 16px;
+    border: 3px solid #5A7C9E;
+    position: relative;
+    z-index: 1;
+}
+
+.impeller-housing {
+    fill: none;
+    stroke: #2C3E50;
+    stroke-width: 4;
+}
+
+.impeller-volute {
+    fill: rgba(90, 124, 158, 0.1);
+}
+
+.impeller-hub {
+    fill: #5A7C9E;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.impeller-blades {
+    transform-origin: 150px 150px;
+    transition: transform 0.1s linear;
+}
+
+.blade {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 1.5;
+}
+
+.flow-arrow {
+    stroke-width: 3;
+    stroke: #ffadad;
+    fill: none;
+}
+
+.flow-arrow.inlet {
+    stroke: #42a5f5;
+}
+
+.flow-arrow.outlet {
+    stroke: #ef5350;
+}
+
+/* Air particles */
+.air-particle {
+    fill: #66bb6a;
+    opacity: 0.8;
+}
+
+.pressure-gauge {
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    background: white;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 2px solid #5A7C9E;
+    text-align: center;
+    z-index: 5;
+}
+
+.gauge-label {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.gauge-bar {
+    width: 80px;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.gauge-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #66bb6a, #ffc107, #ef5350);
+    transition: width 0.3s ease;
+    border-radius: 6px;
+}
+
+.gauge-value {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1rem;
+    color: #2C3E50;
+    margin-top: 0.25rem;
+}
+
+.rpm-display {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.rpm-value {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2.5rem;
+    color: #2C3E50;
+}
+
+.rpm-label {
+    font-size: 0.9rem;
+    color: #666;
+    margin-left: 0.25rem;
+}
+
+.impeller-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    min-width: 200px;
+}
+
+.impeller-controls label {
+    font-family: 'Cabin Sketch', cursive;
+    font-weight: bold;
+    color: #2C3E50;
+}
+
+.speed-slider {
+    width: 100%;
+    height: 12px;
+    border-radius: 6px;
+    background: #e0e0e0;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.speed-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #ffadad;
+    border: 3px solid #2C3E50;
+    cursor: pointer;
+    box-shadow: 2px 2px 0 #2C3E50;
+}
+
+.speed-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.speed-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* ============================================
+   KIWI DRIVE SIMULATOR
+   ============================================ */
+.kiwi-demo-container {
+    display: grid;
+    grid-template-columns: 1fr 250px;
+    gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .kiwi-demo-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.kiwi-arena {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 3px solid #5A7C9E;
+}
+
+.glass-surface {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 50%, #e3f2fd 100%);
+}
+
+.glass-reflection {
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    width: 30%;
+    height: 60%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 100%);
+    border-radius: 50%;
+    transform: rotate(-20deg);
+}
+
+.kiwi-robot {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+    transition: filter 0.2s;
+}
+
+.kiwi-robot:active {
+    cursor: grabbing;
+    filter: drop-shadow(4px 8px 12px rgba(0,0,0,0.4));
+}
+
+.robot-body {
+    fill: #5A7C9E;
+    stroke: #2C3E50;
+    stroke-width: 3;
+}
+
+.robot-direction {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.wheel-body {
+    fill: #2C3E50;
+}
+
+.wheel-roller {
+    stroke: #666;
+    stroke-width: 2;
+}
+
+.impeller-indicator {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.mini-blade {
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.mini-impeller {
+    transform-origin: 60px 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.trail-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.movement-vector {
+    position: absolute;
+    width: 2px;
+    height: 40px;
+    background: #ef5350;
+    transform-origin: bottom center;
+    display: none;
+}
+
+.kiwi-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.joystick-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.joystick-base {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #e0e0e0 0%, #bdbdbd 100%);
+    border-radius: 50%;
+    border: 4px solid #5A7C9E;
+    position: relative;
+    box-shadow: inset 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.joystick-knob {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, #ffadad, #ff8a8a);
+    border-radius: 50%;
+    border: 3px solid #2C3E50;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: grab;
+    box-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+    transition: box-shadow 0.2s;
+}
+
+.joystick-knob:active {
+    cursor: grabbing;
+    box-shadow: 4px 8px 16px rgba(0,0,0,0.4);
+}
+
+.joystick-label {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.rotation-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.rotate-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 3px solid #2C3E50;
+    background: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 2px 2px 0 #2C3E50;
+}
+
+.rotate-btn:hover {
+    background: #ffadad;
+    transform: translateY(-2px);
+}
+
+.rotate-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 0 #2C3E50;
+}
+
+.wheel-speeds {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.wheel-speed {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wheel-label {
+    font-size: 0.8rem;
+    width: 60px;
+    color: #666;
+}
+
+.speed-bar {
+    flex: 1;
+    height: 12px;
+    background: #e0e0e0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.speed-fill {
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(90deg, #66bb6a, #ffadad);
+    border-radius: 6px;
+    transition: width 0.1s;
+}
+
+/* ============================================
+   VACUUM SEAL DEMO
+   ============================================ */
+.vacuum-demo-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+.vacuum-visualization {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.vacuum-svg {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    height: auto;
+    background: linear-gradient(180deg, #e3f2fd 0%, #fff 100%);
+    border-radius: 12px;
+    border: 3px solid #5A7C9E;
+    cursor: crosshair;
+}
+
+.glass-line {
+    stroke: #42a5f5;
+    stroke-width: 4;
+    fill: none;
+}
+
+.vacuum-robot-body {
+    fill: #5A7C9E;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.impeller-circle {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.v-blade {
+    stroke: #2C3E50;
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.skirt-line {
+    stroke: #66bb6a;
+    stroke-width: 6;
+    fill: none;
+    stroke-linecap: round;
+}
+
+.vacuum-chamber {
+    fill: rgba(66, 165, 245, 0.2);
+}
+
+.air-leak {
+    fill: none;
+    stroke: #ef5350;
+    stroke-width: 2;
+    stroke-dasharray: 4 4;
+    animation: leakFlow 0.5s linear infinite;
+}
+
+@keyframes leakFlow {
+    from { stroke-dashoffset: 8; }
+    to { stroke-dashoffset: 0; }
+}
+
+.diagram-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 14px;
+    fill: #666;
+}
+
+.diagram-label.small {
+    font-size: 11px;
+}
+
+.vacuum-pressure-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid #5A7C9E;
+    min-width: 140px;
+}
+
+.pressure-dial {
+    text-align: center;
+}
+
+.dial-svg {
+    width: 100px;
+    height: 60px;
+}
+
+.dial-bg {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 8;
+    stroke-linecap: round;
+}
+
+.dial-needle {
+    stroke: #ef5350;
+    stroke-width: 3;
+    stroke-linecap: round;
+    transform-origin: 50px 50px;
+    transition: transform 0.3s ease;
+}
+
+.dial-label {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.pressure-reading {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.5rem;
+    color: #2C3E50;
+}
+
+.pressure-unit {
+    font-family: 'Indie Flower', cursive;
+    font-size: 1rem;
+    color: #666;
+}
+
+.seal-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.status-indicator.good {
+    background: #66bb6a;
+}
+
+.status-indicator.warning {
+    background: #ffc107;
+}
+
+.status-indicator.bad {
+    background: #ef5350;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.9); }
+}
+
+.vacuum-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.skirt-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.skirt-selector label {
+    font-family: 'Cabin Sketch', cursive;
+    font-weight: bold;
+    color: #2C3E50;
+}
+
+.skirt-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.skirt-btn {
+    font-family: 'Cabin Sketch', cursive;
+    padding: 0.5rem 1rem;
+    border: 2px solid #e0e0e0;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.skirt-btn:hover {
+    border-color: #5A7C9E;
+}
+
+.skirt-btn.active {
+    background: #caffbf;
+    border-color: #66bb6a;
+}
+
+.surface-controls {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   SLIP RING DEMO
+   ============================================ */
+.slip-ring-demo-container {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 2rem;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .slip-ring-demo-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.slip-ring-visualization {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slip-ring-svg {
+    width: 100%;
+    max-width: 300px;
+    background: radial-gradient(circle at center, #f8f9fa 0%, #e0e0e0 100%);
+    border-radius: 16px;
+    border: 3px solid #5A7C9E;
+    cursor: grab;
+}
+
+.slip-ring-svg:active {
+    cursor: grabbing;
+}
+
+.tether-line {
+    stroke: #2C3E50;
+    stroke-width: 4;
+}
+
+.tether-connector {
+    fill: #5A7C9E;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.slip-ring-housing {
+    fill: #e0e0e0;
+    stroke: #2C3E50;
+    stroke-width: 3;
+}
+
+.contact-ring {
+    fill: none;
+    stroke: #ffc107;
+    stroke-width: 3;
+}
+
+.slip-robot {
+    transform-origin: 150px 140px;
+    transition: transform 0.05s linear;
+}
+
+.sr-robot-body {
+    fill: #5A7C9E;
+    stroke: #2C3E50;
+    stroke-width: 3;
+}
+
+.brush-line {
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.brush {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 1;
+}
+
+.sr-direction {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.sr-wheel-body {
+    fill: #2C3E50;
+}
+
+.lidar-target {
+    fill: #caffbf;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.electrical-flow circle {
+    fill: #ffc107;
+    animation: flowPulse 0.5s ease-in-out infinite;
+}
+
+@keyframes flowPulse {
+    0%, 100% { opacity: 1; r: 3; }
+    50% { opacity: 0.5; r: 5; }
+}
+
+.sr-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 12px;
+    fill: #666;
+}
+
+.rotation-counter {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.counter-value {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2rem;
+    color: #2C3E50;
+}
+
+.counter-label {
+    display: block;
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.connection-status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    background: #e8f5e9;
+    border-radius: 20px;
+}
+
+.status-light {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+.status-light.connected {
+    background: #66bb6a;
+}
+
+.slip-ring-info {
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+}
+
+.slip-ring-info h4 {
+    font-family: 'Permanent Marker', cursive;
+    color: #2C3E50;
+    margin-bottom: 1rem;
+}
+
+.info-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.info-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.step-num {
+    width: 28px;
+    height: 28px;
+    background: #ffadad;
+    border: 2px solid #2C3E50;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.info-step p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* ============================================
+   SPOOL DEMO
+   ============================================ */
+.spool-demo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.spool-visualization {
+    position: relative;
+}
+
+.spool-svg {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    background: linear-gradient(180deg, #87ceeb 0%, #e3f2fd 30%, #e3f2fd 100%);
+    border-radius: 12px;
+    border: 3px solid #5A7C9E;
+}
+
+.window-bg {
+    fill: rgba(255, 255, 255, 0.3);
+}
+
+.window-frame {
+    stroke: #5A7C9E;
+    stroke-width: 4;
+}
+
+.station-body {
+    fill: #5A7C9E;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.lidar-body {
+    fill: #2C3E50;
+}
+
+.lidar-beam {
+    stroke: #ef5350;
+    stroke-width: 2;
+    stroke-dasharray: 8 4;
+    opacity: 0.6;
+    animation: beamScan 2s ease-in-out infinite;
+}
+
+@keyframes beamScan {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.8; }
+}
+
+.spool-wheel {
+    fill: #e0e0e0;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.spool-center {
+    fill: #2C3E50;
+}
+
+.spool-tether {
+    fill: none;
+    stroke: #2C3E50;
+    stroke-width: 4;
+}
+
+.tether-guide {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.tether-cable {
+    fill: none;
+    stroke: #2C3E50;
+    stroke-width: 3;
+}
+
+.spool-robot {
+    cursor: grab;
+    transition: filter 0.2s;
+}
+
+.spool-robot:active {
+    cursor: grabbing;
+}
+
+.spool-robot-body {
+    fill: #5A7C9E;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.spool-robot-target {
+    fill: #caffbf;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.spool-robot-dir {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 1;
+}
+
+.lidar-detection {
+    fill: #caffbf;
+    stroke: #66bb6a;
+    stroke-width: 2;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.lidar-detection.detected {
+    opacity: 1;
+    animation: detected 0.5s ease-out;
+}
+
+@keyframes detected {
+    0% { r: 5; opacity: 0; }
+    50% { r: 15; opacity: 1; }
+    100% { r: 10; opacity: 1; }
+}
+
+.spool-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 11px;
+    fill: #666;
+}
+
+.spool-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.status-item {
+    text-align: center;
+}
+
+.status-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.25rem;
+}
+
+.status-value {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    color: #2C3E50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.status-dot.good {
+    background: #66bb6a;
+}
+
+.status-dot.warning {
+    background: #ffc107;
+}
+
+.spool-controls {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   UPDATED SLIP RING DEMO STYLES
+   ============================================ */
+.slip-ring-svg {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+}
+
+.sr-section-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 12px;
+    fill: #666;
+    font-weight: bold;
+}
+
+.sr-divider {
+    stroke: #ccc;
+    stroke-width: 1;
+}
+
+.power-box {
+    fill: #2C3E50;
+    stroke: #1a252f;
+    stroke-width: 2;
+}
+
+.power-label {
+    fill: white;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 14px;
+}
+
+.power-label.small {
+    font-size: 10px;
+}
+
+.power-wire {
+    stroke-width: 3;
+    fill: none;
+}
+
+.power-wire.positive {
+    stroke: #ef5350;
+}
+
+.power-wire.negative {
+    stroke: #2196F3;
+}
+
+.wire-label {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16px;
+    fill: #333;
+}
+
+.brush-holder {
+    fill: #90a4ae;
+    stroke: #607d8b;
+    stroke-width: 1;
+}
+
+.brush {
+    stroke-width: 1;
+}
+
+.brush.positive {
+    fill: #ffcdd2;
+    stroke: #ef5350;
+}
+
+.brush.negative {
+    fill: #bbdefb;
+    stroke: #2196F3;
+}
+
+.brush-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 9px;
+    fill: #666;
+}
+
+.rotor-shaft {
+    fill: #78909c;
+    stroke: #546e7a;
+    stroke-width: 2;
+}
+
+.slip-ring {
+    stroke-width: 2;
+}
+
+.slip-ring.positive {
+    fill: #ffcdd2;
+    stroke: #ef5350;
+}
+
+.slip-ring.negative {
+    fill: #bbdefb;
+    stroke: #2196F3;
+}
+
+.ring-insulator {
+    fill: #424242;
+}
+
+.rotor-wire {
+    stroke-width: 3;
+    fill: none;
+}
+
+.rotor-wire.positive {
+    stroke: #ef5350;
+}
+
+.rotor-wire.negative {
+    stroke: #2196F3;
+}
+
+.output-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 11px;
+    fill: #666;
+}
+
+.motor-symbol {
+    fill: #e0e0e0;
+    stroke: #333;
+    stroke-width: 2;
+}
+
+.motor-m {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 20px;
+    fill: #333;
+}
+
+.slip-ring-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255,255,255,0.5);
+    border-radius: 12px;
+}
+
+.current-flow {
+    text-align: center;
+}
+
+.flow-label {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.flow-value {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2rem;
+    color: #66bb6a;
+    margin-left: 0.5rem;
+}
+
+.slip-ring-info {
+    flex: 1;
+    min-width: 280px;
+}
+
+.slip-ring-info h4 {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #2C3E50;
+}
+
+.info-step {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    align-items: flex-start;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content strong {
+    display: block;
+    color: #2C3E50;
+    margin-bottom: 0.25rem;
+}
+
+.step-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.slip-ring-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.why-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #fff3cd;
+    border-radius: 8px;
+    border-left: 4px solid #ffc107;
+    font-size: 0.9rem;
+}
+
+.current-particle {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.current-particle.positive {
+    fill: #ef5350;
+}
+
+.current-particle.negative {
+    fill: #2196F3;
+}
+
+/* ============================================
+   UPDATED SPOOL DEMO STYLES
+   ============================================ */
+.window-frame-top {
+    fill: #5A7C9E;
+}
+
+.frame-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 12px;
+    fill: white;
+}
+
+.station-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 10px;
+    fill: #333;
+}
+
+.spool-wheel-bg {
+    fill: #e0e0e0;
+    stroke: #999;
+    stroke-width: 2;
+}
+
+.lidar-sensor .lidar-body {
+    fill: #333;
+}
+
+.lidar-label {
+    fill: #666;
+    font-family: 'Cabin Sketch', cursive;
+}
+
+.lidar-beam {
+    stroke: #66bb6a;
+    stroke-width: 2;
+    stroke-dasharray: 8,4;
+    opacity: 0.6;
+}
+
+.tether-cable {
+    stroke: #2C3E50;
+    stroke-width: 3;
+    fill: none;
+}
+
+.spool-robot-body {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 3;
+}
+
+.spool-robot-target {
+    fill: #66bb6a;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.spool-robot-dir {
+    fill: #2C3E50;
+}
+
+.robot-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 11px;
+    fill: #666;
+}
+
+.glass-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 11px;
+    fill: #999;
+}
+
+/* ============================================
+   FREE BODY DIAGRAM DEMO STYLES
+   ============================================ */
+.fbd-demo-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.fbd-visualization {
+    flex: 1.5;
+    min-width: 350px;
+}
+
+.fbd-svg {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+}
+
+.fbd-glass {
+    fill: #e3f2fd;
+}
+
+.fbd-surface-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 12px;
+    fill: #666;
+}
+
+.fbd-chassis {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.fbd-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 11px;
+    fill: #333;
+}
+
+.fbd-impeller {
+    fill: #5A7C9E;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.fbd-imp-label {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16px;
+    fill: white;
+}
+
+.fbd-wheel-circle {
+    fill: #666;
+    stroke: #333;
+    stroke-width: 2;
+}
+
+.fbd-skirt {
+    stroke: #66bb6a;
+    stroke-width: 6;
+    fill: none;
+    stroke-linecap: round;
+}
+
+.force-arrow {
+    stroke-width: 2;
+    fill: none;
+}
+
+.force-arrow.vacuum {
+    stroke: #5A7C9E;
+}
+
+.force-arrow.weight {
+    stroke: #666;
+}
+
+.force-arrow.normal {
+    stroke: #66bb6a;
+}
+
+.force-arrow.friction.good {
+    stroke: #66bb6a;
+}
+
+.force-arrow.friction.bad {
+    stroke: #ef5350;
+}
+
+.force-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 11px;
+}
+
+.force-label.vacuum {
+    fill: #5A7C9E;
+}
+
+.force-label.weight {
+    fill: #666;
+}
+
+.force-label.normal {
+    fill: #66bb6a;
+}
+
+.force-label.friction {
+    fill: #66bb6a;
+}
+
+.force-label.friction.bad {
+    fill: #ef5350;
+}
+
+.force-value {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 12px;
+    fill: #5A7C9E;
+}
+
+.fbd-controls {
+    flex: 1;
+    min-width: 280px;
+}
+
+.fbd-slider-group {
+    margin-bottom: 1.5rem;
+}
+
+.fbd-slider-group label {
+    display: block;
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #2C3E50;
+}
+
+.fbd-slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 4px;
+    background: #e0e0e0;
+    appearance: none;
+    outline: none;
+}
+
+.fbd-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #5A7C9E;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.slider-value {
+    display: inline-block;
+    margin-left: 1rem;
+    font-family: 'Permanent Marker', cursive;
+    color: #5A7C9E;
+}
+
+.fbd-results {
+    background: #f5f5f5;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.fbd-result {
+    margin-bottom: 0.75rem;
+}
+
+.fbd-result .result-label {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+.fbd-result .result-value {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    float: right;
+}
+
+.fbd-result.good .result-value {
+    color: #66bb6a;
+}
+
+.fbd-result.bad .result-value {
+    color: #ef5350;
+}
+
+.fbd-result.net .result-value {
+    color: #5A7C9E;
+    font-size: 1.3rem;
+}
+
+.result-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin-top: 0.25rem;
+    overflow: hidden;
+}
+
+.result-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s;
+}
+
+.result-fill.good {
+    background: #66bb6a;
+}
+
+.result-fill.bad {
+    background: #ef5350;
+}
+
+.fbd-presets {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.preset-btn {
+    font-family: 'Cabin Sketch', cursive;
+    padding: 0.5rem 1rem;
+    border: 2px solid #5A7C9E;
+    border-radius: 20px;
+    background: white;
+    color: #5A7C9E;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.85rem;
+}
+
+.preset-btn:hover {
+    background: #5A7C9E;
+    color: white;
+}
+
+.fbd-insight {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #e8f5e9;
+    border-radius: 8px;
+    border-left: 4px solid #66bb6a;
+}
+
+.fbd-insight h4 {
+    margin: 0 0 0.5rem 0;
+    font-family: 'Cabin Sketch', cursive;
+    color: #2e7d32;
+}
+
+.fbd-insight p {
+    margin: 0.5rem 0;
+    font-size: 0.95rem;
+}
+
+/* ============================================
+   COMPLIANCE DEMO STYLES
+   ============================================ */
+.compliance-demo-container {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.compliance-visualization {
+    flex: 1.5;
+    min-width: 350px;
+}
+
+.compliance-svg {
+    width: 100%;
+    max-width: 550px;
+    height: auto;
+    background: white;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+}
+
+.compliance-glass {
+    fill: #e3f2fd;
+}
+
+.comp-surface-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 12px;
+    fill: #666;
+}
+
+.bump {
+    fill: #90a4ae;
+}
+
+.comp-robot-body {
+    fill: #ffadad;
+    stroke: #2C3E50;
+    stroke-width: 2;
+}
+
+.comp-wheel {
+    fill: #666;
+    stroke: #333;
+    stroke-width: 2;
+}
+
+.comp-skirt-line {
+    stroke: #66bb6a;
+    stroke-width: 8;
+    fill: none;
+    stroke-linecap: round;
+    transition: all 0.3s;
+}
+
+.comp-direction {
+    fill: #2C3E50;
+}
+
+.force-label-small {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 10px;
+    fill: #333;
+}
+
+.compliance-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.comp-status-item {
+    text-align: center;
+    min-width: 100px;
+}
+
+.status-icon {
+    font-size: 1.5rem;
+    display: block;
+}
+
+.comp-status-item .status-label {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.status-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin: 0.25rem 0;
+    overflow: hidden;
+    width: 100px;
+}
+
+.status-fill {
+    height: 100%;
+    background: #66bb6a;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.comp-status-item .status-value {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1rem;
+    color: #2C3E50;
+}
+
+.comp-status-item .status-value.big {
+    font-size: 1.5rem;
+}
+
+.net-score {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 2px solid #5A7C9E;
+}
+
+.compliance-controls {
+    flex: 1;
+    min-width: 280px;
+}
+
+.compliance-controls h4 {
+    font-family: 'Cabin Sketch', cursive;
+    margin-bottom: 1rem;
+    color: #2C3E50;
+}
+
+.material-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.material-card {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.material-card:hover {
+    border-color: #5A7C9E;
+    transform: translateY(-2px);
+}
+
+.material-card.active {
+    border-color: #5A7C9E;
+    background: #e3f2fd;
+}
+
+.material-icon {
+    font-size: 1.5rem;
+    display: block;
+}
+
+.material-name {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 0.95rem;
+    display: block;
+    margin: 0.25rem 0;
+}
+
+.material-stats {
+    margin: 0.5rem 0;
+}
+
+.material-stats .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.7rem;
+    margin: 0.2rem 0;
+}
+
+.stat-label {
+    color: #666;
+    min-width: 60px;
+    text-align: left;
+}
+
+.stat-bar {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+}
+
+.stat-bar.high {
+    background: linear-gradient(90deg, #66bb6a 80%, #e0e0e0 80%);
+}
+
+.stat-bar.medium {
+    background: linear-gradient(90deg, #ffb74d 50%, #e0e0e0 50%);
+}
+
+.stat-bar.low {
+    background: linear-gradient(90deg, #66bb6a 20%, #e0e0e0 20%);
+}
+
+.stat-bar.none {
+    background: #e0e0e0;
+}
+
+.material-verdict {
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.material-verdict.good {
+    color: #66bb6a;
+}
+
+.material-verdict.bad {
+    color: #ef5350;
+}
+
+.drag-instruction {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: #fff3cd;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.instruction-icon {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.compliance-insight {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #e8f5e9;
+    border-radius: 8px;
+    border-left: 4px solid #66bb6a;
+}
+
+.compliance-insight h4 {
+    margin: 0 0 0.5rem 0;
+    font-family: 'Cabin Sketch', cursive;
+    color: #2e7d32;
+}
+
+.compliance-insight ul {
+    margin: 0.5rem 0 0 0;
+    padding-left: 0;
+    list-style: none;
+}
+
+.compliance-insight li {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+}
+
+/* ============================================
+   IMPELLER DEMO ENHANCEMENTS
+   ============================================ */
+.impeller-callouts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.callout {
+    position: absolute;
+    background: white;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 0.8rem;
+    z-index: 10;
+}
+
+.inlet-callout {
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.outlet-callout {
+    bottom: 20px;
+    right: 50px;
+}
+
+.callout-icon {
+    display: block;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.callout-text {
+    font-family: 'Cabin Sketch', cursive;
+}
+
+.callout-text small {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    color: #666;
+}
+
+.gauge-markers {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #666;
+    margin-top: 2px;
+}
+
+.zone-label {
+    font-family: 'Cabin Sketch', cursive;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.zone-label.low {
+    fill: #42a5f5;
+}
+
+.zone-label.high {
+    fill: #ef5350;
+}
+
+.physics-explanation {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.physics-explanation h4 {
+    font-family: 'Cabin Sketch', cursive;
+    margin: 0 0 0.75rem 0;
+    color: #2C3E50;
+}
+
+.physics-explanation ol {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+
+.physics-explanation li {
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.demo-legend .mid-color {
+    background: #66bb6a;
+}
+
+.pressure-zone {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS FOR NEW DEMOS
+   ============================================ */
+@media (max-width: 768px) {
+    .fbd-demo-container,
+    .compliance-demo-container {
+        flex-direction: column;
+    }
+    
+    .fbd-visualization,
+    .compliance-visualization {
+        min-width: 100%;
+    }
+    
+    .material-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .slip-ring-demo-container {
+        flex-direction: column;
+    }
+    
+    .compliance-status {
+        gap: 0.5rem;
+    }
+    
+    .comp-status-item {
+        min-width: 80px;
+    }
+}
