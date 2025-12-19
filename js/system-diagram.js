@@ -96,7 +96,7 @@ const diagramData = {
             name: 'DC Motors',
             color: 'blue',
             position: { x: 980, y: 200 },
-            info: 'Small 12V DC motors that drive the omni wheels in the kiwi drive configuration. Each motor is controlled via PWM (Pulse Width Modulation) signals from the motor driver, allowing precise speed and direction control. By varying the PWM duty cycle, the motors can be independently controlled to achieve omnidirectional movement, enabling the robot to navigate smoothly across the window surface in any direction.',
+            info: 'Small 12V DC motors that drive the omni wheels in the kiwi drive configuration. Each motor is controlled via PWM signals from the motor driver, allowing speed and direction control. By varying the PWM duty cycle, the motors can be independently controlled to achieve omnidirectional movement, enabling the robot to navigate smoothly across the window surface in any direction.',
             partLink: '',
             image: 'system_diagram_images/motors.png',
             icon: '🔋'
