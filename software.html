@@ -183,30 +183,111 @@
             <article class="featured-post">
                 <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Microcontroller and RaspPi</h3>
                 <p style="font-size: 1.1rem; line-height: 1.8;">
-                Next, we had to set up our microcontroller and Raspberry Pi communication. As we were using ROS, we decided to install and run microROS on the ESP 32. We eventually got this testing setup to work with the ESP 32 publishing and subscribing to test topics. However, with the failure of the PCB, we did not have certain electrical components in stock, such as the motor 
-                drivers that only worked with our PCB. As such, we switched to the Arduino with a motor shield as used in previous PIE projects. Consequently, we could not run microROS on the Arduino as the computing power was not high enough. Therefore, we switched to direct UDP communication. During this, we worked on making the Raspberry Pi act as an access point to which the Arduino would connect, as this would minimize our wifi communication latency. 
+                Next, we had to set up our microcontroller and Raspberry Pi communication. As we were using ROS, we decided to install 
+                and run microROS on the ESP 32. We eventually got this testing setup to work with the ESP 32 publishing and subscribing 
+                to test topics. However, with the failure of the PCB, we did not have certain electrical components in stock, such as the motor 
+                drivers that only worked with our PCB. As such, we switched to the Arduino with a motor shield as used in previous PIE projects. 
+                Consequently, we could not run microROS on the Arduino as the computing power was not high enough. Therefore, we switched to direct 
+                UDP communication. During this, we worked on making the Raspberry Pi act as an access point to which the Arduino would connect, 
+                as this would minimize our wifi communication latency. 
                 <img src="Software_Images/system components.png" alt="System Components and Files"
                     style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                 <img src="Software_Images/docking station.png" alt="Docking Station ROS Architecture"
                     style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                 <img src="Software_Images/state machine.png" alt="State Machine"
                     style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                As we developed our ROS architecture, we used development tools like Foxglove and Tailscale. Tailscale effectively let us connect to the Raspberry Pi via a static IP and view the machine details online. Foxglove provided realtime visualizations of certain ROS components, like a 3D view of our waypoints, global frame, and robot frame. Here is a screenshot of our Foxglove interface that shows important topics such as LiDAR data, IMU data, current robot state, logging, and keyboard input:
+                As we developed our ROS architecture, we used development tools like Foxglove and Tailscale. Tailscale effectively let 
+                us connect to the Raspberry Pi via a static IP and view the machine details online. Foxglove provided realtime visualizations 
+                of certain ROS components, like a 3D view of our waypoints, global frame, and robot frame. Here is a screenshot of our Foxglove
+                 interface that shows important topics such as LiDAR data, IMU data, current robot state, logging, and keyboard input:
                 <img src="Software_Images/foxglove interface.png" alt="Foxglove Interface"
                     style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
-                At this stage, we were able to run the script that would wait for an image to be uploaded via the terminal, transform it into waypoints, and export those waypoints into the world frame.
+                At this stage, we were able to run the script that would wait for an image to be uploaded via the terminal, transform it into waypoints, 
+                and export those waypoints into the world frame.
                 <img src="Software_Images/waypoints.png" alt="Waypoints"
                     style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
                 <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Pivot</h4>
-                    However, this development process resulted in inaccurate docking positions, as we assumed this could be integrated into the docking and undocking states from within the waypoint extraction. Additionally, the extent to which our robot had localization updates did not mesh well with the large amount of waypoints generated. Thus, for the final demonstration, we did not use the image to path pipeline and instead had only a few predefined waypoints. 
+                    However, this development process resulted in inaccurate docking positions, as we assumed this could be integrated into the 
+                    docking and undocking states from within the waypoint extraction. Additionally, the extent to which our robot had localization 
+                    updates did not mesh well with the large amount of waypoints generated. Thus, for the final demonstration, we did not use the 
+                    image to path pipeline and instead had only a few predefined waypoints. 
                 </p>
             </article>
 
             <article class="featured-post">
                 <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Final Design Overview</h3>
                 <p style="font-size: 1.1rem; line-height: 1.8;">
-                [description]
-                </p>
+                At the end of our project, we had programmed and developed:
+                    <ol type="1">
+                        <li>An image-to-path pipeline that generated a series of waypoints to represent the process of docking, drawing, and undocking that was erasure-aware.</li>
+                        <li>A ROS robotics architecture that allowed the robot to function in several states, including a teleoperation 
+                            and autonomous drawing mode, utilizing inverse kinematics and localization from sensor feedback.</li>
+                        <li>A communication network between our robot’s Arduino Nano microcontroller and the docking station’s Raspberry 
+                            Pi over UDP that relays sensor information and commands. </li>
+                    </ol>
+                For the physical integration, we continued under the design of a kiwi drive robot. This meant that each wheel essentially lives on 
+                the corner of a triangle and allows for holonomic motion, meaning that translation and rotation can occur independently of one another. 
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Path Pipeline</h4>
+                To properly construct a path for the robot to follow that would trace out an image, we had a strict requirement: the robot must 
+                not drive over any ink that had been placed already. Considering this, we determined this requirement would be solved in the path 
+                following phase as opposed to the path generation. As such, we adopted the following procedure:
+                <img src="Software_Images/path procedure.png" alt="Path Finding Procedure"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                For the first segment of our pipeline, we used Otsu’s method to binarize the image to separate what we would draw and what would
+                 be the background. We note that this had varying levels of success but proved to be an interesting method to extrapolate foreground 
+                 and background in images. Operating with a now binarized, or black and white, image, we used OpenCV to skeletonize the image. This 
+                 transforms thick lines into single-pixel representation, meaning that the size of lines will converge into a thin marker-sized representation. 
+                 This process can be visualized with a sample image here:
+                <img src="Software_Images/skeletonization.png" alt="Skeletonization Process"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">    
+                Note that via Otsu’s method, we can extract the border of the square we wish to draw, squish the multi pixel lines down to one, and extract 
+                a line for the robot to follow. As a result of using Otsu’s method, we were limited to not shading in images. 
+                <br>
+                Once the finalized polylines had been extracted, the algorithm solves the translational ordering of the robot. This minimizes the overlap 
+                between robot and drawn lines. Initially, before robot movement, the polylines themselves go through an ordering based on containment. 
+                For a robot to intelligently draw lines that are contained within other lines, it must follow an inside-out pattern. This can be visualized below:
+                <img src="Software_Images/containment ordering.png" alt="Containment Ordering"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                To draw this image without erasure, the robot cannot draw the outer circle, as it must then go inside to draw the inner circle. As 
+                it will eventually dock, it must return to home and must then run over a line it drew already. Visually, we can determine a line is
+                 contained within another line if it exists within the bounding box of that polyline, as shown above, where the blue bounding box 
+                 contains two sub-polylines, and so on. Once this has been determined and each polyline has been labeled, the program solves a Traveling 
+                 Salesperson Problem for each hierarchical level. It minimizes the drive time by greedily choosing the lowest cost of pen-up travel, 
+                 which is the shortest distance with minimal rotation. 
+                <br>
+                <br>
+                Since our wheels slip, we decided we would want to minimze rotation, hence adding it to the cost of travel. Along with the cost of 
+                rotation, the cost of erasure is far higher, as this is our main goal. As such, we need to account for the optimal rotation at each point 
+                so as to avoid overlapping with any drawn line. To do this, we represented the robot as a triangle in Shapely. Erasure was determined when
+                 doing an overlap call between all of our Shapely objects, being the polylines that were being drawn and the robot itself. We also determined 
+                 it would be optimal for the robot to attempt to draw tangent to the polyline so as to avoid future rotations. 
+                <br>
+                <br>
+                With all of this taken into account, the pipeline will run its algorithms and output the waypoints created for each polyline, which 
+                contain features like a boolean representing the marker being up or down and the orientation, in addition to just the x and y position 
+                relative to the canvas. This execution can be stored as a JSON or outputted directly, which was chosen for our ROS topic. 
+                <br>
+                <br>
+                For this section, we have these dependencies:
+                <br>
+                Python 3 Environment:
+                <ul>
+                    <li>NumPy</li>
+                    <li>Shapely</li>
+                    <li>NetworkX</li>
+                    <li>Scikit-Image</li>
+                    <li>OpenCV</li>
+                </ul>
+            <br>
+            <br>
+            If given more time, we would hope to modify the algorithm to contain more intelligent features. 
+            We feel as if distinguishing between translational and rotational movement was an unelegant solution, 
+            but were forced to maintain this in order to further the development of the project. Additionally, 
+            solving a global problem via a map-wide cost function as opposed to attempting to classify the lines 
+            themselves is a more efficient method one could explore. Ultimately, the path following was developed 
+            quickly and given less prioritization as opposed to finalizing the system and functionality regarding 
+            firmware and communication. 
+            </p>
             </article>
 
             <div style="text-align: center; margin-top: 3rem;">
