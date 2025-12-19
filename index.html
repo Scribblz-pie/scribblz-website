@@ -582,7 +582,7 @@
         <div class="content-wrapper">
             <h2 class="section-title">More Resources</h2>
             <div class="info-links-grid">
-                <a href="#" class="info-card">
+                <a href="https://cad.onshape.com/documents/879927a40bfb765bbc0bb783/w/2cf04403f6e6348eb65023a8/e/d584a85dbb0ee024d47ea593" class="info-card">
                     <img src="Additional_info_images\onshape.png" class="info-icon-img" alt="Onshape Logo">
                     <h3>CAD Files</h3>
                     <p>Download our 3D models</p>
@@ -675,51 +675,31 @@
             embeddedControls.minDistance = 2;
             embeddedControls.maxDistance = 20;
 
-
-            // ============================================================
-            // TO LOAD YOUR OWN STL FILE:
-            // ============================================================
-            // 1. Create a folder called 'stl-files' in your project directory
-            // 2. Place your STL file there (e.g., 'robot-assembly.stl')
-            // 3. Replace the code below with:
-            //
-            //    const loader = new THREE.STLLoader();
-            //    loader.load('stl-files/robot-assembly.stl', function(geometry) {
-            //        geometry.computeBoundingBox();
-            //        const boundingBox = geometry.boundingBox;
-            //        const center = new THREE.Vector3();
-            //        boundingBox.getCenter(center);
-            //        geometry.translate(-center.x, -center.y, -center.z);
-            //        
-            //        const size = new THREE.Vector3();
-            //        boundingBox.getSize(size);
-            //        const maxDim = Math.max(size.x, size.y, size.z);
-            //        const scale = 4 / maxDim;
-            //        geometry.scale(scale, scale, scale);
-            //        geometry.computeVertexNormals();
-            //        
-            //        const material = new THREE.MeshPhongMaterial({
-            //            color: 0xffadad,
-            //            specular: 0x111111,
-            //            shininess: 200
-            //        });
-            //        
-            //        embeddedMesh = new THREE.Mesh(geometry, material);
-            //        embeddedScene.add(embeddedMesh);
-            //    });
-            //
-            // ============================================================
-
-            // Default: Create simple robot geometry (remove this when using STL file)
-            const robotGeometry = createEmbeddedRobotGeometry();
+            const loader = new THREE.STLLoader();
+            loader.load('stl-files/Main Assm.stl', function(geometry) {
+            geometry.computeBoundingBox();
+            const boundingBox = geometry.boundingBox;
+            const center = new THREE.Vector3();
+            boundingBox.getCenter(center);
+            geometry.translate(-center.x, -center.y, -center.z);
+       
+            const size = new THREE.Vector3();
+            boundingBox.getSize(size);
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const scale = 4 / maxDim;
+            geometry.scale(scale, scale, scale);
+            geometry.computeVertexNormals();
+                 
             const material = new THREE.MeshPhongMaterial({
-                color: 0xffadad,  // Change color here (hex format)
+                color: 0xffadad,
                 specular: 0x111111,
                 shininess: 200
             });
-
-            embeddedMesh = new THREE.Mesh(robotGeometry, material);
+     
+            embeddedMesh = new THREE.Mesh(geometry, material);
             embeddedScene.add(embeddedMesh);
+            });
+
 
             // Animation loop
             function animate() {
