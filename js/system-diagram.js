@@ -33,7 +33,7 @@ const diagramData = {
             name: 'Servo',
             color: 'blue',
             position: { x: 440, y: 30 },
-            info: 'Small 9g servo motor with built-in position feedback for accurate angular control. Receives PWM control signals from the Nano to actuate the marker mechanism and allow it to go up an down when ordered to do so.',
+            info: 'Small 9g servo motor with built-in position feedback for accurate angles. Receives PWM control signals from the Nano to actuate the marker mechanism and allow it to go up and down on command to draw.',
             partLink: '',
             image: 'system_diagram_images/Servo.png',
             icon: '🦾'
@@ -42,7 +42,7 @@ const diagramData = {
             name: 'Marker',
             color: 'yellow',
             position: { x: 640, y: 30 },
-            info: 'Marking mechanism actuated by the servo motor. Used for identification, tracking, or dropping markers at specific locations. The servo provides the mechanical force needed to deploy or activate the marking system.',
+            info: 'Dry erase marker actuated by the servo motor. Used for drawing on the window surface. The servo raises and lowers the marker to make contact with the glass for drawing.',
             partLink: '',
             image: 'system_diagram_images/marker.png',
             icon: '🖍️'
@@ -51,7 +51,7 @@ const diagramData = {
             name: 'Wheels',
             color: 'yellow',
             position: { x: 980, y: 30 },
-            info: 'Omni wheels configured in a kiwi drive arrangement for omnidirectional movement. Three wheels positioned at 120-degree angles allow the robot to move in any direction and rotate while navigating around the window surface. Provides precise control and maneuverability for drawing operations.',
+            info: 'Omni wheels configured in a kiwi drive arrangement for omnidirectional movement. Three wheels positioned at 120-degree angles allow the robot to move in any direction and rotate while navigating around the window surface.',
             partLink: '',
             image: 'system_diagram_images/Wheels.png',
             icon: '🛞'
@@ -60,7 +60,7 @@ const diagramData = {
             name: 'Brushless Motor',
             color: 'blue',
             position: { x: 10, y: 200 },
-            info: 'Primary brushless DC motor for main propulsion. Provides mechanical power to the impeller for thrust generation. Controlled by the ESC which regulates speed and direction based on PWM input signals.',
+            info: 'Primary brushless motor for the impeller. Provides mechanical power to the impeller for suction. Controlled by the ESC which regulates speed and direction based on PWM input signals.',
             partLink: '',
             image: 'system_diagram_images/motor.png',
             icon: '⚙️'
@@ -78,7 +78,7 @@ const diagramData = {
             name: 'Nano',
             color: 'green',
             position: { x: 380, y: 200 },
-            info: 'Arduino Nano microcontroller serving as the central low-level control unit for the robot. Processes real-time sensor data from the IMU and executes control algorithms for motor coordination. Sends PWM commands to the ESC, servo, and motor driver while receiving high-level instructions from the RaspPi. Manages all real-time operations to ensure smooth, coordinated movement and drawing.',
+            info: 'Arduino Nano microcontroller serving as the central low-level control unit for the robot. Processes real-time sensor data from the IMU and executes control algorithms for motor coordination. Sends PWM commands to the ESC, servo, and motor driver while receiving instructions from the RaspPi.',
             partLink: '',
             image: 'system_diagram_images/Nano.png',
             icon: '📟'
@@ -96,7 +96,7 @@ const diagramData = {
             name: 'DC Motors',
             color: 'blue',
             position: { x: 980, y: 200 },
-            info: 'Small 12V DC motors that drive the omni wheels in the kiwi drive configuration. Each motor is controlled via PWM (Pulse Width Modulation) signals from the motor driver, allowing precise speed and direction control. By varying the PWM duty cycle, the motors can be independently controlled to achieve omnidirectional movement, enabling the robot to navigate smoothly across the window surface in any direction.',
+            info: 'Small 12V DC motors that drive the omni wheels in the kiwi drive configuration. Each motor is controlled via PWM signals from the motor driver, allowing speed and direction control. By varying the PWM duty cycle, the motors can be independently controlled to achieve omnidirectional movement, enabling the robot to navigate smoothly across the window surface in any direction.',
             partLink: '',
             image: 'system_diagram_images/motors.png',
             icon: '🔋'
@@ -105,7 +105,7 @@ const diagramData = {
             name: 'Power Module',
             color: 'red',
             position: { x: 180, y: 360 },
-            info: 'Central power distribution module that provides 12V to the entire system. Manages battery voltage output and ensures adequate current is supplied to all components. Includes protection circuits for overcurrent and reverse polarity to safeguard the electronics.',
+            info: 'Central power distribution module that provides 12V to the entire system. Manages battery voltage output and ensures adequate current is supplied to all components.',
             partLink: '',
             image: 'system_diagram_images/power_module.png',
             icon: '🔋'
