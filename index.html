@@ -169,6 +169,106 @@
                     </div>
                 </div>
             </div>
+            <h2 class="section-title">Design Process + Tradeoffs</h2>
+            <article class="featured-post">
+               <div class="project-left-col">
+                    <div class="project-goal-card">
+                        <h3>Sprint Progression</h3>
+                        <p>*More information included in subsections</p>
+                    </div>
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Sprint 1</h4>
+                            <p>
+                                Decide on drivetrain and suction method <br>
+                                Component selection, PCB schematic <br>
+                                Path following, software architecture and Arduino firmware <br>
+
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Sprint 2</h4>
+                            <p>
+                                Path following, software architecture and arduino firmware <br>
+                                Mechanical Optimization <br>
+                                PCB layout <br>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Sprint 3</h4>
+                            <p>
+                                Impeller optimization <br>
+                                Robot localization <br>
+                                Full integration/cleanup<br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-wrapper">
+            <div class="featured-post">
+                <div class="project-left-col">
+                    <div class="project-goal-card">
+                        <h3>Challenges and Tradeoffs</h3>
+                        <p>*More information included in subsections</p>
+                    </div>
+                    <!-- Step 1 -->
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h4>Mechanical</h4>
+                            <p>
+                                The chassis design needs high enough friction to reduce slippage, while not having so much
+                                that it doesn’t move (necessary for localization). Impacted by the skirt material, wheel placement, and impeller design. <br>
+
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h4>Electrical</h4>
+                            <p>
+                                Instead of trying to fix our failed PCB design, we pivoted to just using the Arduino Nano and prioritizing a working prototype.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h4>Software/Firmware</h4>
+                            <p>
+                                Localizing the robot is one of the largest challenges due to slippage. With slippage, wheel encoders were not effective. Instead, we localize the robot by using a LiDAR from the docking station. 
+
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h4>Overall</h4>
+                            <p>
+                                To prevent slippage, we have heavy weight constraints due to the force of gravity being a problem.
+                                This is the reason we attempted designing a compact, custom PCB. All other design decisions were made for the bot to be light as possible.
+                            </p>
+                        </div>
+                    </div>
+                </div>              
+            </article>
         </div>
     </section>
 
@@ -258,8 +358,9 @@
                         <header>
                             <h3>Software & Firmware</h3>
                         </header>
-                        <div class="card-image">
-                            <span class="emoji-placeholder">💻</span>
+                        <div class="card-image" style="padding: 0.5rem; background: white;">
+                            <img src="Software_Images/ros architecture.png" alt="ROS Architecture"
+                                style="width: 100%; height: auto; border-radius: 8px;">
                         </div>
                         <p>The brains of the operation! Main logic, RaspPi control, wireless communication,
                             and the code architecture that brings it all together.</p>
@@ -278,120 +379,11 @@
             <svg class="section-doodles-container"></svg>
         </div>
         <div class="content-wrapper">
-            <h2 class="section-title">System Overview + Design Process</h2>
+            <h2 class="section-title">System Diagram + Data/Energy Flow</h2>
+            <p class="bom-intro">Hover over the boxes and arrows for more information!</p>
             <!-- Dynamic System Diagram -->
             <div id="system-diagram-container">
                 <!-- JS will populate this -->
-            </div>
-        </div>
-        <div class="content-wrapper">
-            <h2 class="section-title"></h2>
-            <div class="featured-post">
-                <div class="project-left-col">
-                    <div class="project-goal-card">
-                        <h3>Design Process</h3>
-                        <p></p>
-                    </div>
-                    <!-- Step 1 -->
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>Sprint 1</h4>
-                            <p>
-                                Decide on drivetrain and suction method <br>
-                                Component selection, PCB schematic <br>
-                                Path following, software architecture and Arduino firmware <br>
-
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Step 2 -->
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>Sprint 2</h4>
-                            <p>
-                                Path following, software architecture and arduino firmware <br>
-                                Mechanical Optimization <br>
-                                PCB layout <br>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Step 3 -->
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>Sprint 3</h4>
-                            <p>
-                                User-input <br>
-                                Robot localization <br>
-                                Full integration/optimization <br>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="content-wrapper">
-            <h2 class="section-title"></h2>
-            <div class="featured-post">
-                <div class="project-left-col">
-                    <div class="project-goal-card">
-                        <h3>Challenges and Tradeoffs</h3>
-                        <p></p>
-                    </div>
-                    <!-- Step 1 -->
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h4>Mechanical</h4>
-                            <p>
-                                Chassis design needs high enough friction to reduce slippage, while not having so much
-                                that it doesn’t move (necessary for localization). <br>
-                                Skirt material <br>
-                                Wheel placement <br>
-                                Propeller → Impeller design and optimization <br>
-
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Step 2 -->
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h4>Electrical</h4>
-                            <p>
-                                PCB design – pivot to just nano to prioritize working prototype
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Step 3 -->
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h4>Software/Firmware</h4>
-                            <p>
-                                Pathing + generation - local and global optimization (want to minimize runtime but leads
-                                to non-optimal erasure pathing) <br>
-                                Localization - with slippage, hard to localize bot with wheel encoders so turning to
-                                localization from the docking station instead. Raspi on docking station with LiDAR to
-                                localize robot when docked.
-
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Step 4 -->
-                    <div class="step-card">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h4>Overall</h4>
-                            <p>
-                                Weight constraints - force of gravity as a problem
-                                (reason for PCB, all designs/materials are built/bought to be light as possible)
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -590,7 +582,7 @@
         <div class="content-wrapper">
             <h2 class="section-title">More Resources</h2>
             <div class="info-links-grid">
-                <a href="#" class="info-card">
+                <a href="https://cad.onshape.com/documents/879927a40bfb765bbc0bb783/w/2cf04403f6e6348eb65023a8/e/d584a85dbb0ee024d47ea593" class="info-card">
                     <img src="Additional_info_images\onshape.png" class="info-icon-img" alt="Onshape Logo">
                     <h3>CAD Files</h3>
                     <p>Download our 3D models</p>
@@ -683,51 +675,31 @@
             embeddedControls.minDistance = 2;
             embeddedControls.maxDistance = 20;
 
-
-            // ============================================================
-            // TO LOAD YOUR OWN STL FILE:
-            // ============================================================
-            // 1. Create a folder called 'stl-files' in your project directory
-            // 2. Place your STL file there (e.g., 'robot-assembly.stl')
-            // 3. Replace the code below with:
-            //
-            //    const loader = new THREE.STLLoader();
-            //    loader.load('stl-files/robot-assembly.stl', function(geometry) {
-            //        geometry.computeBoundingBox();
-            //        const boundingBox = geometry.boundingBox;
-            //        const center = new THREE.Vector3();
-            //        boundingBox.getCenter(center);
-            //        geometry.translate(-center.x, -center.y, -center.z);
-            //        
-            //        const size = new THREE.Vector3();
-            //        boundingBox.getSize(size);
-            //        const maxDim = Math.max(size.x, size.y, size.z);
-            //        const scale = 4 / maxDim;
-            //        geometry.scale(scale, scale, scale);
-            //        geometry.computeVertexNormals();
-            //        
-            //        const material = new THREE.MeshPhongMaterial({
-            //            color: 0xffadad,
-            //            specular: 0x111111,
-            //            shininess: 200
-            //        });
-            //        
-            //        embeddedMesh = new THREE.Mesh(geometry, material);
-            //        embeddedScene.add(embeddedMesh);
-            //    });
-            //
-            // ============================================================
-
-            // Default: Create simple robot geometry (remove this when using STL file)
-            const robotGeometry = createEmbeddedRobotGeometry();
+            const loader = new THREE.STLLoader();
+            loader.load('stl-files/Main Assm.stl', function(geometry) {
+            geometry.computeBoundingBox();
+            const boundingBox = geometry.boundingBox;
+            const center = new THREE.Vector3();
+            boundingBox.getCenter(center);
+            geometry.translate(-center.x, -center.y, -center.z);
+       
+            const size = new THREE.Vector3();
+            boundingBox.getSize(size);
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const scale = 4 / maxDim;
+            geometry.scale(scale, scale, scale);
+            geometry.computeVertexNormals();
+                 
             const material = new THREE.MeshPhongMaterial({
-                color: 0xffadad,  // Change color here (hex format)
+                color: 0xffadad,
                 specular: 0x111111,
                 shininess: 200
             });
-
-            embeddedMesh = new THREE.Mesh(robotGeometry, material);
+     
+            embeddedMesh = new THREE.Mesh(geometry, material);
             embeddedScene.add(embeddedMesh);
+            });
+
 
             // Animation loop
             function animate() {
