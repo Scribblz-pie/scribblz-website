@@ -346,11 +346,8 @@
                         <div class="step-content">
                             <h4>Mechanical</h4>
                             <p>
-                                Chassis design needs high enough friction to reduce slippage, while not having so much
-                                that it doesn’t move (necessary for localization). <br>
-                                Skirt material <br>
-                                Wheel placement <br>
-                                Propeller → Impeller design and optimization <br>
+                                The chassis design needs high enough friction to reduce slippage, while not having so much
+                                that it doesn’t move (necessary for localization). Impacted by the skirt material, wheel placement, and impeller design. <br>
 
                             </p>
                         </div>
@@ -361,7 +358,7 @@
                         <div class="step-content">
                             <h4>Electrical</h4>
                             <p>
-                                PCB design – pivot to just nano to prioritize working prototype
+                                Instead of trying to fix our failed PCB design, we pivoted to just using the Arduino Nano and prioritizing a working prototype.
                             </p>
                         </div>
                     </div>
@@ -371,11 +368,7 @@
                         <div class="step-content">
                             <h4>Software/Firmware</h4>
                             <p>
-                                Pathing + generation - local and global optimization (want to minimize runtime but leads
-                                to non-optimal erasure pathing) <br>
-                                Localization - with slippage, hard to localize bot with wheel encoders so turning to
-                                localization from the docking station instead. Raspi on docking station with LiDAR to
-                                localize robot when docked.
+                                Localizing the robot is one of the largest challenges due to slippage. With slippage, wheel encoders were not effective. Instead, we localize the robot by using a LiDAR from the docking station. 
 
                             </p>
                         </div>
@@ -386,8 +379,8 @@
                         <div class="step-content">
                             <h4>Overall</h4>
                             <p>
-                                Weight constraints - force of gravity as a problem
-                                (reason for PCB, all designs/materials are built/bought to be light as possible)
+                                To prevent slippage, we have heavy weight constraints due to the force of gravity being a problem.
+                                This is the reason we attempted designing a compact, custom PCB. All other design decisions were made for the bot to be light as possible.
                             </p>
                         </div>
                     </div>
