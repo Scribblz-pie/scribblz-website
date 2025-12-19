@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="system-diagram.css">
     <link rel="stylesheet" href="gallery.css">
     <link rel="stylesheet" href="design-layout.css">
+
+    <!-- Three.js for embedded 3D viewer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
 </head>
 
 <body class="is-preload">
@@ -31,7 +36,6 @@
             <li><a href="mechanical.html">Mechanical</a></li>
             <li><a href="electrical.html">Electrical</a></li>
             <li><a href="software.html">Software</a></li>
-
             <li><a href="about.html">About Us</a></li>
         </ul>
     </nav>
@@ -66,8 +70,18 @@
                             creating precise drawings based on user input.</p>
                     </div>
                     <div class="project-robot-image-container">
-                        <img class="project-robot-img" src="images/content.png" alt="Scribblz V1 Prototype">
-                        <p class="img-caption">SCRIBBLZ V1 Prototype</p>
+                        <canvas id="embedded-stl-viewer"
+                            style="width: 100%; height: 300px; border-radius: 8px; cursor: grab;"></canvas>
+                        <p class="img-caption">Interactive 3D Model - Drag to rotate, scroll to zoom</p>
+                        <div
+                            style="margin-top: 0.5rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap;">
+                            <button onclick="resetEmbeddedView()"
+                                style="font-family: 'Cabin Sketch', cursive; background: #ffadad; color: white; border: 2px solid #2C3E50; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">🔄
+                                Reset</button>
+                            <button onclick="toggleEmbeddedWireframe()"
+                                style="font-family: 'Cabin Sketch', cursive; background: #ffd6a5; color: #2C3E50; border: 2px solid #2C3E50; padding: 0.4rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.9rem;">📐
+                                Wireframe</button>
+                        </div>
                     </div>
                 </div>
                 <div class="project-steps-col">
@@ -115,15 +129,16 @@
                 <div class="project-left-col">
                     <div class="project-goal-card">
                         <h3>MOTIVATIONS</h3>
-                        <p>Our project was driven by three main pillars of motivation: Purpose, Novelty, and Longevity.</p>
+                        <p>Our project was driven by three main pillars of motivation: Purpose, Novelty, and Longevity.
+                        </p>
                     </div>
                     <!-- Step 1 -->
                     <div class="step-card">
                         <div class="step-number">1</div>
                         <div class="step-content">
                             <h4>Purpose</h4>
-                            <p>Not wanting to make something just for the sake of making, we decided to be ambitious 
-                                when choosing a project. So when we were inspired by existing wall-climbing bots, we 
+                            <p>Not wanting to make something just for the sake of making, we decided to be ambitious
+                                when choosing a project. So when we were inspired by existing wall-climbing bots, we
                                 wondered: How can we give it purpose? That’s when the idea of Scribblz came to life.
                             </p>
                         </div>
@@ -133,9 +148,10 @@
                         <div class="step-number">2</div>
                         <div class="step-content">
                             <h4>Novelty</h4>
-                            <p>Our team didn’t just want to make, we wanted to create. Our vision for Scribblz was 
-                                not only to captivate surrounding people, but be completely unique. Scribblz embodies 
-                                all of our inspirations and engineering journeys, amplifying a beautiful blend of diversity. 
+                            <p>Our team didn’t just want to make, we wanted to create. Our vision for Scribblz was
+                                not only to captivate surrounding people, but be completely unique. Scribblz embodies
+                                all of our inspirations and engineering journeys, amplifying a beautiful blend of
+                                diversity.
                             </p>
                         </div>
                     </div>
@@ -144,8 +160,9 @@
                         <div class="step-number">3</div>
                         <div class="step-content">
                             <h4>Longevity</h4>
-                            <p>Building on top of our previous two motivations, we wanted Scribblz to last long after we 
-                                finished the course. We designed it around being lightweight and easy to maintain. Our hope 
+                            <p>Building on top of our previous two motivations, we wanted Scribblz to last long after we
+                                finished the course. We designed it around being lightweight and easy to maintain. Our
+                                hope
                                 is that even once we’re gone from campus, our legacy can continue through other people.
                             </p>
                         </div>
@@ -154,7 +171,7 @@
             </div>
         </div>
     </section>
-    
+
 
     <!-- Final System Section -->
     <section id="final-system-section" class="wave-section">
@@ -176,14 +193,14 @@
 
                 <!-- Description below video -->
                 <p class="video-description"> <b>Watch as SCRIBBLZ brings art to
-                    vertical surfaces!</b> 
+                        vertical surfaces!</b>
                     <br>
-                    With a custom impeller design and omniwheels arranged in a kiwi-drive, our Nano-controlled robot 
-                    creates a vacuum to suction itself to a vertical window and is capable of driving in any direction. 
-                    At its head is a dry-erase marker which toggles up and down to draw lines. Doodles are uploaded 
-                    through our interface and communicated wirelessly to the RaspPi on the docking station. Once it’s 
-                    finished doodling, the bot docks until the next command is issued. 
-                </br>
+                    With a custom impeller design and omniwheels arranged in a kiwi-drive, our Nano-controlled robot
+                    creates a vacuum to suction itself to a vertical window and is capable of driving in any direction.
+                    At its head is a dry-erase marker which toggles up and down to draw lines. Doodles are uploaded
+                    through our interface and communicated wirelessly to the RaspPi on the docking station. Once it’s
+                    finished doodling, the bot docks until the next command is issued.
+                    </br>
                 </p>
             </article>
         </div>
@@ -425,9 +442,10 @@
                         <div class="step-content">
                             <h4>Mechanical</h4>
                             <p>
-                                Chassis design needs high enough friction to reduce slippage, while not having so much that it doesn’t move (necessary for localization). <br>
+                                Chassis design needs high enough friction to reduce slippage, while not having so much
+                                that it doesn’t move (necessary for localization). <br>
                                 Skirt material <br>
-                                Wheel placement <br> 
+                                Wheel placement <br>
                                 Propeller → Impeller design and optimization <br>
 
                             </p>
@@ -439,7 +457,7 @@
                         <div class="step-content">
                             <h4>Electrical</h4>
                             <p>
-                                PCB design  – pivot to just nano to prioritize working prototype
+                                PCB design – pivot to just nano to prioritize working prototype
                             </p>
                         </div>
                     </div>
@@ -449,9 +467,11 @@
                         <div class="step-content">
                             <h4>Software/Firmware</h4>
                             <p>
-                                Pathing + generation - local and global optimization (want to minimize runtime but leads to non-optimal erasure pathing) <br>
-                                Localization - with slippage, hard to localize bot with wheel encoders so turning to 
-                                localization from the docking station instead. Raspi on docking station with LiDAR to localize robot when docked.
+                                Pathing + generation - local and global optimization (want to minimize runtime but leads
+                                to non-optimal erasure pathing) <br>
+                                Localization - with slippage, hard to localize bot with wheel encoders so turning to
+                                localization from the docking station instead. Raspi on docking station with LiDAR to
+                                localize robot when docked.
 
                             </p>
                         </div>
@@ -462,7 +482,7 @@
                         <div class="step-content">
                             <h4>Overall</h4>
                             <p>
-                                Weight constraints - force of gravity as a problem 
+                                Weight constraints - force of gravity as a problem
                                 (reason for PCB, all designs/materials are built/bought to be light as possible)
                             </p>
                         </div>
@@ -498,7 +518,8 @@
         </div>
         <div class="content-wrapper">
             <h2 class="section-title">Bill of Materials</h2>
-            <p class="bom-intro">Complete list of components and materials used in the SCRIBBLZ project. Free or discounted items have an estimated <b>~$</b> cost.</p>
+            <p class="bom-intro">Complete list of components and materials used in the SCRIBBLZ project. Free or
+                discounted items have an estimated <b>~$</b> cost.</p>
 
             <div class="bom-container">
                 <div class="bom-category">
@@ -638,7 +659,8 @@
                     <h3>GitHub</h3>
                     <p>Source code & Firmware</p>
                 </a>
-                <a href="https://drive.google.com/drive/folders/1BIj-iDQvHRURCDXNMfdoPVn0RB_E9ykJ?usp=sharing" class="info-card">
+                <a href="https://drive.google.com/drive/folders/1BIj-iDQvHRURCDXNMfdoPVn0RB_E9ykJ?usp=sharing"
+                    class="info-card">
                     <img src="Additional_info_images/Google_Drive_icon_(2020).svg.png" class="info-icon-img"
                         alt="Google Drive Logo">
                     <h3>Design Review</h3>
@@ -669,6 +691,193 @@
 
     <!-- Gallery Script -->
     <script src="gallery.js"></script>
+
+    <!-- Embedded 3D Viewer Script -->
+    <script>
+        let embeddedScene, embeddedCamera, embeddedRenderer, embeddedControls, embeddedMesh;
+
+        function initEmbeddedViewer() {
+            const canvas = document.getElementById('embedded-stl-viewer');
+            if (!canvas) return;
+
+            const container = canvas.parentElement;
+            const width = canvas.clientWidth;
+            const height = 300;
+
+            // Scene setup
+            embeddedScene = new THREE.Scene();
+            embeddedScene.background = new THREE.Color(0xf5f5f5);
+
+            // Camera
+            embeddedCamera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+            embeddedCamera.position.set(5, 5, 5);
+
+            // Renderer
+            embeddedRenderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true });
+            embeddedRenderer.setSize(width, height);
+            embeddedRenderer.setPixelRatio(window.devicePixelRatio);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            embeddedScene.add(ambientLight);
+
+            const directionalLight1 = new THREE.DirectionalLight(0xffffff, 0.8);
+            directionalLight1.position.set(5, 10, 7);
+            embeddedScene.add(directionalLight1);
+
+            const directionalLight2 = new THREE.DirectionalLight(0xffadad, 0.3);
+            directionalLight2.position.set(-5, 5, -5);
+            embeddedScene.add(directionalLight2);
+
+            // Grid
+            const gridHelper = new THREE.GridHelper(10, 10, 0xffadad, 0xe0e0e0);
+            gridHelper.material.opacity = 0.3;
+            gridHelper.material.transparent = true;
+            embeddedScene.add(gridHelper);
+
+            // Controls
+            embeddedControls = new THREE.OrbitControls(embeddedCamera, embeddedRenderer.domElement);
+            embeddedControls.enableDamping = true;
+            embeddedControls.dampingFactor = 0.05;
+            embeddedControls.minDistance = 2;
+            embeddedControls.maxDistance = 20;
+
+
+            // ============================================================
+            // TO LOAD YOUR OWN STL FILE:
+            // ============================================================
+            // 1. Create a folder called 'stl-files' in your project directory
+            // 2. Place your STL file there (e.g., 'robot-assembly.stl')
+            // 3. Replace the code below with:
+            //
+            //    const loader = new THREE.STLLoader();
+            //    loader.load('stl-files/robot-assembly.stl', function(geometry) {
+            //        geometry.computeBoundingBox();
+            //        const boundingBox = geometry.boundingBox;
+            //        const center = new THREE.Vector3();
+            //        boundingBox.getCenter(center);
+            //        geometry.translate(-center.x, -center.y, -center.z);
+            //        
+            //        const size = new THREE.Vector3();
+            //        boundingBox.getSize(size);
+            //        const maxDim = Math.max(size.x, size.y, size.z);
+            //        const scale = 4 / maxDim;
+            //        geometry.scale(scale, scale, scale);
+            //        geometry.computeVertexNormals();
+            //        
+            //        const material = new THREE.MeshPhongMaterial({
+            //            color: 0xffadad,
+            //            specular: 0x111111,
+            //            shininess: 200
+            //        });
+            //        
+            //        embeddedMesh = new THREE.Mesh(geometry, material);
+            //        embeddedScene.add(embeddedMesh);
+            //    });
+            //
+            // ============================================================
+
+            // Default: Create simple robot geometry (remove this when using STL file)
+            const robotGeometry = createEmbeddedRobotGeometry();
+            const material = new THREE.MeshPhongMaterial({
+                color: 0xffadad,  // Change color here (hex format)
+                specular: 0x111111,
+                shininess: 200
+            });
+
+            embeddedMesh = new THREE.Mesh(robotGeometry, material);
+            embeddedScene.add(embeddedMesh);
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                embeddedControls.update();
+                embeddedRenderer.render(embeddedScene, embeddedCamera);
+            }
+            animate();
+
+            // Handle resize
+            window.addEventListener('resize', () => {
+                const newWidth = canvas.clientWidth;
+                embeddedCamera.aspect = newWidth / height;
+                embeddedCamera.updateProjectionMatrix();
+                embeddedRenderer.setSize(newWidth, height);
+            });
+        }
+
+        function createEmbeddedRobotGeometry() {
+            const group = new THREE.Group();
+
+            // Body
+            const bodyGeometry = new THREE.BoxGeometry(1.5, 2, 1);
+            const body = new THREE.Mesh(bodyGeometry);
+            body.position.y = 0;
+            group.add(body);
+
+            // Head
+            const headGeometry = new THREE.BoxGeometry(1, 1, 1);
+            const head = new THREE.Mesh(headGeometry);
+            head.position.y = 1.5;
+            group.add(head);
+
+            // Arms
+            const armGeometry = new THREE.BoxGeometry(0.4, 1.5, 0.4);
+            const leftArm = new THREE.Mesh(armGeometry);
+            leftArm.position.set(-1, 0, 0);
+            group.add(leftArm);
+
+            const rightArm = new THREE.Mesh(armGeometry);
+            rightArm.position.set(1, 0, 0);
+            group.add(rightArm);
+
+            // Legs
+            const legGeometry = new THREE.BoxGeometry(0.5, 1.5, 0.5);
+            const leftLeg = new THREE.Mesh(legGeometry);
+            leftLeg.position.set(-0.5, -1.75, 0);
+            group.add(leftLeg);
+
+            const rightLeg = new THREE.Mesh(legGeometry);
+            rightLeg.position.set(0.5, -1.75, 0);
+            group.add(rightLeg);
+
+            // Merge geometries
+            group.updateMatrixWorld(true);
+            const geometries = [];
+
+            group.traverse((child) => {
+                if (child instanceof THREE.Mesh) {
+                    const geo = child.geometry.clone();
+                    geo.applyMatrix4(child.matrixWorld);
+                    geometries.push(geo);
+                }
+            });
+
+            return THREE.BufferGeometryUtils ?
+                THREE.BufferGeometryUtils.mergeBufferGeometries(geometries) :
+                geometries[0];
+        }
+
+        function resetEmbeddedView() {
+            if (embeddedCamera && embeddedControls) {
+                embeddedCamera.position.set(5, 5, 5);
+                embeddedCamera.lookAt(0, 0, 0);
+                embeddedControls.reset();
+            }
+        }
+
+        function toggleEmbeddedWireframe() {
+            if (embeddedMesh) {
+                embeddedMesh.material.wireframe = !embeddedMesh.material.wireframe;
+            }
+        }
+
+        // Initialize when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initEmbeddedViewer);
+        } else {
+            initEmbeddedViewer();
+        }
+    </script>
 </body>
 
 </html>
