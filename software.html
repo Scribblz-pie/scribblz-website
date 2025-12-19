@@ -48,98 +48,165 @@
                 <h3>System Overview</h3>
                 <div class="system-diagram">
                     <div class="system-box">
-                        <h4>🌐 Web Interface</h4>
+                        <h4>Web Interface</h4>
                         <p>User Input</p>
                     </div>
                     <div class="arrow">→</div>
                     <div class="system-box">
-                        <h4>🐍 Python Backend</h4>
+                        <h4>Python Backend</h4>
                         <p>RaspPi Server</p>
                     </div>
                     <div class="arrow">→</div>
                     <div class="system-box">
-                        <h4>⚡ Firmware</h4>
+                        <h4>Firmware</h4>
                         <p>MCU Control</p>
                     </div>
                     <div class="arrow">→</div>
                     <div class="system-box">
-                        <h4>🤖 Hardware</h4>
+                        <h4>Hardware</h4>
                         <p>Motors & Sensors</p>
                     </div>
                 </div>
+                <p style="font-size: 1.1rem; line-height: 1.8;">The software architecture of Scribblz 
+                    evolved over the course of the project, as many design changes and decisions called 
+                    for overhauls or pivots. However, our consistent goal throughout the project was to 
+                    develop a pipeline for users to input an image and have the robot draw said image.</p>
             </article>
 
             <article class="featured-post">
-                <h3>Web Interface</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">💻</span>
-                </div>
-                <p>The web interface allows users to draw or upload images that the robot will recreate on the wall.
-                    Built with HTML5 Canvas and JavaScript, it provides real-time feedback and communicates with the
-                    robot via WebSocket connections.</p>
-                <p><strong>Features:</strong></p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li>Interactive drawing canvas</li>
-                    <li>Image upload and processing</li>
-                    <li>Real-time robot status updates</li>
-                    <li>Drawing preview and path optimization</li>
-                </ul>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Original Design Goal</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                Originally, the project vision had the user input exist through a website where someone may have the 
+                choice to select an image from their device and upload it, or draw via simple means, as one would see
+                in the barebones Microsoft Paint application. For the robot to draw the image, this involved developing 
+                a custom path-following algorithm that would need to interpret the image as some physical entity and perform 
+                various calculations to optimize the traversal of the robot on the window. 
+            </p>
             </article>
 
             <article class="featured-post">
-                <h3>Raspberry Pi Control Software</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">🐍</span>
-                </div>
-                <p>The Raspberry Pi runs Python-based control software that handles:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li><strong>Path Planning:</strong> Converts user drawings into optimized motor commands</li>
-                    <li><strong>Communication:</strong> Manages WebSocket server for web interface</li>
-                    <li><strong>State Management:</strong> Tracks robot position and drawing progress</li>
-                    <li><strong>Error Handling:</strong> Detects and recovers from common failure modes</li>
-                </ul>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Initial Development and Path Finding</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                To work towards our original goal, we needed to establish a connection between the user and the robot to allow for 
+                the uploaded image to be transformed into a robot drawing it. For the robot drawing, we needed to develop some 
+                software that would optimize for minimal erasure, as we determined that drawing over our lines would smudge 
+                and ruin the drawing, and minimal time, as the robot was currently battery-operated and needed to perform 
+                each drawing quickly so as to not run out of battery while drawing. As such, we developed this architecture
+                design:
+                </p>
+                <img src="Software_Images/initial diagram.jpg" alt="Inital Software Architecture"
+                    style="width: 100%; max-width: 400px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                At this stage in time, we had also developed part of the path finding element. This simple script consisted of 
+                two elements: transforming an input image into a series of controllable paths, and executing robot movement along 
+                these paths. For this, we had a visualization that was semi-physically accurate, shown below:
+                <img src="Software_Images/simple pathfinding.png" alt="Inital Pathfinding Visualization"
+                    style="width: 100%; max-width: 300px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                </p>
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Challenges Encountered</h4>
+                <p>
+                Here, the user inputs an image of a square, showcasing the path to follow and eventually draw over. 
+                This implementation used Python libraries like Shapely to define polylines and OpenCV to extract 
+                contours from images. However, the physics were inaccurate as the robot's shape would simply teleport 
+                between each waypoint, with thousands of waypoints depicting each line.
+                <br>
+                After showing this demonstration in our design review, we received feedback that made us modify our 
+                choices. The original cloud computing design intended to calculate the path was too much overhead for our 
+                project. Additionally, the lack of intelligence on the docking station, which at first seemed like a good idea, 
+                meant that our localization efforts would be difficult. With this new information, we would plan to modify our 
+                architecture layout.
+   
+                </p>
             </article>
 
             <article class="featured-post">
-                <h3>Microcontroller Firmware</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">⚙️</span>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Simulation Development</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                Meanwhile, we developed the physical aspects of the simulator. For our purposes, we utilized WeBots 
+                as a simulator to develop and visualize features of our code, such as the inverse kinematics 
+                functionality and the wheel movement. With some hardcoded physical features, such as the length of 
+                the robot, maximum wheel velocities, and marker placement, we were able to visualize and confirm the 
+                movement of the vehicle from inputs. 
+                </p>
+                <img src="Software_Images/simulation.png" alt="Inital Pathfinding Visualization"
+                    style="width: 100%; max-width: 300px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                With this, we were also able to drive the robot.
+                <div class="video-container">
+                    <iframe width="100%" height="100%" src="Software_Images/driving.mp4" title="SCRIBBLZ Driving"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen>
+                    </iframe>
                 </div>
-                <p>The microcontroller firmware is written in C/C++ and handles real-time control tasks:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li><strong>Motor Control:</strong> PID loops for precise speed and position control</li>
-                    <li><strong>Sensor Processing:</strong> Real-time reading and filtering of sensor data</li>
-                    <li><strong>Safety Systems:</strong> Emergency stop and fault detection</li>
-                    <li><strong>Communication Protocol:</strong> Serial interface with Raspberry Pi</li>
-                </ul>
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Learnings and Pivot</h4>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    However, this was all done via dead reckoning. We simply assumed the robot’s position would be accurate to where 
+                    it was. Given that on the surface we would eventually drive on, wheel slippage was estimated to be a large issue, 
+                    we determined new ways to do our localization, which required a technological overhaul and introduced the addition 
+                    of the Raspberry Pi 4 to our docking station. As we added another computer, which requires additional communication, 
+                    we did a slight pivot to a ROS architecture, as we determined it would be in line with our learning goals and give us 
+                    experience with something that we expected to be important in the future. 
+                </p>
             </article>
 
             <article class="featured-post">
-                <h3>Control Algorithms</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">📐</span>
-                </div>
-                <p>Several key algorithms enable smooth, accurate drawing:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li><strong>Path Optimization:</strong> Minimizes drawing time while maintaining quality</li>
-                    <li><strong>Motion Planning:</strong> Generates smooth trajectories between waypoints</li>
-                    <li><strong>PID Control:</strong> Maintains precise motor speeds and positions</li>
-                    <li><strong>Localization:</strong> Estimates robot position using encoder and IMU data</li>
-                </ul>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Localization</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                Now that we had a processor on the docking station, we had to ideate on the ideal method 
+                for localization. We initially tried this by using a camera on the docking station and IR LEDs 
+                on the robot. The camera would have a fisheye lens to capture the full 90 degrees required to 
+                see all parts of the window. There was also an IR-pass filter placed in front of the camera to 
+                prevent the natural light from impacting the sensing. Eventually, we got something to work that 
+                produced results that look like this.
+                </p>
+                <img src="Software_Images/camera scan.png" alt="IR LEDs on the Camera"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                However, given the placement of the slip ring, which was necessary after we pivoted to a fully 
+                tethered system, we had to rely on the IMU data to determine which LED was being seen at which time. 
+                As a team, we determined this was not an elegant solution and concluded that something else must act as our 
+                localization. 
+                <br>
+                With this quick action, we were able to borrow a LiDAR from another team that was no longer using it. 
+                We placed the LiDAR on the docking station, added a uniformly circular element to the slip ring of the 
+                robot, and elevated the LiDAR such that its sensing plane intersected this circular component. With this, 
+                we ran the RANSAC circle fitting algorithm on the points detected by the LiDAR, which was able to accurately 
+                calculate the center of the robot when placed on the window. The data looked like this: 
+                <img src="Software_Images/lidar scan.png" alt="LiDAR Scan with Circle Fitting"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <p>
+                Together with the IMU, we would have orientation and position, which was enough to utilize our inverse kinematics.
+                </p>
             </article>
 
             <article class="featured-post">
-                <h3>Development Tools & Testing</h3>
-                <div class="card-image">
-                    <span class="emoji-placeholder">🔧</span>
-                </div>
-                <p>Our development workflow includes:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 1rem auto;">
-                    <li>Git version control for all code</li>
-                    <li>Simulation environment for testing algorithms</li>
-                    <li>Unit tests for critical functions</li>
-                    <li>Logging and debugging tools for field testing</li>
-                </ul>
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Microcontroller and RaspPi</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                Next, we had to set up our microcontroller and Raspberry Pi communication. As we were using ROS, we decided to install and run microROS on the ESP 32. We eventually got this testing setup to work with the ESP 32 publishing and subscribing to test topics. However, with the failure of the PCB, we did not have certain electrical components in stock, such as the motor 
+                drivers that only worked with our PCB. As such, we switched to the Arduino with a motor shield as used in previous PIE projects. Consequently, we could not run microROS on the Arduino as the computing power was not high enough. Therefore, we switched to direct UDP communication. During this, we worked on making the Raspberry Pi act as an access point to which the Arduino would connect, as this would minimize our wifi communication latency. 
+                <img src="Software_Images/system components.png" alt="System Components and Files"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <img src="Software_Images/docking station.png" alt="Docking Station ROS Architecture"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <img src="Software_Images/state machine.png" alt="State Machine"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                As we developed our ROS architecture, we used development tools like Foxglove and Tailscale. Tailscale effectively let us connect to the Raspberry Pi via a static IP and view the machine details online. Foxglove provided realtime visualizations of certain ROS components, like a 3D view of our waypoints, global frame, and robot frame. Here is a screenshot of our Foxglove interface that shows important topics such as LiDAR data, IMU data, current robot state, logging, and keyboard input:
+                <img src="Software_Images/foxglove interface.png" alt="Foxglove Interface"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                At this stage, we were able to run the script that would wait for an image to be uploaded via the terminal, transform it into waypoints, and export those waypoints into the world frame.
+                <img src="Software_Images/waypoints.png" alt="Waypoints"
+                    style="width: 100%; max-width: 500px; height: auto; border-radius: 12px; margin: 1.5rem auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+                <h4 style="font-size: 1.5rem; margin: 2rem 0 1rem; color: #2C3E50;">Pivot</h4>
+                    However, this development process resulted in inaccurate docking positions, as we assumed this could be integrated into the docking and undocking states from within the waypoint extraction. Additionally, the extent to which our robot had localization updates did not mesh well with the large amount of waypoints generated. Thus, for the final demonstration, we did not use the image to path pipeline and instead had only a few predefined waypoints. 
+                </p>
+            </article>
+
+            <article class="featured-post">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #2C3E50;">Final Design Overview</h3>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                [description]
+                </p>
             </article>
 
             <div style="text-align: center; margin-top: 3rem;">
