@@ -146,13 +146,13 @@ const diagramData = {
         { id: 'servo-marker', coords: { x1: 560, y1: 100, x2: 640, y2: 100 }, label: 'Kinetic', color: '#FFA500', type: 'mechanical', desc: 'Mechanical actuation energy to operate marking mechanism' },
 
         // Power connections (black)
-        { id: 'power-buck', coords: { x1: 240, y1: 460, x2: 240, y2: 580 }, label: '12V', color: '#000000', type: 'electrical', desc: 'Raw battery voltage fed to buck converter for regulation' },
-        { id: 'power-esc', coords: { x1: 250, y1: 360, x2: 250, y2: 300 }, label: '12V', color: '#000000', type: 'electrical', desc: 'High-current 12V 20A power supply for motor ESC' },
-        { id: 'power-raspi', coords: { x1: 300, y1: 400, x2: 380, y2: 400 }, label: '5V', color: '#000000', type: 'electrical', desc: 'Regulated power supply for Raspberry Pi operation' },
-        { id: 'buck-driver', path: 'M 240 680 L 240 720 L 760 720 L 760 300', label: '12V', color: '#000000', type: 'electrical', desc: 'Stepped-down DC voltage to power motor driver circuitry' },
-        { id: 'raspi-lidar-power', coords: { x1: 430, y1: 460, x2: 430, y2: 580 }, label: '5V', color: '#000000', type: 'electrical', desc: '5V power supply to LiDAR sensor' },
-        { id: 'driver-nano-power', coords: { x1: 700, y1: 250, x2: 500, y2: 250 }, label: '12V', color: '#000000', type: 'electrical', desc: '12V power from motor driver to Nano' },
-        { id: 'nano-imu-power', coords: { x1: 460, y1: 240, x2: 315, y2: 130 }, label: '5V', color: '#000000', type: 'electrical', desc: '5V power supply to IMU sensor' },
+        { id: 'power-buck', coords: { x1: 240, y1: 460, x2: 240, y2: 580 }, label: '12V/20A', color: '#000000', type: 'electrical', desc: 'Raw battery voltage fed to buck converter for regulation' },
+        { id: 'power-esc', coords: { x1: 250, y1: 360, x2: 250, y2: 300 }, label: '12V/20A', color: '#000000', type: 'electrical', desc: 'High-current 12V 20A power supply for motor ESC' },
+        { id: 'power-raspi', coords: { x1: 300, y1: 400, x2: 380, y2: 400 }, label: '5V/3A', color: '#000000', type: 'electrical', desc: 'Regulated power supply for Raspberry Pi operation' },
+        { id: 'buck-driver', path: 'M 240 680 L 240 720 L 760 720 L 760 300', label: '12V/3A', color: '#000000', type: 'electrical', desc: 'Stepped-down DC voltage to power motor driver circuitry' },
+        { id: 'raspi-lidar-power', coords: { x1: 430, y1: 460, x2: 430, y2: 580 }, label: '5V/100mA', color: '#000000', type: 'electrical', desc: '5V/~100mA power supply to LiDAR sensor' },
+        { id: 'driver-nano-power', coords: { x1: 700, y1: 250, x2: 500, y2: 250 }, label: '12V/50mA', color: '#000000', type: 'electrical', desc: '12V/50mA power from motor driver to Nano' },
+        { id: 'nano-imu-power', coords: { x1: 460, y1: 240, x2: 315, y2: 130 }, label: '5V/3.9mA', color: '#000000', type: 'electrical', desc: '5V/3.9mA power supply to IMU sensor' },
 
         // Data connections - Commands TO devices (blue)
         { id: 'nano-servo', coords: { x1: 450, y1: 200, x2: 500, y2: 130 }, label: 'Commands', color: '#0000FF', type: 'digital', desc: 'PWM control signals for servo positioning' },
@@ -170,7 +170,7 @@ const diagramData = {
         // Analog/PWM connections (purple)
         { id: 'esc-motor', coords: { x1: 185, y1: 245, x2: 130, y2: 245 }, label: 'PWM', color: '#800080', type: 'analog', desc: 'PWM signal from ESC to motor' },
         { id: 'driver-motors', coords: { x1: 820, y1: 235, x2: 980, y2: 235 }, label: 'PWM', color: '#0000FF', type: 'digital', desc: 'PWM signals drive motors with variable speed' },
-        { id: 'driver-motors-power', coords: { x1: 820, y1: 245, x2: 980, y2: 245 }, label: '12V', color: '#000000', type: 'electrical', desc: '12V power supply to DC motors' },
+        { id: 'driver-motors-power', coords: { x1: 820, y1: 245, x2: 980, y2: 245 }, label: '12V/0.8A', color: '#000000', type: 'electrical', desc: '12V/~0.8A power supply to DC motors' },
     ]
 };
 
