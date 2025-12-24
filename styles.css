@@ -279,6 +279,43 @@ body {
     }
 }
 
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 101;
+    transition: transform 0.3s ease;
+}
+
+.hamburger span {
+    width: 30px;
+    height: 4px;
+    background: #2C3E50;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger:hover {
+    transform: scale(1.1);
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
 /* Intro Section */
 #intro {
     position: relative;
@@ -1377,10 +1414,62 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    #nav {
+        overflow: visible;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+    }
+
+    .logo {
+        flex: 1;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        transform: rotate(0deg);
+        margin: 0;
+        line-height: 1;
+    }
+
+    .hamburger {
+        display: flex;
+        flex: 0 0 auto;
+        align-self: center;
+        margin: 0;
+    }
+
     .nav-links {
+        order: 3;
+        width: 100%;
         flex-direction: column;
         gap: 1.5rem;
         align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin-top: 1rem;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+        background: transparent;
+    }
+
+    .nav-links.active {
+        max-height: 400px;
+        opacity: 1;
+        padding: 1.5rem 0;
+    }
+
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links a {
+        font-size: 1.4rem;
+        display: block;
+        padding: 0.5rem;
     }
 
     .system-diagram {
@@ -1412,7 +1501,8 @@ body.is-preload #intro {
     background: #000;
 }
 
-.video-container iframe {
+.video-container iframe,
+.video-container video {
     position: absolute;
     top: 0;
     left: 0;

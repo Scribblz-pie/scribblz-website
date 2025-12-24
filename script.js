@@ -1,3 +1,41 @@
+// Hamburger Menu Toggle - wrapped in DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+
+    console.log('Hamburger element:', hamburger);
+    console.log('NavLinks element:', navLinks);
+
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            console.log('Hamburger clicked!');
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            console.log('Menu active:', navLinks.classList.contains('active'));
+        });
+
+        // Close menu when clicking on a link
+        const links = navLinks.querySelectorAll('a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
+    } else {
+        console.error('Hamburger or navLinks not found!');
+    }
+});
+
 const sketchContainer = document.getElementById('sketchContainer');
 const spotItContainer = document.getElementById('spotItContainer');
 const robotTrailContainer = document.getElementById('robotTrailContainer');

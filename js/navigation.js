@@ -1,5 +1,34 @@
 // Navigation and scroll handling
 document.addEventListener('DOMContentLoaded', () => {
+    // Hamburger Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinksMenu = document.getElementById('navLinks');
+
+    if (hamburger && navLinksMenu) {
+        hamburger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navLinksMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        const menuLinks = navLinksMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinksMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navLinksMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navLinksMenu.classList.remove('active');
+            }
+        });
+    }
+
     // Highlight current page link
     const navLinks = document.querySelectorAll('.nav-links a');
     const currentPath = window.location.pathname;
@@ -31,4 +60,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Remove preload class
     document.body.classList.remove('is-preload');
+
+    // Video autoplay on scroll
+    const mainVideo = document.getElementById('mainVideo');
+    if (mainVideo) {
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    mainVideo.play().catch(err => {
+                        console.log('Autoplay prevented:', err);
+                    });
+                } else {
+                    mainVideo.pause();
+                }
+            });
+        }, {
+            threshold: 0.5 // Video plays when 50% visible
+        });
+        
+        videoObserver.observe(mainVideo);
+    }
 });

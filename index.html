@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCRIBBLZ - Wall Drawing Robot Project</title>
+    <link rel="icon" type="image/png" href="images/content.png">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="system-diagram.css">
     <link rel="stylesheet" href="gallery.css">
@@ -31,7 +32,12 @@
         <div class="logo">
             SCRIBBLZ
         </div>
-        <ul class="nav-links">
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="mechanical.html">Mechanical</a></li>
             <li><a href="electrical.html">Electrical</a></li>
@@ -282,13 +288,12 @@
             <img id="robot-gallery" class="robot-element" src="images\content.png" alt="Robot Gallery">
             <h2 class="section-title">Final System</h2>
             <article class="featured-post">
-                <!-- YouTube Video Embed -->
+                <!-- Robot Demo Video -->
                 <div class="video-container">
-                    <iframe width="100%" height="100%" src="images/scribblz_smiles.mp4" title="SCRIBBLZ Robot Demo"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                    </iframe>
+                    <video id="mainVideo" width="100%" height="100%" controls muted loop playsinline>
+                        <source src="images/scribblz_smiles.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
 
                 <!-- Description below video -->
